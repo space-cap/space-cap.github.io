@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>씹는 즐거움, 되찾은 건강 - 시니어 임플란트 상담센터</title>
+    <style>
+        /* 시니어 친화적 디자인 원칙 적용 (단순함, 큰 글자, 고대비) */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #FDFBF6; /* 눈이 편안한 미색 배경 */
+            color: #333;
+            line-height: 1.8; /* 줄 간격을 넓혀 가독성 향상 */
+            font-size: 18px; /* 기본 글자 크기를 크게 설정 */
+        }
+        .container {
+            width: 100%;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        header, section, footer {
+            padding: 60px 0;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            margin-top: 0;
+            word-break: keep-all; /* 단어 단위로 줄바꿈 */
+        }
+        h1 {
+            font-size: 42px;
+            color: #005A8D; /* 신뢰감을 주는 파란색 계열 */
+        }
+        h2 {
+            font-size: 32px;
+            margin-bottom: 40px;
+        }
+        p {
+            font-size: 20px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .highlight {
+            color: #D9534F; /* 중요한 부분을 강조하는 색상 */
+            font-weight: 700;
+        }
+        .main-visual {
+            background-color: #EAF7FF; /* 부드러운 하늘색 배경 */
+        }
+        .main-visual img {
+            max-width: 400px;
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: #007BFF; /* 눈에 잘 띄는 파란색 버튼 */
+            color: #fff;
+            padding: 20px 40px; /* 버튼 크기를 키워 누르기 쉽게 */
+            font-size: 24px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .cta-button:hover {
+            background-color: #0056b3;
+        }
+        .info-box {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 20px;
+            text-align: left;
+        }
+        .info-box h3 {
+            margin-top: 0;
+            text-align: center;
+        }
+        .info-box ul {
+            padding-left: 20px;
+            list-style-type: '✔ ';
+        }
+        .info-box li {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .process-steps {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .step {
+            width: 200px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .step-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #007BFF;
+            margin-bottom: 10px;
+        }
+        .form-section {
+            background-color: #f2f2f2;
+        }
+        .consult-form {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+        }
+        .consult-form label {
+            display: block;
+            text-align: left;
+            margin-bottom: 10px;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .consult-form input {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            font-size: 16px;
+            padding: 30px 0;
+        }
+
+        /* 모바일 반응형 디자인 */
+        @media (max-width: 768px) {
+            h1 { font-size: 32px; }
+            h2 { font-size: 26px; }
+            p { font-size: 18px; }
+            .cta-button { font-size: 20px; padding: 15px 30px;}
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. 메인 비주얼: 핵심 메시지와 이미지 -->
+    <header class="main-visual container">
+        <!-- 이미지: 건강하게 웃고 있는 노부부의 모습 또는 맛있는 음식을 먹는 노인의 행복한 표정 -->
+        <img src="https://via.placeholder.com/400x300.png?text=행복한+노년의+미소" alt="건강하게 웃고 있는 노부부의 모습">
+        <h1>씹는 즐거움, 되찾은 젊음</h1>
+        <p>이제 망설이지 마세요. 정부 지원으로 부담 없이, 건강한 치아로 행복한 제2의 인생을 시작하세요!</p>
+        <a href="#consult" class="cta-button">건강보험 적용 무료 상담받기</a>
+    </header>
+
+    <main>
+        <!-- 2. 문제 제기: 어르신들의 공감대 형성 -->
+        <section class="container">
+            <h2>혹시 이런 불편함, 겪고 계신가요?</h2>
+            <p>치아가 불편하면 마음껏 먹고 웃기 어렵습니다. 음식 섭취가 힘들어지면 전신 건강까지 나빠질 수 있습니다[1]. 더 이상 참지 마시고 건강을 되찾으세요.</p>
+            <!-- 아이콘과 함께 불편함 리스트를 보여줄 수 있습니다. ex) 식사 어려움, 발음 문제, 자신감 하락 등 -->
+        </section>
+
+        <!-- 3. 해결책: 정부 지원 혜택 강조 -->
+        <section id="support" style="background-color: #EAF7FF;">
+            <div class="container">
+                <h2>나라에서 지원해 드립니다!<br>만 65세 이상 임플란트 건강보험 혜택</h2>
+                <div class="info-box">
+                    <h3>✅ 2025년 노인 임플란트 지원 내용</h3>
+                    <ul>
+                        <li><strong>지원 대상:</strong> 대한민국 <span class="highlight">만 65세 이상</span> 건강보험 가입자라면 누구나[12]</li>
+                        <li><strong>지원 개수:</strong> <span class="highlight">1인당 평생 2개</span>까지 건강보험 적용[6][12]</li>
+                        <li><strong>본인 부담금:</strong> 전체 비용의 <span class="highlight">약 30%</span>만 부담 (약 35~45만원 수준)[12]</li>
+                        <li><strong>적용 치아:</strong> 부분 무치악(치아가 일부 없는 경우) 어르신 대상[6]</li>
+                    </ul>
+                    <p style="text-align: center; margin-top: 20px; font-size: 16px;">※ 비귀금속도재관(PFM) 크라운 사용 시 적용되며, 뼈이식 등 부가 시술은 비급여입니다[6]. 자세한 내용은 상담을 통해 확인하세요.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. 임플란트 장점 소개 -->
+        <section class="container">
+            <h2>임플란트, 왜 해야 할까요?</h2>
+            <p>임플란트는 단순한 인공치아가 아닙니다. 씹는 힘을 회복시켜주고, 남아있는 턱뼈를 보호하며, 자연치아처럼 아름다워 자신감을 되찾아줍니다[11].</p>
+             <!-- 이미지: 임플란트 구조를 알기 쉽게 설명하는 3D 그래픽 이미지 -->
+            <img src="https://via.placeholder.com/500x300.png?text=임플란트+구조+설명" alt="치아 임플란트 구조 설명 이미지" style="max-width: 100%; margin-top: 30px;">
+        </section>
+
+        <!-- 5. 시술 과정 안내 (단순화) -->
+        <section style="background-color: #f9f9f9;">
+            <div class="container">
+                <h2>믿을 수 있는 진료, 간단한 과정</h2>
+                <p>오랜 경험의 의료진이 최신 장비로 안전하고 편안하게 진료합니다. 과정은 어렵지 않습니다.</p>
+                <div class="process-steps">
+                    <div class="step">
+                        <div class="step-number">1단계</div>
+                        <div>정밀 검사 및<br>상담</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2단계</div>
+                        <div>맞춤 치료<br>계획 수립</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3단계</div>
+                        <div>안전한<br>임플란트 식립</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4단계</div>
+                        <div>최종 보철물<br>장착 및 관리</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 6. 상담 신청 양식 (Call to Action) -->
+        <section id="consult" class="form-section">
+            <div class="container">
+                <h2>지금 바로 무료 상담을 신청하세요!</h2>
+                <p>더 이상 미루지 마세요. 전화 한 통이면 궁금증을 해결해 드립니다. 상담만 받으셔도 괜찮습니다.</p>
+                <div class="consult-form">
+                    <form action="#" method="post"> <!-- 실제 사용 시 action 속성에 서버 URL을 입력하세요 -->
+                        <label for="name">성함</label>
+                        <input type="text" id="name" name="name" placeholder="홍길동" required>
+                        
+                        <label for="phone">연락처</label>
+                        <input type="tel" id="phone" name="phone" placeholder="010-1234-5678 (숫자만 입력)" required>
+                        
+                        <button type="submit" class="cta-button" style="width: 100%;">내 보험 혜택 확인하고 상담받기</button>
+                    </form>
+                    <p style="font-size: 14px; color: #666; margin-top: 20px;">※ 개인정보는 상담 목적으로만 사용되며 안전하게 관리됩니다.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 7. 하단 정보 -->
+    <footer>
+        <div class="container">
+            <p>튼튼치과 | 대표: 김튼튼 | 사업자등록번호: 123-45-67890</p>
+            <p>주소: 서울시 건강구 행복로 123, 4층 | 진료상담: 02-1234-5678</p>
+            <p>&copy; 2024 튼튼치과. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
