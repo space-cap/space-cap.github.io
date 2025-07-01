@@ -54,15 +54,18 @@
             border: 3px solid #4CAF50;
         }
         .call-sticky {
-            position: fixed;
-            bottom: 20px;
-            left: 0%;
-            transform: translateX(-50%);
-            z-index: 1000;
-            width: calc(100% - 40px); /* Adjust width for mobile padding */
-            max-width: 400px; /* Max width for larger screens */
-            display: none; /* Hidden by default, shown on scroll */
-        }
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    padding: 0 20px;
+}
+
+
+
         @media (max-width: 768px) {
             .call-sticky {
                 display: block; /* Show on mobile */
