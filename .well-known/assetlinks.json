@@ -1,10 +1,8 @@
 [{
-  "relation": ["delegate_permission/common.handle_all_urls"],
-  "target": {
-    "namespace": "android_app",
-    "package_name": "com.space_cap.java_interview_quiz",
-    "sha256_cert_fingerprints": [
-      "여기에_PWA_Builder에서_생성된_SHA256_지문_입력"
-    ]
-  }
-}]
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "io.github.space_cap.twa",
+        "sha256_cert_fingerprints": ["7E:52:38:39:A2:D9:39:5C:4D:89:34:7F:9C:20:D7:78:FD:0B:87:7C:02:98:F3:2A:1B:30:7A:D9:59:EA:35:73"]
+      }
+    }]
