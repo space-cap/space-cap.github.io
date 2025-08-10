@@ -1,0 +1,10 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.space_cap.java_interview_quiz",
+    "sha256_cert_fingerprints": [
+      "여기에_PWA_Builder에서_생성된_SHA256_지문_입력"
+    ]
+  }
+}]
