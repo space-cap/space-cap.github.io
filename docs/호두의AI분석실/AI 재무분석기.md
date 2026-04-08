@@ -29,12 +29,14 @@ Sheets로 내보내기
 
 Bash
 
-`# pip 패키지 설치
+```
+# pip 패키지 설치
 pip install flask requests google-genai
 
 # .env 환경변수 설정
 DART_API_KEY="DART에서 발급받은 API 키"      # opendart.fss.or.kr
-GOOGLE_API_KEY="Google에서 발급받은 API 키"  # aistudio.google.com/apikey`
+GOOGLE_API_KEY="Google에서 발급받은 API 키"  # aistudio.google.com/apikey
+```
 
 > **Tip:** `.env` 파일은 프레임워크 없이 내장 로직으로 직접 파싱하여 로드합니다.
 > 
@@ -45,7 +47,7 @@ GOOGLE_API_KEY="Google에서 발급받은 API 키"  # aistudio.google.com/apikey
 
 
 
-``` Plaintext
+``` plaintext
 재무재표 분석기/
 ├── .env                          # API 키 (Git 제외)
 ├── VIBE_CODING_SPEC.md           # 명세서 파일
