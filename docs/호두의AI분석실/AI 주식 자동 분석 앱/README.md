@@ -54,6 +54,7 @@ GOOGLE_API_KEY=your_gemini_api_key_here
 # OpenAI(ChatGPT)를 사용할 경우
 OPENAI_API_KEY=your_openai_api_key_here
 ```
+> **🚨 보안 주의**: API Key가 포함된 `.env` 파일과 계속 누적되는 큰 데이터 파일(`*.csv`)이 깃허브 등 공개 저장소에 실수로 업로드되지 않도록 반드시 `.gitignore` 파일에 추가해 주세요!
 
 ### 4. 종목 리스트 준비
 `korean_stocks_list.csv` 파일이 루트 디렉토리에 있어야 합니다. (형식: `ticker,name` 컬럼 필수)
