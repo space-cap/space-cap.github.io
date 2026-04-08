@@ -36,15 +36,13 @@
 *   `uv` 패키지 관리자 (참고: [uv 공식 문서](https://docs.astral.sh/uv/getting-started/installation/))
 
 ### 2. 라이브러리 설치
-`uv`를 사용하여 가상 환경을 생성하고 프로젝트 실행에 필요한 패키지를 설치합니다.
+`uv`를 사용하여 프로젝트를 초기화하고 실행에 필요한 패키지들을 추가합니다.
 ```bash
-# 가상 환경 생성 및 활성화
-uv venv
-# Windows: .venv\Scripts\activate
-# macOS/Linux: source .venv/bin/activate
+# 프로젝트 초기화 (pyproject.toml 생성)
+uv init
 
-# 필수 패키지 설치
-uv pip install pandas numpy requests tqdm python-dotenv plotly streamlit google-generativeai duckduckgo-search newspaper3k lxml_html_clean
+# 필수 패키지 설치 (자동으로 가상 환경(.venv)이 구성되고 패키지가 추가됩니다)
+uv add pandas numpy requests tqdm python-dotenv plotly streamlit google-generativeai duckduckgo-search newspaper3k lxml_html_clean
 ```
 
 ### 3. 환경 변수 설정 (.env)
