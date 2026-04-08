@@ -128,14 +128,14 @@ StockAI의 핵심 엔진인 `analysis2.py`는 주가 파동의 단계를 4가지
 ### 1. 매일 장 마감 후 분석 실행
 터미널에서 아래 명령어를 실행하면 모든 과정이 자동으로 진행됩니다.
 ```bash
-python3 run_analysis.py
+uv run run_analysis.py
 ```
 > **소요 시간**: 약 3~5분 (네이버 서버 응답 속도에 따라 상이)
 
 ### 2. 대시보드 실행
 분석이 완료되면 대시보드를 띄워 결과를 확인합니다.
 ```bash
-streamlit run dashboard/app.py
+uv run streamlit run dashboard/app.py
 ```
 *   브라우저가 자동으로 열리며 `http://localhost:8501`로 접속됩니다.
 
