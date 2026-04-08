@@ -32,7 +32,7 @@
 
 ### 1. 필수 요구사항 (Prerequisites)
 *   Python 3.13 이상
-*   Google Gemini API Key (무료 발급 가능)
+*   Google Gemini API Key 또는 OpenAI API Key (취향에 맞게 선택)
 *   `uv` 패키지 관리자 (참고: [uv 공식 문서](https://docs.astral.sh/uv/getting-started/installation/))
 
 ### 2. 라이브러리 설치
@@ -42,14 +42,17 @@
 uv init --python 3.13
 
 # 필수 패키지 설치 (자동으로 가상 환경(.venv)이 구성되고 패키지가 추가됩니다)
-uv add pandas numpy requests tqdm python-dotenv plotly streamlit google-generativeai duckduckgo-search newspaper3k lxml_html_clean
+uv add pandas numpy requests tqdm python-dotenv plotly streamlit google-generativeai openai duckduckgo-search newspaper3k lxml_html_clean
 ```
 
 ### 3. 환경 변수 설정 (.env)
-프로젝트 루트 디렉토리에 `.env` 파일을 생성하고 아래 내용을 입력하세요.
+프로젝트 루트 디렉토리에 `.env` 파일을 생성하고 사용할 AI 모델에 맞춰 내용을 입력하세요. (둘 다 입력해도 무방합니다)
 ```ini
-# Google AI Studio에서 발급받은 API 키
-GOOGLE_API_KEY=your_api_key_here
+# Google Gemini를 사용할 경우
+GOOGLE_API_KEY=your_gemini_api_key_here
+
+# OpenAI(ChatGPT)를 사용할 경우
+OPENAI_API_KEY=your_openai_api_key_here
 ```
 
 ### 4. 종목 리스트 준비
@@ -148,10 +151,10 @@ streamlit run dashboard/app.py
 3.  해당 메서드 안에 새로운 지표 계산 로직(예: Bollinger Bands)을 추가합니다.
 4.  `calculate_final_investment_scores` 메서드에서 해당 지표를 점수 산출 로직에 반영합니다.
 
-### Q: AI 분석 프롬프트를 수정하고 싶다면?
+### Q: AI 분석 프롬프트를 수정하거나 모델을 변경하고 싶다면?
 1.  `investigate_top_stocks.py` 파일을 엽니다.
-2.  `analyze_stock_with_gemini` 함수 내의 `prompt` 변수를 수정합니다.
-3.  더 자세한 분석을 원한다면 "재무제표 분석을 추가해줘" 등의 지시사항을 프롬프트에 추가하세요.
+2.  프롬프트 수정: 실행 함수 내의 `prompt` 변수를 찾아 원하는 지시사항을 추가하세요.
+3.  모델 변경: 개발자 본인의 취향 및 설정에 맞춰 코드 내의 API 호출 객체를 OpenAI 혹은 Gemini로 수정 및 전환하여 사용할 수 있습니다.
 
 ### Q: 대시보드에 새로운 탭을 만들고 싶다면?
 1.  `dashboard/app.py`를 엽니다.
@@ -166,7 +169,7 @@ streamlit run dashboard/app.py
 *   A. `daily_prices.csv`의 컬럼명이 변경되었을 수 있습니다. `create_complete_daily_prices.py`를 실행하여 데이터를 다시 수집해 보세요.
 
 **Q. AI 분석이 실행되지 않아요.**
-*   A. `.env` 파일에 `GOOGLE_API_KEY`가 올바르게 설정되어 있는지 확인하세요. API 키가 만료되었거나 할당량이 초과되었을 수 있습니다.
+*   A. `.env` 파일에 사용 중인 모델의 API 키(`GOOGLE_API_KEY` 또는 `OPENAI_API_KEY`)가 올바르게 설정되어 있는지 확인하세요. API 키가 만료되었거나 할당량/크레딧이 초과되었을 수 있습니다.
 
 **Q. 대시보드 차트가 안 보여요.**
 *   A. 데이터 파일(`daily_prices.csv`)이 비어있거나 손상되었을 수 있습니다. `run_analysis.py`를 다시 실행하여 데이터를 복구하세요.
