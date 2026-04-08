@@ -31,13 +31,20 @@
 ## 🛠 설치 및 설정 (Installation)
 
 ### 1. 필수 요구사항 (Prerequisites)
-*   Python 3.9 이상
+*   Python 3.13 이상
 *   Google Gemini API Key (무료 발급 가능)
+*   `uv` 패키지 관리자 (참고: [uv 공식 문서](https://docs.astral.sh/uv/getting-started/installation/))
 
 ### 2. 라이브러리 설치
-프로젝트 실행에 필요한 파이썬 패키지들을 설치합니다.
+`uv`를 사용하여 가상 환경을 생성하고 프로젝트 실행에 필요한 패키지를 설치합니다.
 ```bash
-pip install pandas numpy requests tqdm python-dotenv plotly streamlit google-generativeai duckduckgo-search newspaper3k lxml_html_clean
+# 가상 환경 생성 및 활성화
+uv venv
+# Windows: .venv\Scripts\activate
+# macOS/Linux: source .venv/bin/activate
+
+# 필수 패키지 설치
+uv pip install pandas numpy requests tqdm python-dotenv plotly streamlit google-generativeai duckduckgo-search newspaper3k lxml_html_clean
 ```
 
 ### 3. 환경 변수 설정 (.env)
