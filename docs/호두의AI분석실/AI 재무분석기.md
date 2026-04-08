@@ -43,9 +43,10 @@ GOOGLE_API_KEY="Google에서 발급받은 API 키"  # aistudio.google.com/apikey
 
 ## 📂 3. 프로젝트 구조 (디렉토리)
 
-Plaintext
 
-`재무재표 분석기/
+
+``` Plaintext
+재무재표 분석기/
 ├── .env                          # API 키 (Git 제외)
 ├── VIBE_CODING_SPEC.md           # 명세서 파일
 ├── shared/
@@ -57,7 +58,8 @@ Plaintext
     ├── templates/
     │   └── index.html            # 토스 스타일 모바일 UI (단일 SPA)
     ├── data/                     # 수집된 DART 재무 데이터 JSON (자동 저장)
-    └── output/                   # AI 분석 결과 JSON (자동 저장)`
+    └── output/                   # AI 분석 결과 JSON (자동 저장)
+```
 
 ---
 
