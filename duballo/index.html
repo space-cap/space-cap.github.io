@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>두발로병원 - 족부, 관절, 척추 중심의 바른 진료</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans KR"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9', // 메인 브랜드 컬러 (신뢰의 블루)
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                        },
+                        accent: '#f59e0b', // 강조 컬러 (오렌지/옐로우 계열)
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 1s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .delay-100 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-300 {
+            animation-delay: 0.3s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 히어로 배경 이미지 - 정형외과/신경외과에 맞는 차분하고 전문적인 이미지 */
+        .hero-bg {
+            background-image: linear-gradient(rgba(12, 74, 110, 0.7), rgba(2, 132, 199, 0.5)), url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=1920');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* 퀵메뉴 플로팅 보정 */
+        .quick-menu {
+            transition: all 0.3s ease;
+        }
+
+        .quick-menu:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- 상단 네비게이션 바 -->
+    <header class="fixed w-full bg-white/95 backdrop-blur-md shadow-sm z-50 border-b border-slate-100 transition-all">
+        <!-- 최상단 유틸리티 메뉴 (작은 띠) -->
+        <div class="hidden lg:block bg-slate-100 py-1">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-end text-xs text-slate-500 space-x-4">
+                <a href="#" class="hover:text-brand-600">로그인</a>
+                <span>|</span>
+                <a href="#" class="hover:text-brand-600">회원가입</a>
+                <span>|</span>
+                <a href="#" class="hover:text-brand-600">병원소식</a>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- 로고 영역 (두발로병원 텍스트 로고) -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <i class="fa-solid fa-person-walking text-3xl text-brand-600 mr-2"></i>
+                    <div class="flex flex-col">
+                        <span class="font-black text-2xl tracking-tight text-slate-900 leading-none">두발로병원</span>
+                        <span class="text-[10px] text-brand-600 font-bold tracking-widest mt-1">DUBALO HOSPITAL</span>
+                    </div>
+                </div>
+
+                <!-- PC 메인 메뉴 -->
+                <nav class="hidden lg:flex space-x-10">
+                    <a href="#centers"
+                        class="text-slate-700 hover:text-brand-600 font-bold text-lg transition border-b-2 border-transparent hover:border-brand-600 pb-1">전문센터</a>
+                    <a href="#about"
+                        class="text-slate-700 hover:text-brand-600 font-bold text-lg transition border-b-2 border-transparent hover:border-brand-600 pb-1">의료진소개</a>
+                    <a href="#info"
+                        class="text-slate-700 hover:text-brand-600 font-bold text-lg transition border-b-2 border-transparent hover:border-brand-600 pb-1">진료안내</a>
+                    <a href="#map"
+                        class="text-slate-700 hover:text-brand-600 font-bold text-lg transition border-b-2 border-transparent hover:border-brand-600 pb-1">오시는길</a>
+                </nav>
+
+                <!-- 우측 예약/상담 버튼 -->
+                <div class="hidden lg:flex items-center space-x-3">
+                    <a href="tel:02-123-4567"
+                        class="text-slate-600 hover:text-brand-600 font-semibold flex items-center">
+                        <i class="fa-solid fa-phone mr-1"></i> 02-123-4567
+                    </a>
+                    <a href="#reserve"
+                        class="bg-brand-600 hover:bg-brand-900 text-white px-5 py-2 rounded font-bold transition shadow-md">
+                        진료예약
+                    </a>
+                </div>
+
+                <!-- 모바일 메뉴 버튼 -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-800 p-2 focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 모바일 드롭다운 메뉴 -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t absolute w-full shadow-lg">
+            <div class="px-4 py-4 space-y-2">
+                <a href="#centers" class="block px-3 py-3 font-bold text-slate-800 bg-slate-50 rounded-lg">전문센터</a>
+                <a href="#about" class="block px-3 py-3 font-bold text-slate-800 bg-slate-50 rounded-lg">의료진소개</a>
+                <a href="#info" class="block px-3 py-3 font-bold text-slate-800 bg-slate-50 rounded-lg">진료안내</a>
+                <a href="#map" class="block px-3 py-3 font-bold text-slate-800 bg-slate-50 rounded-lg">오시는길</a>
+                <a href="#reserve"
+                    class="block mt-4 text-center bg-brand-600 text-white px-5 py-3 rounded-lg font-bold">진료예약하기</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 메인 비주얼 (Hero) -->
+    <section class="hero-bg relative pt-28 pb-32 lg:pt-40 lg:pb-48 flex items-center min-h-[70vh]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full text-center lg:text-left">
+            <div class="max-w-3xl fade-in-up">
+                <span
+                    class="inline-block py-1.5 px-4 rounded-full bg-brand-500/20 text-brand-100 font-bold text-sm mb-6 border border-brand-400/30 backdrop-blur-sm">
+                    보건복지부 지정 정형외과 전문의 진료
+                </span>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-6 tracking-tight">
+                    건강한 <span class="text-accent">두 발</span>로,<br class="hidden sm:block">
+                    다시 걷는 행복한 일상
+                </h1>
+                <p
+                    class="text-lg sm:text-xl text-slate-200 mb-10 font-medium leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                    족부 질환부터 관절, 척추까지.<br>
+                    풍부한 임상 경험을 바탕으로 원인을 찾아 근본을 치료합니다.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                    <a href="#centers"
+                        class="bg-brand-600 hover:bg-brand-500 text-white text-center px-8 py-4 rounded font-bold text-lg transition shadow-lg w-full sm:w-auto">
+                        특화 진료센터 보기
+                    </a>
+                    <a href="#info"
+                        class="bg-white/10 hover:bg-white/20 text-white border border-white/30 text-center px-8 py-4 rounded font-bold text-lg transition backdrop-blur-md w-full sm:w-auto">
+                        진료시간 안내
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 플로팅 퀵메뉴 (PC에서만 표시) -->
+    <div class="hidden lg:flex fixed right-8 top-1/2 transform -translate-y-1/2 flex-col gap-3 z-40">
+        <a href="#reserve"
+            class="quick-menu w-20 h-20 bg-white rounded-2xl shadow-xl flex flex-col items-center justify-center text-slate-700 hover:text-brand-600 hover:border-brand-600 border border-slate-200">
+            <i class="fa-regular fa-calendar-check text-2xl mb-1"></i>
+            <span class="text-xs font-bold">진료예약</span>
+        </a>
+        <a href="tel:02-123-4567"
+            class="quick-menu w-20 h-20 bg-brand-600 rounded-2xl shadow-xl flex flex-col items-center justify-center text-white hover:bg-brand-700 border border-brand-600">
+            <i class="fa-solid fa-phone-volume text-2xl mb-1"></i>
+            <span class="text-xs font-bold">전화상담</span>
+        </a>
+        <a href="#map"
+            class="quick-menu w-20 h-20 bg-white rounded-2xl shadow-xl flex flex-col items-center justify-center text-slate-700 hover:text-brand-600 hover:border-brand-600 border border-slate-200">
+            <i class="fa-solid fa-location-dot text-2xl mb-1"></i>
+            <span class="text-xs font-bold">오시는길</span>
+        </a>
+    </div>
+
+    <!-- 핵심 특화 센터 (Centers) -->
+    <section id="centers"
+        class="py-24 bg-white relative -mt-10 rounded-t-3xl z-20 shadow-[0_-10px_40px_rgba(0,0,0,0.05)]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 fade-in-up">
+                <h2 class="text-brand-600 font-bold tracking-wider text-sm mb-2">SPECIALIZED CENTERS</h2>
+                <h3 class="text-3xl md:text-4xl font-black text-slate-900 mb-6">두발로병원 특화 진료센터</h3>
+                <p class="text-slate-600 text-lg">각 분야별 전문 의료진이 정확한 진단과 최적의 치료 방향을 제시합니다.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 족부 센터 -->
+                <div class="group cursor-pointer fade-in-up delay-100">
+                    <div class="relative overflow-hidden rounded-2xl shadow-md h-64 mb-6">
+                        <img src="https://images.unsplash.com/photo-1584516150909-c43483ee7932?auto=format&fit=crop&q=80&w=800"
+                            alt=""
+                            class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+                        <h4 class="absolute bottom-6 left-6 text-white text-2xl font-bold">족부 센터</h4>
+                    </div>
+                    <h5 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-brand-600 transition">무지외반증 /
+                        족저근막염 / 발목인대</h5>
+                    <p class="text-slate-600 mb-4 line-clamp-2">발과 발목에 발생하는 다양한 질환을 전문적으로 진단하고 수술 및 비수술적 치료를 병행합니다.</p>
+                    <span
+                        class="text-brand-600 font-bold text-sm inline-flex items-center group-hover:translate-x-2 transition">
+                        자세히 보기 <i class="fa-solid fa-arrow-right-long ml-2"></i>
+                    </span>
+                </div>
+
+                <!-- 관절 센터 -->
+                <div class="group cursor-pointer fade-in-up delay-200">
+                    <div class="relative overflow-hidden rounded-2xl shadow-md h-64 mb-6">
+                        <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=800"
+                            alt=""
+                            class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+                        <h4 class="absolute bottom-6 left-6 text-white text-2xl font-bold">관절 센터</h4>
+                    </div>
+                    <h5 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-brand-600 transition">무릎 퇴행성관절염 /
+                        어깨 회전근개파열</h5>
+                    <p class="text-slate-600 mb-4 line-clamp-2">관절 내시경 및 인공관절 수술 등 손상된 관절의 기능 회복을 위한 최적의 솔루션을 제공합니다.</p>
+                    <span
+                        class="text-brand-600 font-bold text-sm inline-flex items-center group-hover:translate-x-2 transition">
+                        자세히 보기 <i class="fa-solid fa-arrow-right-long ml-2"></i>
+                    </span>
+                </div>
+
+                <!-- 척추 센터 -->
+                <div class="group cursor-pointer fade-in-up delay-300">
+                    <div class="relative overflow-hidden rounded-2xl shadow-md h-64 mb-6">
+                        <img src="https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&q=80&w=800"
+                            alt="[Image of 척추 엑스레이 사진]"
+                            class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+                        <h4 class="absolute bottom-6 left-6 text-white text-2xl font-bold">척추(신경외과) 센터</h4>
+                    </div>
+                    <h5 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-brand-600 transition">허리디스크 /
+                        척추관협착증</h5>
+                    <p class="text-slate-600 mb-4 line-clamp-2">신경외과 전문의의 정밀한 진단을 통해 시술부터 신경성형술, 수술적 치료까지 안전하게 진행합니다.
+                    </p>
+                    <span
+                        class="text-brand-600 font-bold text-sm inline-flex items-center group-hover:translate-x-2 transition">
+                        자세히 보기 <i class="fa-solid fa-arrow-right-long ml-2"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 비수술/도수치료 배너 -->
+    <section class="py-16 bg-brand-50 border-y border-brand-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center justify-between">
+                <div class="mb-8 lg:mb-0 lg:w-2/3">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-3">수술이 두려우신가요? <span class="text-brand-600">비수술 치료
+                            센터</span></h3>
+                    <p class="text-slate-600">체외충격파, 주사치료, 전문 물리치료사의 1:1 맞춤 도수치료를 통해 통증을 완화하고 기능을 회복합니다. 환자의 상태에 꼭 필요한
+                        치료만 권장합니다.</p>
+                </div>
+                <div class="lg:w-1/3 flex justify-start lg:justify-end">
+                    <a href="#"
+                        class="inline-flex items-center justify-center px-6 py-3 border-2 border-brand-600 text-brand-600 font-bold rounded hover:bg-brand-600 hover:text-white transition">
+                        도수/물리치료 안내 <i class="fa-solid fa-chevron-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 진료 안내 및 오시는 길 (Info & Map) -->
+    <section id="info" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+
+                <!-- 진료 시간표 -->
+                <div class="bg-white p-8 md:p-10 rounded-2xl shadow-sm border border-slate-100">
+                    <h3 class="text-2xl font-black text-slate-900 mb-8 border-b-2 border-slate-900 inline-block pb-2">진료
+                        시간 안내</h3>
+
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex justify-between items-center py-3 border-b border-slate-100">
+                            <span class="text-lg font-bold text-slate-700">평일 진료</span>
+                            <span class="text-lg font-medium text-slate-900">09:00 - 18:00</span>
+                        </li>
+                        <li class="flex justify-between items-center py-3 border-b border-slate-100">
+                            <span class="text-lg font-bold text-brand-600">토요일 진료</span>
+                            <span class="text-lg font-medium text-slate-900">09:00 - 13:00</span>
+                        </li>
+                        <li class="flex justify-between items-center py-3 border-b border-slate-100">
+                            <span class="text-lg font-bold text-slate-700">점심 시간</span>
+                            <span class="text-lg font-medium text-slate-900">13:00 - 14:00</span>
+                        </li>
+                    </ul>
+
+                    <div class="bg-red-50 text-red-600 p-4 rounded-lg flex items-start">
+                        <i class="fa-solid fa-circle-exclamation mt-1 mr-3"></i>
+                        <div>
+                            <p class="font-bold">일요일 및 공휴일은 휴진입니다.</p>
+                            <p class="text-sm mt-1 text-red-500">토요일은 점심시간 없이 진료합니다.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 위치 정보 -->
+                <div id="map" class="bg-white p-8 md:p-10 rounded-2xl shadow-sm border border-slate-100">
+                    <h3 class="text-2xl font-black text-slate-900 mb-8 border-b-2 border-slate-900 inline-block pb-2">
+                        오시는 길</h3>
+
+                    <div class="space-y-6">
+                        <div class="flex">
+                            <div class="w-12 text-brand-600 text-2xl"><i class="fa-solid fa-location-dot"></i></div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 mb-1">병원 주소</h4>
+                                <p class="text-slate-600">서울시 강남구 압구정로 30길 45</p>
+                            </div>
+                        </div>
+
+                        <div class="flex">
+                            <div class="w-12 text-brand-600 text-2xl"><i class="fa-solid fa-subway"></i></div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 mb-1">지하철 이용시</h4>
+                                <p class="text-slate-600">3호선 <span class="font-bold text-orange-500">압구정역 3번 출구</span>
+                                    도보 3분</p>
+                            </div>
+                        </div>
+
+                        <div class="flex">
+                            <div class="w-12 text-brand-600 text-2xl"><i class="fa-solid fa-square-parking"></i></div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 mb-1">주차 안내</h4>
+                                <p class="text-slate-600">건물 지하주차장 이용 (진료 환자 무료 주차 지원)</p>
+                            </div>
+                        </div>
+
+                        <!-- 지도 이미지 대용 (실제로는 카카오맵/네이버지도 iframe 삽입) -->
+                        <div
+                            class="mt-6 w-full h-48 bg-slate-200 rounded-lg flex flex-col items-center justify-center text-slate-500 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80&w=800"
+                                alt="" class="absolute inset-0 w-full h-full object-cover opacity-30">
+                            <i class="fa-solid fa-map-location-dot text-4xl z-10 mb-2"></i>
+                            <p class="z-10 font-bold">지도 영역 (API 연동)</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="bg-slate-900 text-slate-400 py-12 lg:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 border-b border-slate-800 pb-10 mb-10">
+                <!-- 병원 정보 -->
+                <div class="lg:col-span-2">
+                    <div class="flex items-center mb-6">
+                        <i class="fa-solid fa-person-walking text-2xl text-slate-500 mr-2"></i>
+                        <span class="font-bold text-2xl text-white">두발로병원</span>
+                    </div>
+                    <p class="text-sm leading-relaxed mb-6 max-w-md">
+                        우리는 환자의 통증에 공감하고, 정직한 진료를 통해 두 발로 힘차게 걷는 일상을 되찾아 드립니다. 정형외과, 신경외과 전문 의료진이 함께합니다.
+                    </p>
+                    <div class="flex space-x-3">
+                        <a href="#"
+                            class="w-10 h-10 rounded bg-slate-800 flex items-center justify-center hover:bg-brand-600 hover:text-white transition">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded bg-slate-800 flex items-center justify-center hover:bg-brand-600 hover:text-white transition">
+                            <i class="fa-solid fa-blog"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded bg-slate-800 flex items-center justify-center hover:bg-[#FEE500] hover:text-black transition">
+                            <i class="fa-solid fa-comment"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 링크 -->
+                <div>
+                    <h4 class="text-white font-bold mb-6">주요 링크</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#about" class="hover:text-brand-500 transition">병원소개 및 의료진</a></li>
+                        <li><a href="#centers" class="hover:text-brand-500 transition">족부 센터</a></li>
+                        <li><a href="#centers" class="hover:text-brand-500 transition">관절 센터</a></li>
+                        <li><a href="#centers" class="hover:text-brand-500 transition">척추 센터</a></li>
+                        <li><a href="#" class="hover:text-brand-500 transition">제증명 발급 안내</a></li>
+                    </ul>
+                </div>
+
+                <!-- 고객센터 -->
+                <div>
+                    <h4 class="text-white font-bold mb-6">상담 및 예약</h4>
+                    <p class="text-3xl font-black text-white mb-2">02-123-4567</p>
+                    <p class="text-sm mb-6">평일 09:00 - 18:00 (일/공휴일 휴진)</p>
+                    <a href="#"
+                        class="inline-block px-4 py-2 border border-slate-700 rounded text-sm hover:bg-slate-800 transition">
+                        온라인 상담하기
+                    </a>
+                </div>
+            </div>
+
+            <div class="text-xs text-slate-500 space-y-2">
+                <div class="flex flex-wrap gap-x-4 gap-y-2 mb-4">
+                    <a href="#" class="text-slate-400 hover:text-white font-bold">개인정보처리방침</a>
+                    <a href="#" class="hover:text-white">이용약관</a>
+                    <a href="#" class="hover:text-white">환자의 권리와 의무</a>
+                    <a href="#" class="hover:text-white">비급여 진료비 안내</a>
+                </div>
+                <p>의료기관명 : 두발로병원 | 대표자 : OOO | 사업자등록번호 : 123-45-67890</p>
+                <p>주소 : 서울특별시 강남구 압구정로 30길 45 | 대표전화 : 02-123-4567</p>
+                <p class="mt-4 pt-4 border-t border-slate-800">Copyright &copy; 2026 Dubalo Hospital. All rights
+                    reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 모바일 메뉴 및 스크롤 이벤트 스크립트 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 모바일 햄버거 메뉴 토글
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            const menuLinks = menu.querySelectorAll('a');
+
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+                const icon = btn.querySelector('i');
+                if (menu.classList.contains('hidden')) {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                } else {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-xmark');
+                }
+            });
+
+            menuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    menu.classList.add('hidden');
+                    const icon = btn.querySelector('i');
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                });
+            });
+
+            // 스크롤 시 헤더 그림자 및 높이 축소 효과
+            const header = document.querySelector('header');
+            const topBar = document.querySelector('header > div.hidden'); // 최상단 유틸리티 메뉴
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('shadow-md');
+                    if (topBar) topBar.classList.add('hidden'); // 스크롤 내리면 상단 띠 숨김
+                } else {
+                    header.classList.remove('shadow-md');
+                    if (topBar) topBar.classList.remove('hidden'); // 최상단으로 가면 다시 보임
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
