@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>청포도 치과 - 당신의 환한 미소를 위한 디지털 진료</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans KR"', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#0D9488', // 틸(Teal) 색상 - 신뢰감을 주는 의료 컬러
+                        secondary: '#0F766E',
+                        accent: '#F59E0B',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 부드러운 스크롤 및 기본 설정 */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        /* 페이드인 애니메이션 */
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 배경 이미지 오버레이 */
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&q=80&w=1920');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .ai-bg {
+            background-image: linear-gradient(rgba(13, 148, 136, 0.85), rgba(15, 118, 110, 0.9)), url('https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=1920');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-primary selection:text-white">
+
+    <!-- 네비게이션 바 -->
+    <header class="fixed w-full bg-white/95 backdrop-blur-sm shadow-sm z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- 로고 -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <i class="fa-solid fa-tooth text-3xl text-primary mr-2"></i>
+                    <span class="font-bold text-2xl tracking-tight text-slate-900">청포도<span
+                            class="text-primary">치과</span></span>
+                </div>
+
+                <!-- PC 메뉴 -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-slate-600 hover:text-primary font-medium transition">병원소개</a>
+                    <a href="#specialty" class="text-slate-600 hover:text-primary font-medium transition">진료과목</a>
+                    <a href="#digital" class="text-slate-600 hover:text-primary font-medium transition">디지털 진료</a>
+                    <a href="#contact" class="text-slate-600 hover:text-primary font-medium transition">오시는 길</a>
+                </nav>
+
+                <!-- 예약 버튼 (PC) -->
+                <div class="hidden md:flex items-center">
+                    <a href="#contact"
+                        class="bg-primary hover:bg-secondary text-white px-6 py-2.5 rounded-full font-semibold transition shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                        <i class="fa-regular fa-calendar-check mr-2"></i>진료 예약
+                    </a>
+                </div>
+
+                <!-- 모바일 햄버거 버튼 -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-slate-600 hover:text-primary focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 모바일 메뉴 (기본 숨김) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-4 pt-2 pb-6 space-y-1 shadow-lg">
+                <a href="#about"
+                    class="block px-3 py-3 text-base font-medium text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md">병원소개</a>
+                <a href="#specialty"
+                    class="block px-3 py-3 text-base font-medium text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md">진료과목</a>
+                <a href="#digital"
+                    class="block px-3 py-3 text-base font-medium text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md">디지털
+                    진료</a>
+                <a href="#contact"
+                    class="block px-3 py-3 text-base font-medium text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md">오시는
+                    길</a>
+                <a href="#contact"
+                    class="mt-4 block w-full text-center bg-primary text-white px-5 py-3 rounded-md font-semibold">진료
+                    예약하기</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 메인 히어로 섹션 -->
+    <section class="hero-bg relative pt-20 h-screen min-h-[600px] flex items-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="max-w-2xl fade-in">
+                <span
+                    class="inline-block py-1 px-3 rounded-full bg-primary/20 text-teal-100 font-semibold text-sm mb-4 backdrop-blur-sm border border-primary/30">
+                    보건복지부 인증 전문의 진료
+                </span>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 tracking-tight">
+                    당신의 환한 미소,<br>
+                    <span class="text-teal-400">자신감</span>을 되찾아 드립니다.
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-200 mb-10 font-light leading-relaxed">
+                    최첨단 AI 진단 장비와 15년 이상의 풍부한 임상 경험으로<br class="hidden sm:block">
+                    아프지 않고 정확한 맞춤형 진료를 약속합니다.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#specialty"
+                        class="bg-primary hover:bg-secondary text-white text-center px-8 py-4 rounded-full font-bold text-lg transition shadow-lg">
+                        진료과목 보기
+                    </a>
+                    <a href="tel:02-123-4567"
+                        class="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white text-center px-8 py-4 rounded-full font-bold text-lg transition shadow-lg">
+                        <i class="fa-solid fa-phone mr-2"></i> 02-123-4567
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- 하단 곡선 (Wave) -->
+        <div class="absolute bottom-0 w-full overflow-hidden leading-none">
+            <svg class="relative block w-full h-[50px] sm:h-[100px]" data-name="Layer 1"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path
+                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,119.2,192.51,105.7,237.28,95.9,280.9,78.29,321.39,56.44Z"
+                    class="fill-slate-50"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- 병원 특징 섹션 (About) -->
+    <section id="about" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">왜 청포도 치과일까요?</h2>
+                <div class="h-1 w-20 bg-primary mx-auto rounded-full mb-6"></div>
+                <p class="text-slate-600 text-lg">환자의 안전과 완벽한 결과를 최우선으로 생각하는 3가지 약속</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- 특징 1 -->
+                <div
+                    class="bg-white p-10 rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300 border border-slate-100 text-center group">
+                    <div
+                        class="w-20 h-20 mx-auto bg-teal-50 text-primary rounded-full flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-microscope text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">AI 정밀 진단 시스템</h3>
+                    <p class="text-slate-600">3D CT와 인공지능 분석 소프트웨어를 도입하여 오차 없는 정확한 진단과 치료 계획을 수립합니다.</p>
+                </div>
+                <!-- 특징 2 -->
+                <div
+                    class="bg-white p-10 rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300 border border-slate-100 text-center group">
+                    <div
+                        class="w-20 h-20 mx-auto bg-teal-50 text-primary rounded-full flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-hand-holding-medical text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">통증 완화 마취 시스템</h3>
+                    <p class="text-slate-600">치과 공포증이 있는 분들을 위해 컴퓨터 무통 마취기 및 가글 마취를 활용하여 편안한 진료를 제공합니다.</p>
+                </div>
+                <!-- 특징 3 -->
+                <div
+                    class="bg-white p-10 rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300 border border-slate-100 text-center group">
+                    <div
+                        class="w-20 h-20 mx-auto bg-teal-50 text-primary rounded-full flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-clipboard-check text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">철저한 사후 관리 보증</h3>
+                    <p class="text-slate-600">치료가 끝난 후에도 정기적인 검진 알림과 보증 제도를 통해 치아 건강을 끝까지 책임집니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 진료 과목 섹션 (Specialty) -->
+    <section id="specialty" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900 mb-4">전문 진료 과목</h2>
+                    <div class="h-1 w-20 bg-primary rounded-full mb-6"></div>
+                    <p class="text-slate-600 text-lg">분야별 전문 의료진의 수준 높은 진료를 경험하세요.</p>
+                </div>
+                <div class="hidden md:block">
+                    <button class="text-primary font-bold hover:text-secondary flex items-center">
+                        전체 진료과목 보기 <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- 임플란트 -->
+                <div class="rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition group bg-slate-50">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&q=80&w=600"
+                            alt="" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <h3 class="absolute bottom-4 left-4 text-white font-bold text-xl">네비게이션 임플란트</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-slate-600 text-sm mb-4">3D 모의수술을 통해 최적의 식립 위치를 파악하여 통증과 출혈을 최소화합니다.</p>
+                        <a href="#" class="text-primary font-semibold text-sm hover:underline">자세히 보기 &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- 치아교정 -->
+                <div class="rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition group bg-slate-50">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&q=80&w=600"
+                            alt="" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <h3 class="absolute bottom-4 left-4 text-white font-bold text-xl">투명 / 클리피씨 교정</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-slate-600 text-sm mb-4">심미성을 고려한 투명교정과 통증을 줄이고 기간을 단축하는 자가결찰 교정.</p>
+                        <a href="#" class="text-primary font-semibold text-sm hover:underline">자세히 보기 &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- 심미보철 -->
+                <div class="rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition group bg-slate-50">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1606265752439-1f18756aa5fc?auto=format&fit=crop&q=80&w=600"
+                            alt="" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <h3 class="absolute bottom-4 left-4 text-white font-bold text-xl">심미 보철 / 미백</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-slate-600 text-sm mb-4">라미네이트, 올세라믹, 전문가 미백으로 자연스럽고 환한 미소를 디자인합니다.</p>
+                        <a href="#" class="text-primary font-semibold text-sm hover:underline">자세히 보기 &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- 충치/신경치료 -->
+                <div class="rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition group bg-slate-50">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=600"
+                            alt="" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <h3 class="absolute bottom-4 left-4 text-white font-bold text-xl">자연아끼기 (보존치료)</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-slate-600 text-sm mb-4">자연 치아를 최대한 살리는 것을 목표로 미세 현미경을 활용한 정밀 신경치료.</p>
+                        <a href="#" class="text-primary font-semibold text-sm hover:underline">자세히 보기 &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI & Digital 강조 배너 -->
+    <section id="digital" class="ai-bg py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <span class="text-teal-200 font-bold tracking-wider text-sm uppercase mb-2 block">Digital Dentistry</span>
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                IT와 의료의 만남,<br>스마트 디지털 진료실
+            </h2>
+            <p class="text-teal-50 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+                웹/앱 기반의 스마트 예약 시스템과 AI 구강 스캐너를 활용하여, 환자의 대기 시간은 줄이고 진단과 보철물 제작의 정확도는 획기적으로 높였습니다.
+            </p>
+            <a href="#contact"
+                class="inline-flex items-center justify-center bg-white text-primary font-bold px-8 py-4 rounded-full hover:bg-slate-100 transition shadow-lg">
+                스마트 진료 예약하기 <i class="fa-solid fa-chevron-right ml-2 text-sm"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- 하단 정보 및 지도 섹션 (Contact) -->
+    <section id="contact" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col lg:flex-row">
+
+                <!-- 진료 시간 및 정보 -->
+                <div class="p-10 lg:w-1/2 bg-white flex flex-col justify-center">
+                    <h2 class="text-3xl font-bold text-slate-900 mb-8">진료 안내 및 오시는 길</h2>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <i class="fa-regular fa-clock text-2xl text-primary w-8 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-lg mb-2">진료 시간</h4>
+                                <ul class="text-slate-600 space-y-1">
+                                    <li class="flex justify-between w-48"><span>평 일</span> <span
+                                            class="font-medium">09:30 - 18:30</span></li>
+                                    <li class="flex justify-between w-48 text-primary font-medium"><span>야 간
+                                            (화/목)</span> <span>09:30 - 20:30</span></li>
+                                    <li class="flex justify-between w-48"><span>토 요 일</span> <span
+                                            class="font-medium">09:30 - 14:00</span></li>
+                                    <li class="mt-2 text-sm text-red-500 font-medium">* 일요일 및 공휴일 휴무</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-location-dot text-2xl text-primary w-8 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-lg mb-1">오시는 길</h4>
+                                <p class="text-slate-600">서울시 강남구 압구정로 30길 45, 청포도타워 3층</p>
+                                <p class="text-sm text-slate-500 mt-1">지하철 3호선 압구정역 3번 출구 도보 3분</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-square-phone text-2xl text-primary w-8 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-lg mb-1">상담 및 예약</h4>
+                                <p class="text-2xl font-bold text-primary">02-123-4567</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 지도 영역 (시각적 플레이스홀더) -->
+                <div class="lg:w-1/2 h-80 lg:h-auto bg-slate-200 relative">
+                    <!-- 실제 구글/네이버 지도 iframe이 들어가는 자리 -->
+                    <div class="absolute inset-0 flex flex-col items-center justify-center bg-slate-300 text-slate-500">
+                        <i class="fa-solid fa-map-location-dot text-5xl mb-3 text-slate-400"></i>
+                        <p class="font-medium">[여기에 인터랙티브 지도가 삽입됩니다]</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="bg-slate-900 text-slate-400 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pb-8 border-b border-slate-800">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fa-solid fa-tooth text-2xl text-teal-500 mr-2"></i>
+                        <span class="font-bold text-xl text-white">청포도 치과 의원</span>
+                    </div>
+                    <p class="text-sm leading-relaxed mb-4">
+                        항상 환자의 입장에서 생각하고,<br>정직하고 바른 진료만을 고집하겠습니다.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-[#FEE500] hover:text-black transition">
+                            <i class="fa-solid fa-comment"></i> <!-- 카카오톡 대체 아이콘 -->
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-4">빠른 링크</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#about" class="hover:text-white transition">의료진 소개</a></li>
+                        <li><a href="#specialty" class="hover:text-white transition">임플란트 클리닉</a></li>
+                        <li><a href="#specialty" class="hover:text-white transition">치아교정 클리닉</a></li>
+                        <li><a href="#" class="hover:text-white transition">온라인 상담</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-4">사업자 정보</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li>대표원장 : 홍길동</li>
+                        <li>사업자등록번호 : 123-45-67890</li>
+                        <li>주소 : 서울시 강남구 압구정로 30길 45</li>
+                        <li>개인정보보호책임자 : 홍길동</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 text-center text-sm">
+                <p>&copy; 2026 청포도 치과 의원. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 모바일 메뉴 스크립트 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('mobile-menu-button');
+            const menu = document.getElementById('mobile-menu');
+            const menuLinks = menu.querySelectorAll('a');
+
+            // 메뉴 토글
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+                const icon = btn.querySelector('i');
+                if (menu.classList.contains('hidden')) {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                } else {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-xmark');
+                }
+            });
+
+            // 모바일 메뉴 링크 클릭 시 메뉴 닫기
+            menuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    menu.classList.add('hidden');
+                    const icon = btn.querySelector('i');
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
