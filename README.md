@@ -52,7 +52,7 @@
 
 ---
 
-### 🖥️ 델파이 ERP 목업 (`/temp/Delphi_ERP_Mockup_Ribbon_UI.html`)
+### 🖥️ 델파이 ERP 목업 (`/mockups/Delphi_ERP_Mockup_Ribbon_UI.html`)
 
 **NEXUS ERP 2026 — MS Office 스타일 Ribbon UI 기반 ERP 시스템 목업**
 
@@ -62,7 +62,7 @@
 | 주요 메뉴 | 기초정보관리, 영업/매출, 구매/재고/AS, 회계/금융, 시스템 설정 |
 | UI 패턴 | Ribbon Tab, Document Tab(MDI), Master-Detail Grid, 상세 팝업(Modal) |
 | 데이터 | Mock DB 기반 목업 데이터 (사용자/거래처/품목/재고 등) |
-| 라이브 링크 | [바로가기 →](https://space-cap.github.io/temp/Delphi_ERP_Mockup_Ribbon_UI.html) |
+| 라이브 링크 | [바로가기 →](https://space-cap.github.io/mockups/Delphi_ERP_Mockup_Ribbon_UI.html) |
 
 ---
 
@@ -90,7 +90,7 @@ space-cap.github.io/
 ├── duballo/                # 🦶 두발로병원 랜딩 페이지
 │   └── index.html
 │
-├── temp/                   # 🖥️ 임시/실험용 목업
+├── mockups/                # 🖥️ 임시/실험용 목업
 │   └── Delphi_ERP_Mockup_Ribbon_UI.html
 │
 ├── docs/                   # 📄 문서 디렉토리
