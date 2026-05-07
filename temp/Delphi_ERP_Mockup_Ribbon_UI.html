@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>델파이 ERP 모의 시스템 (Ribbon UI)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&family=Malgun+Gothic&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* 데스크탑 윈도우(MS Office) 느낌을 위해 Segoe UI 사용 */
+        body {
+            font-family: 'Segoe UI', 'Malgun Gothic', sans-serif;
+            overflow: hidden;
+            background-color: #f3f4f6;
+        }
+
+        /* Ribbon UI 스타일링 */
+        .ribbon-tab {
+            cursor: pointer;
+            padding: 6px 16px;
+            margin-bottom: -1px;
+            font-size: 13px;
+            transition: all 0.2s;
+            position: relative;
+            z-index: 10;
+            border: 1px solid transparent;
+            border-bottom: none;
+        }
+
+        .ribbon-tab:hover:not(.active) {
+            background-color: #f1f5f9;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .ribbon-tab.active {
+            background-color: #ffffff;
+            color: #0284c7;
+            font-weight: 600;
+            border-color: #cbd5e1;
+            border-radius: 4px 4px 0 0;
+            border-bottom-color: #ffffff;
+        }
+
+        .ribbon-group {
+            display: flex;
+            align-items: stretch;
+            position: relative;
+            padding-right: 12px;
+            margin-right: 12px;
+        }
+
+        .ribbon-group::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 10%;
+            height: 80%;
+            width: 1px;
+            background-color: #e2e8f0;
+        }
+
+        .ribbon-group:last-child::after {
+            display: none;
+        }
+
+        .ribbon-btn {
+            display: flex;
+            flex-direction: column;
+            items: center;
+            justify-content: center;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.1s;
+            text-align: center;
+            border: 1px solid transparent;
+            min-width: 60px;
+        }
+
+        .ribbon-btn:hover {
+            background-color: #e0f2fe;
+            border-color: #bae6fd;
+        }
+
+        .ribbon-btn-small {
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.1s;
+            border: 1px solid transparent;
+            text-align: left;
+        }
+
+        .ribbon-btn-small:hover {
+            background-color: #e0f2fe;
+            border-color: #bae6fd;
+        }
+
+        /* Document 탭 스타일 */
+        .doc-tab-container::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .doc-tab-container::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        /* Grid 스타일 */
+        .win-grid {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 12px;
+        }
+
+        .win-grid th {
+            background: linear-gradient(to bottom, #f8fafc, #f1f5f9);
+            border: 1px solid #cbd5e1;
+            padding: 6px 8px;
+            text-align: left;
+            font-weight: 600;
+            color: #475569;
+            position: sticky;
+            top: 0;
+        }
+
+        .win-grid td {
+            border: 1px solid #e2e8f0;
+            padding: 5px 8px;
+            color: #334155;
+            background-color: #ffffff;
+            white-space: nowrap;
+        }
+
+        .win-grid tr:nth-child(even) td {
+            background-color: #f8fafc;
+        }
+
+        .win-grid tr:hover td {
+            background-color: #f1f5f9;
+            cursor: default;
+        }
+
+        .win-grid tr.selected td {
+            background-color: #bae6fd !important;
+            color: #0369a1;
+        }
+
+        /* 스크롤바 숨기기 */
+        .scroll-hide::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="h-screen w-screen flex flex-col text-sm">
+
+    <!-- 윈도우 타이틀바 -->
+    <div class="h-8 bg-sky-800 text-white flex items-center justify-between px-3 shrink-0 select-none">
+        <div class="flex items-center gap-2">
+            <i class="fa-solid fa-layer-group text-sky-300"></i>
+            <span class="text-xs font-semibold">NEXUS ERP 2026 - [Ribbon Edition]</span>
+        </div>
+        <div class="flex items-center gap-4 text-xs">
+            <span class="text-sky-200">사용자: 홍길동 (영업부)</span>
+            <div class="flex gap-2 text-sky-300">
+                <i class="fa-solid fa-window-minimize hover:text-white cursor-pointer"></i>
+                <i class="fa-regular fa-square hover:text-white cursor-pointer"></i>
+                <i class="fa-solid fa-xmark hover:text-white cursor-pointer"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- 리본 탭 헤더 -->
+    <div class="bg-[#f3f4f6] pt-2 px-2 border-b border-slate-300 flex items-end gap-1 shrink-0 z-10" id="ribbon-tabs">
+        <div class="ribbon-tab bg-sky-700 text-white hover:bg-sky-600 rounded-t border-none !text-white px-4"
+            onclick="alertMsg('파일 메뉴 열기')">파일</div>
+        <div class="ribbon-tab active" onclick="switchRibbon('home', this)">홈</div>
+        <div class="ribbon-tab text-slate-600" onclick="switchRibbon('basic', this)">기초 정보관리</div>
+        <div class="ribbon-tab text-slate-600" onclick="switchRibbon('sales', this)">영업/매출 관리</div>
+        <div class="ribbon-tab text-slate-600" onclick="switchRibbon('purchase', this)">구매/재고/AS</div>
+        <div class="ribbon-tab text-slate-600" onclick="switchRibbon('account', this)">회계/금융 관리</div>
+        <div class="ribbon-tab text-slate-600" onclick="switchRibbon('system', this)">시스템 설정/운영</div>
+    </div>
+
+    <!-- 리본 콘텐츠 (패널) -->
+    <div class="h-[100px] bg-white border-b border-slate-300 shrink-0 flex items-center px-2 relative overflow-x-auto scroll-hide"
+        id="ribbon-content">
+
+        <!-- 홈 리본 -->
+        <div id="ribbon-home" class="w-full flex h-full py-1">
+            <div class="ribbon-group flex-col justify-center relative pb-4">
+                <div class="ribbon-btn h-[60px]" onclick="openDoc('dashboard', '메인 대시보드', 'view-dashboard')">
+                    <i class="fa-solid fa-chart-pie text-2xl text-sky-600 mb-1"></i>
+                    <span class="text-[11px]">대시보드</span>
+                </div>
+                <div class="text-[10px] text-center text-slate-400 absolute bottom-0 w-full mb-0">시작</div>
+            </div>
+        </div>
+
+        <!-- 기초 정보관리 리본 -->
+        <div id="ribbon-basic" class="w-full flex h-full py-1 hidden">
+            <div class="ribbon-group flex-col justify-center relative pb-4">
+                <div class="flex gap-1">
+                    <div class="ribbon-btn h-[60px]" onclick="openDoc('user_mgr', '사용자 관리', 'view-grid')"
+                        title="사용자 기초정보 및 세부 정보 등록.">
+                        <i class="fa-solid fa-id-card text-2xl text-indigo-600 mb-1"></i><span class="text-[11px]">사용자
+                            관리</span>
+                    </div>
+                    <div class="ribbon-btn h-[60px]" onclick="openDoc('client_mgr', '거래처 관리', 'view-grid')"
+                        title="거래처 기초정보 및 분류에 따른 조회.">
+                        <i class="fa-solid fa-handshake text-2xl text-indigo-600 mb-1"></i><span class="text-[11px]">거래처
+                            관리</span>
+                    </div>
+                    <div class="ribbon-btn h-[60px]" onclick="openDoc('item_mgr', '품목 관리', 'view-grid')"
+                        title="품목 기초정보 및 단가, 규격 관리.">
+                        <i class="fa-solid fa-boxes-stacked text-2xl text-indigo-600 mb-1"></i><span
+                            class="text-[11px]">품목 관리</span>
+                    </div>
+                </div>
+                <div class="text-[10px] text-center text-slate-400 absolute bottom-0 w-full mb-0">마스터 정보</div>
+            </div>
+        </div>
+
+        <!-- 영업/매출 관리 리본 -->
+        <div id="ribbon-sales" class="w-full flex h-full py-1 hidden">
+            <div class="ribbon-group flex-col justify-center relative pb-4">
+                <div class="flex gap-1">
+                    <div class="ribbon-btn h-[60px]" onclick="openDoc('order_mgr', '수주 관리', 'view-master-detail')"
+                        title="견적 및 수주서 등록, 생산 연동.">
+                        <i class="fa-solid fa-file-signature text-2xl text-blue-600 mb-1"></i><span
+                            class="text-[11px]">수주 관리</span>
+                    </div>
+                    <div class="ribbon-btn h-[60px]" onclick="openDoc('sales_mgr', '매출 관리', 'view-master-detail')"
+                        title="매출전표 등록 및 수주서 연동.">
+                        <i class="fa-solid fa-file-invoice-dollar text-2xl text-blue-600 mb-1"></i><span
+                            class="text-[11px]">매출 관리</span>
+                    </div>
+                </div>
+                <div class="text-[10px] text-center text-slate-400 absolute bottom-0 w-full mb-0">영업 업무</div>
+            </div>
+        </div>
+
+        <!-- 구매/재고/AS 관리 리본 -->
+        <div id="ribbon-purchase" class="w-full flex h-full py-1 hidden">
+            <div class="ribbon-group flex-col justify-center relative pb-4">
+                <div class="flex gap-1">
+                    <div class="ribbon-btn h-[60px]" onclick="openDoc('po_mgr', '발주 관리', 'view-master-detail')"
+                        title="품목 발주 관리 및 팩스 전송.">
+                        <i class="fa-solid fa-cart-arrow-down text-2xl text-emerald-600 mb-1"></i><span
+                            class="text-[11px]">발주 관리</span>
+                    </div>
+                    <div class="ribbon-btn h-[60px]" onclick="openDoc('in_mgr', '매입 관리', 'view-master-detail')"
+                        title="입고 전표 등록 및 재고 연동.">
+                        <i class="fa-solid fa-truck-ramp-box text-2xl text-emerald-600 mb-1"></i><span
+                            class="text-[11px]">매입 관리</span>
+                    </div>
+                </div>
+                <div class="text-[10px] text-center text-slate-400 absolute bottom-0 w-full mb-0">구매/매입</div>
+            </div>
+            <div class="ribbon-group flex-col justify-center relative pb-4">
+                <div class="flex gap-1">
+                    <div class="ribbon-btn h-[60px]" onclick="openDoc('stock_mgr', '재고 관리', 'view-grid')"
+                        title="품목 재고 조회 및 실사재고 등록.">
+                        <i class="fa-solid fa-warehouse text-2xl text-amber-600 mb-1"></i><span class="text-[11px]">재고
+                            관리</span>
+                    </div>
+                    <div class="ribbon-btn h-[60px]" onclick="openDoc('as_mgr', 'AS 관리', 'view-master-detail')"
+                        title="출고품목 AS 내역 등록 및 조치.">
+                        <i class="fa-solid fa-screwdriver-wrench text-2xl text-amber-600 mb-1"></i><span
+                            class="text-[11px]">AS 관리</span>
+                    </div>
+                </div>
+                <div class="text-[10px] text-center text-slate-400 absolute bottom-0 w-full mb-0">물류/서비스</div>
+            </div>
+        </div>
+
+        <!-- 회계/금융 관리 리본 -->
+        <div id="ribbon-account" class="w-full flex h-full py-1 hidden">
+            <div class="ribbon-group flex-col justify-center relative pb-4">
+                <div class="flex gap-1">
+                    <div class="ribbon-btn h-[60px]" onclick="openDoc('tax_mgr', '계산서 관리', 'view-master-detail')"
+                        title="전자세금계산서 발행 및 매입 연동.">
+                        <i class="fa-solid fa-receipt text-2xl text-teal-600 mb-1"></i><span class="text-[11px]">계산서
+                            관리</span>
+                    </div>
+                    <div class="ribbon-btn h-[60px]" onclick="openDoc('money_mgr', '수금 관리', 'view-master-detail')"
+                        title="입출금 전표 작성 및 채권 조회.">
+                        <i class="fa-solid fa-hand-holding-dollar text-2xl text-teal-600 mb-1"></i><span
+                            class="text-[11px]">수금 관리</span>
+                    </div>
+                </div>
+                <div class="text-[10px] text-center text-slate-400 absolute bottom-0 w-full mb-0">자금 관리</div>
+            </div>
+        </div>
+
+        <!-- 시스템 설정 리본 -->
+        <div id="ribbon-system" class="w-full flex h-full py-1 hidden">
+            <div class="ribbon-group flex-col justify-center relative pb-4">
+                <div class="flex gap-1">
+                    <div class="ribbon-btn h-[60px]" onclick="openDoc('sys_user', '사용자 설정', 'view-settings')"
+                        title="사용자 기초정보 및 권한 등록.">
+                        <i class="fa-solid fa-user-gear text-2xl text-slate-600 mb-1"></i><span class="text-[11px]">사용자
+                            설정</span>
+                    </div>
+                    <div class="ribbon-btn h-[60px]" onclick="openDoc('sys_group', '그룹 관리', 'view-settings')"
+                        title="부서, 레벨 및 직급 정보 등록.">
+                        <i class="fa-solid fa-users-gear text-2xl text-slate-600 mb-1"></i><span class="text-[11px]">그룹
+                            관리</span>
+                    </div>
+                    <div class="ribbon-btn h-[60px]" onclick="openDoc('sys_screen', '화면 설정', 'view-settings')"
+                        title="즐겨찾기 메뉴 및 프로그램 환경 설정.">
+                        <i class="fa-solid fa-desktop text-2xl text-slate-600 mb-1"></i><span class="text-[11px]">화면
+                            설정</span>
+                    </div>
+                </div>
+                <div class="text-[10px] text-center text-slate-400 absolute bottom-0 w-full mb-0">시스템 설정</div>
+            </div>
+
+            <div class="ribbon-group flex-col justify-center relative pb-4">
+                <div class="flex gap-1">
+                    <div class="flex flex-col gap-0.5 justify-center">
+                        <div class="ribbon-btn-small" onclick="openDoc('sec_group', '그룹 권한 설정', 'view-settings')"
+                            title="사용그룹별 권한 제어.">
+                            <i class="fa-solid fa-user-shield text-red-500 w-5 text-center"></i><span
+                                class="text-[11px]">그룹 권한 설정</span>
+                        </div>
+                        <div class="ribbon-btn-small" onclick="openDoc('sec_screen', '화면 권한 관리', 'view-settings')"
+                            title="출력/엑셀 다운로드 권한 제어.">
+                            <i class="fa-solid fa-lock text-red-500 w-5 text-center"></i><span class="text-[11px]">화면 권한
+                                관리</span>
+                        </div>
+                        <div class="ribbon-btn-small" onclick="openDoc('sec_pw', '사용자 암호 변경', 'view-settings')"
+                            title="사용자 계정 암호 변경.">
+                            <i class="fa-solid fa-key text-red-500 w-5 text-center"></i><span class="text-[11px]">사용자 암호
+                                변경</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-[10px] text-center text-slate-400 absolute bottom-0 w-full mb-0">보안 관리</div>
+            </div>
+
+            <div class="ribbon-group flex-col justify-center relative pb-4">
+                <div class="flex gap-1">
+                    <div class="ribbon-btn h-[60px]" onclick="openDoc('op_notice', '공지사항 관리', 'view-grid')"
+                        title="사내 공지사항 내역 등록.">
+                        <i class="fa-solid fa-bullhorn text-2xl text-purple-600 mb-1"></i><span class="text-[11px]">공지사항
+                            관리</span>
+                    </div>
+                    <div class="ribbon-btn h-[60px]" onclick="openDoc('op_history', '사용이력 관리', 'view-grid')"
+                        title="접속 일자, IP 및 사용 메뉴 통계.">
+                        <i class="fa-solid fa-clock-rotate-left text-2xl text-purple-600 mb-1"></i><span
+                            class="text-[11px]">사용이력 관리</span>
+                    </div>
+                </div>
+                <div class="text-[10px] text-center text-slate-400 absolute bottom-0 w-full mb-0">운영 관리</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 문서 탭 컨테이너 -->
+    <div class="h-8 bg-slate-200 border-b border-slate-300 flex items-end px-1 doc-tab-container overflow-x-auto shrink-0"
+        id="doc-tabs"></div>
+
+    <!-- 메인 작업 영역 -->
+    <div class="flex-1 bg-[#e4e4e4] relative overflow-hidden p-1" id="workspace">
+
+        <!-- 고정 뷰: 메인 대시보드 -->
+        <div id="doc-dashboard"
+            class="doc-view absolute inset-1 bg-white shadow-sm border border-slate-300 flex flex-col p-4">
+            <h2 class="text-lg font-semibold text-slate-700 mb-4 border-b pb-2"><i
+                    class="fa-solid fa-chart-pie mr-2 text-sky-600"></i>경영진 요약 대시보드</h2>
+            <div class="flex-1 flex gap-4">
+                <div
+                    class="w-1/2 bg-slate-50 border border-slate-200 rounded p-4 flex items-center justify-center text-slate-400">
+                    <div>
+                        <i class="fa-solid fa-chart-line text-4xl mb-2 text-center w-full"></i>
+                        <p class="text-xs">실시간 매출 추이 (TChart Component)</p>
+                    </div>
+                </div>
+                <div class="w-1/2 flex flex-col gap-4">
+                    <div class="bg-blue-50 border border-blue-100 rounded p-4 flex-1">
+                        <h3 class="text-sm font-bold text-blue-800 mb-2">결재 및 알림</h3>
+                        <ul class="text-xs text-slate-600 space-y-2">
+                            <li><i class="fa-solid fa-circle-exclamation text-red-500 mr-1"></i> [승인대기] 영업부 10월 법인카드
+                                결제내역</li>
+                            <li><i class="fa-solid fa-circle-info text-sky-500 mr-1"></i> [공지] 시스템 정기점검 (이번 주 금요일)</li>
+                            <li><i class="fa-solid fa-check text-emerald-500 mr-1"></i> [승인완료] 신규 입사자 PC 불출 품의서</li>
+                        </ul>
+                    </div>
+                    <div class="bg-emerald-50 border border-emerald-100 rounded p-4 flex-1">
+                        <h3 class="text-sm font-bold text-emerald-800 mb-2">실시간 KPI (목표 달성률)</h3>
+                        <div class="flex justify-between items-center mb-1 text-xs"><span class="text-slate-600">수주
+                                달성률</span><span class="font-bold text-emerald-700">85%</span></div>
+                        <div class="w-full bg-emerald-200 rounded-full h-2 mb-4">
+                            <div class="bg-emerald-500 h-2 rounded-full" style="width: 85%"></div>
+                        </div>
+                        <div class="flex justify-between items-center mb-1 text-xs"><span class="text-slate-600">출고
+                                달성률</span><span class="font-bold text-emerald-700">60%</span></div>
+                        <div class="w-full bg-emerald-200 rounded-full h-2 mb-4">
+                            <div class="bg-emerald-500 h-2 rounded-full" style="width: 60%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 동적 뷰들이 이곳에 JavaScript를 통해 추가됩니다 -->
+    </div>
+
+    <!-- 시스템 알림창 -->
+    <div id="msg-box" class="fixed inset-0 bg-black/20 z-50 flex items-center justify-center hidden">
+        <div class="bg-white border border-slate-300 shadow-xl w-72 flex flex-col">
+            <div
+                class="bg-[#f0f0f0] border-b border-slate-300 px-3 py-1.5 text-xs font-semibold flex justify-between items-center">
+                <span>알림</span><i class="fa-solid fa-xmark cursor-pointer hover:text-red-500" onclick="closeMsg()"></i>
+            </div>
+            <div class="p-4 text-sm text-center flex items-center gap-3">
+                <i class="fa-solid fa-circle-info text-blue-500 text-2xl"></i><span id="msg-content">메시지</span>
+            </div>
+            <div class="bg-[#f0f0f0] border-t border-slate-300 p-2 flex justify-end">
+                <button onclick="closeMsg()"
+                    class="bg-white border border-slate-300 px-4 py-1 text-xs hover:bg-slate-50 rounded shadow-sm">확인</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 상세정보 수정 팝업창 (Modal) -->
+    <div id="detail-modal" class="fixed inset-0 bg-black/30 z-40 flex items-center justify-center hidden">
+        <div class="bg-white border border-slate-400 shadow-2xl w-[500px] flex flex-col rounded-sm overflow-hidden">
+            <!-- 팝업 타이틀 (델파이 폼 헤더 느낌) -->
+            <div
+                class="bg-sky-800 border-b border-sky-900 px-3 py-2 text-white text-xs font-semibold flex justify-between items-center cursor-move select-none">
+                <div class="flex items-center gap-2"><i class="fa-solid fa-pen-to-square text-sky-300"></i><span
+                        id="modal-title">상세 정보 수정</span></div>
+                <div class="flex gap-2">
+                    <i class="fa-solid fa-xmark cursor-pointer hover:text-red-400 text-lg"
+                        onclick="closeDetailModal()"></i>
+                </div>
+            </div>
+
+            <!-- 팝업 폼 내용 -->
+            <div class="p-4 bg-slate-50 flex-1 flex flex-col gap-3 text-sm">
+                <div class="flex items-center gap-3">
+                    <label class="w-24 font-semibold text-slate-600 text-right">사원코드</label>
+                    <input type="text" id="modal-code"
+                        class="border border-slate-300 rounded px-2 py-1 w-40 bg-slate-200 text-slate-500 cursor-not-allowed"
+                        readonly>
+                    <span class="text-[10px] text-red-500">* 자동채번</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <label class="w-24 font-semibold text-slate-600 text-right">성명</label>
+                    <input type="text" id="modal-name"
+                        class="border border-slate-300 rounded px-2 py-1 w-40 focus:border-blue-400 focus:outline-none">
+                </div>
+                <div class="flex items-center gap-3">
+                    <label class="w-24 font-semibold text-slate-600 text-right">소속부서</label>
+                    <select id="modal-dept"
+                        class="border border-slate-300 rounded px-2 py-1 w-40 focus:border-blue-400 focus:outline-none bg-white">
+                        <option>영업1팀</option>
+                        <option>영업2팀</option>
+                        <option>인사총무부</option>
+                        <option>물류팀</option>
+                        <option>IT지원팀</option>
+                    </select>
+                </div>
+                <div class="flex items-center gap-3">
+                    <label class="w-24 font-semibold text-slate-600 text-right">직급</label>
+                    <select id="modal-rank"
+                        class="border border-slate-300 rounded px-2 py-1 w-40 focus:border-blue-400 focus:outline-none bg-white">
+                        <option>사원</option>
+                        <option>대리</option>
+                        <option>과장</option>
+                        <option>차장</option>
+                        <option>부장</option>
+                    </select>
+                </div>
+                <div class="flex items-center gap-3">
+                    <label class="w-24 font-semibold text-slate-600 text-right">입사일자</label>
+                    <input type="date" id="modal-date"
+                        class="border border-slate-300 rounded px-2 py-1 w-40 focus:border-blue-400 focus:outline-none">
+                </div>
+                <div class="flex items-center gap-3">
+                    <label class="w-24 font-semibold text-slate-600 text-right">재직상태</label>
+                    <div class="flex gap-4 w-40 items-center h-full pt-1">
+                        <label class="flex items-center gap-1 cursor-pointer"><input type="radio" name="status"
+                                value="재직" checked> 재직</label>
+                        <label class="flex items-center gap-1 cursor-pointer"><input type="radio" name="status"
+                                value="퇴사"> 퇴사</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 하단 버튼 영역 -->
+            <div class="bg-[#f0f0f0] border-t border-slate-300 p-2.5 flex justify-end gap-2">
+                <button onclick="saveDetailModal()"
+                    class="bg-blue-600 text-white border border-blue-700 px-5 py-1 text-xs hover:bg-blue-700 rounded shadow-sm flex items-center gap-1"><i
+                        class="fa-solid fa-check"></i> 저장</button>
+                <button onclick="closeDetailModal()"
+                    class="bg-white text-slate-700 border border-slate-300 px-5 py-1 text-xs hover:bg-slate-50 rounded shadow-sm flex items-center gap-1"><i
+                        class="fa-solid fa-ban"></i> 취소</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 실제 ERP 메뉴별 데이터 및 속성 정의 (Mock Database)
+        const mockDB = {
+            'user_mgr': {
+                icon: 'fa-id-card', color: 'sky',
+                search: ['부서명', '성명', '재직상태'],
+                headers: [{ t: 'No', w: 'w-12' }, { t: '사원코드', w: 'w-24' }, { t: '성명', w: 'w-32' }, { t: '소속부서', w: 'w-32' }, { t: '직급', w: 'w-24' }, { t: '입사일자', w: 'w-32' }, { t: '상태', w: 'w-20' }],
+                rows: [
+                    ['1', 'EMP-2019001', '<span class="font-bold">홍길동</span>', '영업1팀', '과장', '2019-03-02', '<span class="text-blue-600">재직</span>'],
+                    ['2', 'EMP-2020042', '<span class="font-bold">김영희</span>', '인사총무부', '대리', '2020-01-15', '<span class="text-blue-600">재직</span>'],
+                    ['3', 'EMP-2015020', '<span class="font-bold">최동석</span>', '물류팀', '부장', '2015-05-10', '<span class="text-red-500">퇴사</span>']
+                ]
+            },
+            'client_mgr': {
+                icon: 'fa-handshake', color: 'sky',
+                search: ['거래처구분', '거래처명'],
+                headers: [{ t: 'No', w: 'w-12' }, { t: '사업자번호', w: 'w-32' }, { t: '거래처명', w: 'w-48 text-left' }, { t: '대표자', w: 'w-24' }, { t: '업태/종목', w: 'w-40 text-left' }, { t: '연락처', w: 'w-32' }, { t: '상태', w: 'w-20' }],
+                rows: [
+                    ['1', '123-45-67890', '<span class="font-bold">(주)넥서스테크</span>', '김대표', '제조/도매', '02-1234-5678', '<span class="text-blue-600 font-semibold">정상</span>'],
+                    ['2', '214-81-39421', '<span class="font-bold">미래정밀</span>', '박미래', '제조/금형', '031-987-6543', '<span class="text-blue-600 font-semibold">정상</span>'],
+                    ['3', '105-12-39582', '<span class="font-bold">한국유통</span>', '최유통', '도소매/IT', '02-555-1234', '<span class="text-red-500 font-semibold">휴업</span>']
+                ]
+            },
+            'item_mgr': {
+                icon: 'fa-boxes-stacked', color: 'sky',
+                search: ['품목분류', '품목명'],
+                headers: [{ t: 'No', w: 'w-12' }, { t: '품목코드', w: 'w-32' }, { t: '품목분류', w: 'w-24' }, { t: '품목명', w: 'w-48 text-left' }, { t: '규격', w: 'w-40' }, { t: '단위', w: 'w-20' }, { t: '기준단가', w: 'w-24 text-right' }],
+                rows: [
+                    ['1', 'ITM-A-001', '완제품', '<span class="font-bold">산업용 모터 500W</span>', '500W 220V', 'EA', '125,000'],
+                    ['2', 'ITM-B-012', '부품', '<span class="font-bold">PLC 컨트롤러 보드</span>', 'Ver 2.1 (Standard)', 'EA', '45,000'],
+                    ['3', 'ITM-C-105', '소모품', '<span class="font-bold">테플론 특수 구리스</span>', '1Kg 포장', 'BOX', '18,500']
+                ]
+            },
+            'stock_mgr': {
+                icon: 'fa-warehouse', color: 'amber',
+                search: ['창고명', '품목명'],
+                headers: [{ t: '창고명', w: 'w-32' }, { t: '품목코드', w: 'w-32' }, { t: '품목명', w: 'w-48 text-left' }, { t: '이월재고', w: 'w-24 text-right' }, { t: '입고수량', w: 'w-24 text-right text-blue-600' }, { t: '출고수량', w: 'w-24 text-right text-red-500' }, { t: '현재고', w: 'w-24 text-right font-bold' }],
+                rows: [
+                    ['본사 메인창고', 'ITM-A-001', '산업용 모터 500W', '150', '50', '20', '<span class="text-blue-700">180</span>'],
+                    ['본사 메인창고', 'ITM-B-012', 'PLC 컨트롤러 보드', '80', '0', '15', '<span class="text-blue-700">65</span>'],
+                    ['외부 1창고', 'ITM-C-105', '테플론 특수 구리스', '12', '100', '0', '<span class="text-blue-700">112</span>']
+                ]
+            },
+            'op_notice': {
+                icon: 'fa-bullhorn', color: 'purple',
+                search: ['작성기간', '제목'],
+                headers: [{ t: 'No', w: 'w-12' }, { t: '분류', w: 'w-20' }, { t: '제목', w: 'text-left' }, { t: '작성자', w: 'w-24' }, { t: '등록일', w: 'w-32' }, { t: '조회수', w: 'w-20 text-right' }],
+                rows: [
+                    ['3', '<span class="bg-red-100 text-red-600 px-1 rounded text-[10px]">긴급</span>', '<span class="font-bold hover:underline cursor-pointer">서버 정기점검에 따른 시스템 순단 안내</span>', '관리자', '2026-05-06', '142'],
+                    ['2', '일반', '2026년도 하반기 워크샵 일정 공지', '인사총무부', '2026-05-02', '350'],
+                    ['1', '업데이트', 'ERP V2.5 기능 패치 내역서', 'IT지원팀', '2026-04-28', '210']
+                ]
+            },
+            'op_history': {
+                icon: 'fa-clock-rotate-left', color: 'purple',
+                search: ['접속일자', '사원명'],
+                headers: [{ t: 'No', w: 'w-12' }, { t: '접속일시', w: 'w-40' }, { t: '접속 IP', w: 'w-32' }, { t: '접속계정', w: 'w-24' }, { t: '사원명', w: 'w-24' }, { t: '접근메뉴', w: 'text-left' }],
+                rows: [
+                    ['3', '2026-05-07 09:12:45', '192.168.0.45', 'user01', '홍길동', '영업/매출 관리 > 수주 관리'],
+                    ['2', '2026-05-07 09:05:11', '192.168.0.88', 'admin', '시스템관리자', '시스템 설정 > 권한 관리'],
+                    ['1', '2026-05-07 08:50:02', '192.168.0.12', 'mgr_kim', '김영희', '로그인 성공']
+                ]
+            },
+            // Master-Detail Data Templates
+            'order_mgr': { icon: 'fa-file-signature', color: 'blue', mType: '수주', dType: '품목', totalCol: '수주총액' },
+            'sales_mgr': { icon: 'fa-file-invoice-dollar', color: 'blue', mType: '매출', dType: '품목', totalCol: '매출총액' },
+            'po_mgr': { icon: 'fa-cart-arrow-down', color: 'emerald', mType: '발주', dType: '품목', totalCol: '발주총액' },
+            'in_mgr': { icon: 'fa-truck-ramp-box', color: 'emerald', mType: '매입(입고)', dType: '품목', totalCol: '매입총액' },
+            'as_mgr': { icon: 'fa-screwdriver-wrench', color: 'amber', mType: 'AS접수', dType: '처리내역', totalCol: '청구비용' },
+            'tax_mgr': { icon: 'fa-receipt', color: 'teal', mType: '세금계산서', dType: '발행품목', totalCol: '합계금액' },
+            'money_mgr': { icon: 'fa-hand-holding-dollar', color: 'teal', mType: '수금전표', dType: '적용매출', totalCol: '수금액' },
+            // Settings Forms
+            'sys_user': { icon: 'fa-user-gear', color: 'slate', fType: 'user' },
+            'sys_group': { icon: 'fa-users-gear', color: 'slate', fType: 'generic' },
+            'sys_screen': { icon: 'fa-desktop', color: 'slate', fType: 'generic' },
+            'sec_group': { icon: 'fa-user-shield', color: 'purple', fType: 'generic' },
+            'sec_screen': { icon: 'fa-lock', color: 'purple', fType: 'generic' },
+            'sec_pw': { icon: 'fa-key', color: 'purple', fType: 'password' }
+        };
+
+        function switchRibbon(module, tabElement) {
+            document.querySelectorAll('.ribbon-tab').forEach(el => {
+                el.classList.remove('active', 'text-slate-600');
+                if (el !== tabElement) el.classList.add('text-slate-600');
+            });
+            tabElement.classList.add('active');
+
+            const panels = ['ribbon-home', 'ribbon-basic', 'ribbon-sales', 'ribbon-purchase', 'ribbon-account', 'ribbon-system'];
+            panels.forEach(id => document.getElementById(id).classList.add('hidden'));
+
+            const activePanel = document.getElementById('ribbon-' + module);
+            if (activePanel) activePanel.classList.remove('hidden');
+        }
+
+        let openDocs = ['dashboard']; // dashboard is always open
+        let activeDocId = 'dashboard';
+
+        function openDoc(id, title, viewType, payload = null) {
+            if (!openDocs.includes(id)) {
+                openDocs.push(id);
+                createDynamicView(id, title, viewType, payload);
+            }
+            activateDoc(id, title);
+        }
+
+        function activateDoc(id, title) {
+            activeDocId = id;
+            renderTabs(title);
+
+            // Hide all views
+            document.querySelectorAll('.doc-view').forEach(view => view.classList.add('hidden'));
+            // Show active view
+            const view = document.getElementById('doc-' + id);
+            if (view) view.classList.remove('hidden');
+        }
+
+        function closeDoc(event, id) {
+            event.stopPropagation();
+            if (id === 'dashboard') {
+                alertMsg('메인 대시보드는 닫을 수 없습니다.');
+                return;
+            }
+            openDocs = openDocs.filter(docId => docId !== id);
+
+            // Remove DOM element
+            const view = document.getElementById('doc-' + id);
+            if (view) view.remove();
+
+            if (activeDocId === id) {
+                activateDoc(openDocs[openDocs.length - 1], '');
+            } else {
+                renderTabs();
+            }
+        }
+
+        function renderTabs(activeTitle) {
+            const container = document.getElementById('doc-tabs');
+            container.innerHTML = '';
+
+            openDocs.forEach(id => {
+                const isActive = id === activeDocId;
+                const tabEl = document.createElement('div');
+
+                // 탭 타이틀 가져오기 (매핑 혹은 전달받은 값)
+                let tabTitle = id === 'dashboard' ? '메인 대시보드' : (isActive && activeTitle ? activeTitle : document.querySelector(`#doc-${id} .view-title`)?.innerText || id);
+
+                const baseClass = "px-3 py-1.5 text-xs cursor-pointer flex items-center gap-2 border border-slate-300 border-b-0 rounded-t mr-1 min-w-[100px] max-w-[150px]";
+                const stateClass = isActive
+                    ? "bg-white font-semibold text-sky-700 z-10 relative mb-[-1px] pb-[7px]"
+                    : "bg-[#f8fafc] text-slate-500 hover:bg-white mt-1";
+
+                tabEl.className = `${baseClass} ${stateClass}`;
+                tabEl.onclick = () => activateDoc(id, tabTitle);
+                tabEl.innerHTML = `
+                    <span class="overflow-hidden text-ellipsis whitespace-nowrap flex-1">${tabTitle}</span>
+                    <i class="fa-solid fa-xmark text-slate-400 hover:text-red-500 px-1" onclick="closeDoc(event, '${id}')"></i>
+                `;
+                container.appendChild(tabEl);
+            });
+        }
+
+        function selectRow(row) {
+            const tbody = row.parentElement;
+            for (let r of tbody.getElementsByTagName('tr')) { r.classList.remove('selected'); }
+            row.classList.add('selected');
+        }
+
+        // 더블클릭 이벤트 핸들러 (상세 팝업 호출)
+        function handleRowDblClick(moduleId, rowElement) {
+            if (moduleId === 'user_mgr') {
+                const cells = rowElement.getElementsByTagName('td');
+                const code = cells[1].innerText;
+                const name = cells[2].innerText;
+                const dept = cells[3].innerText;
+                const rank = cells[4].innerText;
+                const date = cells[5].innerText;
+
+                document.getElementById('modal-title').innerText = `사용자 상세정보 - [${name}]`;
+                document.getElementById('modal-code').value = code;
+                document.getElementById('modal-name').value = name;
+                document.getElementById('modal-dept').value = dept;
+                document.getElementById('modal-rank').value = rank;
+                document.getElementById('modal-date').value = date;
+
+                document.getElementById('detail-modal').classList.remove('hidden');
+            } else if (moduleId === 'client_mgr') {
+                const cells = rowElement.getElementsByTagName('td');
+                const bizNum = cells[1].innerText;
+                const clientNameHtml = cells[2].innerHTML;
+                const clientName = cells[2].innerText;
+                const ceoName = cells[3].innerText;
+                const phone = cells[5].innerText;
+
+                // 거래처마다 고유한 탭 ID 생성 (예: doc-client_1234567890)
+                const uniqueTabId = 'client_' + bizNum.replace(/-/g, '');
+                const tabTitle = `[상세] ${clientName}`;
+
+                // 새 탭 열기 (데이터 페이로드 전달)
+                openDoc(uniqueTabId, tabTitle, 'view-client-detail', { bizNum, clientName, ceoName, phone });
+            } else {
+                alertMsg('해당 모듈은 아직 상세 팝업이 구현되지 않았습니다.');
+            }
+        }
+
+        function closeDetailModal() {
+            document.getElementById('detail-modal').classList.add('hidden');
+        }
+
+        function saveDetailModal() {
+            closeDetailModal();
+            alertMsg('데이터가 성공적으로 저장되었습니다.');
+        }
+
+        // 거래처 상세화면 내부 탭 전환 함수
+        function switchClientInnerTab(tabName, clientId, element) {
+            // 1. 탭 스타일 초기화
+            const tabsContainer = document.getElementById(`inner-tabs-${clientId}`);
+            const tabs = tabsContainer.querySelectorAll('.inner-tab');
+            tabs.forEach(tab => {
+                tab.className = "inner-tab px-4 py-1.5 bg-transparent text-slate-500 hover:text-slate-700 text-xs cursor-pointer border border-transparent";
+            });
+
+            // 2. 선택된 탭 활성화 스타일 적용
+            element.className = "inner-tab active px-4 py-1.5 bg-white text-indigo-700 font-bold text-xs border border-slate-300 border-b-0 cursor-pointer relative z-10 -mb-[1px]";
+
+            // 3. 모든 패널 숨기기
+            const contentContainer = document.getElementById(`inner-content-${clientId}`);
+            const panels = contentContainer.querySelectorAll('.inner-panel');
+            panels.forEach(panel => {
+                panel.classList.add('hidden');
+            });
+
+            // 4. 선택된 패널 보이기
+            const activePanel = document.getElementById(`content-${tabName}-${clientId}`);
+            if (activePanel) {
+                activePanel.classList.remove('hidden');
+            }
+        }
+
+        function createDynamicView(id, title, viewType, payload = null) {
+            const workspace = document.getElementById('workspace');
+
+            // 기존 뷰 생성 로직 (단일 그리드, 마스터 디테일, 설정 등)을 위한 데이터 매핑
+            const data = mockDB[id] || mockDB[id.split('_')[0] + '_mgr'] || mockDB['sys_user'];
+
+            let html = '';
+
+            // 4. 새 탭 상세 화면 (거래처 종합정보 뷰)
+            if (viewType === 'view-client-detail' && payload) {
+                html = `
+                <div class="bg-indigo-50 border-b border-indigo-200 p-2 text-sm font-bold text-indigo-800 flex items-center gap-2 shrink-0">
+                    <i class="fa-solid fa-building-user text-indigo-600"></i> <span class="view-title">${title}</span>
+                </div>
+                <div class="bg-slate-100 border-b border-slate-200 p-1.5 flex gap-1 items-center shrink-0">
+                    <button class="bg-white border border-slate-300 hover:bg-slate-50 px-3 py-1 rounded text-xs font-semibold text-slate-700 shadow-sm"><i class="fa-solid fa-floppy-disk text-blue-600 mr-1"></i> 저장</button>
+                    <button class="bg-white border border-slate-300 hover:bg-slate-50 px-3 py-1 rounded text-xs font-semibold text-slate-700 shadow-sm"><i class="fa-solid fa-print text-slate-600 mr-1"></i> 거래처 원장 인쇄</button>
+                    <div class="flex-1"></div>
+                    <button class="bg-white border border-slate-300 hover:bg-slate-50 px-3 py-1 rounded text-xs font-semibold text-red-600 shadow-sm" onclick="closeDoc(event, '${id}')"><i class="fa-solid fa-xmark mr-1"></i> 닫기</button>
+                </div>
+                
+                <div class="flex-1 p-2 bg-[#e4e4e4] overflow-auto flex flex-col gap-2 relative">
+                    <!-- 상단 요약 패널 -->
+                    <div class="bg-white border border-slate-300 shadow-sm p-4 flex gap-6 items-center shrink-0">
+                        <div class="w-16 h-16 bg-indigo-100 text-indigo-500 rounded flex items-center justify-center text-3xl border border-indigo-200"><i class="fa-solid fa-city"></i></div>
+                        <div class="flex-1">
+                            <h2 class="text-xl font-bold text-slate-800 mb-1">${payload.clientName}</h2>
+                            <div class="text-xs text-slate-500 flex gap-4">
+                                <span><strong class="text-slate-600">사업자번호:</strong> ${payload.bizNum}</span>
+                                <span><strong class="text-slate-600">대표자:</strong> ${payload.ceoName}</span>
+                                <span><strong class="text-slate-600">대표연락처:</strong> ${payload.phone}</span>
+                                <span><strong class="text-slate-600">여신한도:</strong> <span class="text-blue-600 font-bold">50,000,000 원</span></span>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-[10px] text-slate-400 mb-1">현재 잔고 (미수금)</div>
+                            <div class="text-2xl font-bold text-red-500">12,450,000</div>
+                        </div>
+                    </div>
+
+                    <!-- 내부 탭 디자인 -->
+                    <div class="bg-slate-200 border border-slate-300 border-b-0 flex pt-1 px-1 shrink-0 mt-2" id="inner-tabs-${id}">
+                        <div class="inner-tab active px-4 py-1.5 bg-white text-indigo-700 font-bold text-xs border border-slate-300 border-b-0 cursor-pointer relative z-10 -mb-[1px]" onclick="switchClientInnerTab('basic', '${id}', this)">기초/등록 정보</div>
+                        <div class="inner-tab px-4 py-1.5 bg-transparent text-slate-500 hover:text-slate-700 text-xs cursor-pointer border border-transparent" onclick="switchClientInnerTab('contacts', '${id}', this)">담당자 연락망</div>
+                        <div class="inner-tab px-4 py-1.5 bg-transparent text-slate-500 hover:text-slate-700 text-xs cursor-pointer border border-transparent" onclick="switchClientInnerTab('history', '${id}', this)">최근 거래내역(매출/수금)</div>
+                    </div>
+
+                    <!-- 상세 폼 영역 (패널 컨테이너) -->
+                    <div class="bg-white border border-slate-300 p-4 shadow-sm flex-1 flex flex-col gap-4 text-xs relative overflow-hidden" id="inner-content-${id}">
+                        
+                        <!-- 탭 1: 기초/등록 정보 (기본 표시) -->
+                        <div id="content-basic-${id}" class="inner-panel flex-1 flex flex-col gap-4 overflow-auto">
+                            <div class="flex gap-10">
+                                <!-- 좌측 폼 -->
+                                <div class="flex-1 flex flex-col gap-2">
+                                    <div class="flex items-center"><label class="w-24 text-right pr-3 font-semibold text-slate-600">거래처명</label><input type="text" class="border border-slate-300 rounded px-2 py-1 flex-1 focus:border-blue-400" value="${payload.clientName}"></div>
+                                    <div class="flex items-center"><label class="w-24 text-right pr-3 font-semibold text-slate-600">사업자번호</label><input type="text" class="border border-slate-300 rounded px-2 py-1 flex-1 focus:border-blue-400" value="${payload.bizNum}"></div>
+                                    <div class="flex items-center"><label class="w-24 text-right pr-3 font-semibold text-slate-600">대표자명</label><input type="text" class="border border-slate-300 rounded px-2 py-1 flex-1 focus:border-blue-400" value="${payload.ceoName}"></div>
+                                    <div class="flex items-center"><label class="w-24 text-right pr-3 font-semibold text-slate-600">업태/종목</label><input type="text" class="border border-slate-300 rounded px-2 py-1 w-1/2 focus:border-blue-400" value="제조/도소매"><input type="text" class="border border-slate-300 rounded px-2 py-1 w-1/2 ml-1 focus:border-blue-400" value="소프트웨어 외"></div>
+                                </div>
+                                <!-- 우측 폼 -->
+                                <div class="flex-1 flex flex-col gap-2">
+                                    <div class="flex items-center"><label class="w-24 text-right pr-3 font-semibold text-slate-600">전화번호</label><input type="text" class="border border-slate-300 rounded px-2 py-1 flex-1 focus:border-blue-400" value="${payload.phone}"></div>
+                                    <div class="flex items-center"><label class="w-24 text-right pr-3 font-semibold text-slate-600">팩스번호</label><input type="text" class="border border-slate-300 rounded px-2 py-1 flex-1 focus:border-blue-400" value="02-1234-5679"></div>
+                                    <div class="flex items-center"><label class="w-24 text-right pr-3 font-semibold text-slate-600">대표 이메일</label><input type="text" class="border border-slate-300 rounded px-2 py-1 flex-1 focus:border-blue-400" value="tax@company.com"></div>
+                                    <div class="flex items-center"><label class="w-24 text-right pr-3 font-semibold text-slate-600">홈페이지</label><input type="text" class="border border-slate-300 rounded px-2 py-1 flex-1 focus:border-blue-400" value="http://www."></div>
+                                </div>
+                            </div>
+                            <div class="flex items-start mt-2"><label class="w-24 text-right pr-3 font-semibold text-slate-600 mt-1">본사 주소</label>
+                                <div class="flex-1 flex flex-col gap-1">
+                                    <div class="flex gap-1"><input type="text" class="border border-slate-300 rounded px-2 py-1 w-20 focus:border-blue-400" value="06234"><button class="border border-slate-300 bg-slate-100 px-2 py-1 rounded hover:bg-slate-200">우편번호 검색</button></div>
+                                    <input type="text" class="border border-slate-300 rounded px-2 py-1 w-full focus:border-blue-400" value="서울특별시 강남구 테헤란로 123">
+                                    <input type="text" class="border border-slate-300 rounded px-2 py-1 w-full focus:border-blue-400" value="상세주소">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 탭 2: 담당자 연락망 (숨김 처리) -->
+                        <div id="content-contacts-${id}" class="inner-panel hidden flex-1 flex-col gap-2 overflow-auto">
+                            <div class="flex justify-between items-center bg-slate-50 p-2 border border-slate-200 rounded-sm">
+                                <span class="font-bold text-slate-700 ml-1"><i class="fa-solid fa-address-book text-indigo-500 mr-1"></i> 부서별 담당자 목록</span>
+                                <button class="bg-white border border-slate-300 px-3 py-1 rounded text-xs hover:bg-slate-100 shadow-sm"><i class="fa-solid fa-plus text-emerald-500 mr-1"></i> 추가</button>
+                            </div>
+                            <table class="win-grid w-full">
+                                <thead><tr><th class="w-12 text-center">No</th><th class="w-32">부서/직책</th><th class="w-32">성명</th><th class="w-40">연락처</th><th>이메일</th><th class="w-48">비고</th></tr></thead>
+                                <tbody>
+                                    <tr onclick="selectRow(this)"><td class="text-center">1</td><td>영업부 / 부장</td><td class="font-bold">김영업</td><td>010-1234-5678</td><td>sales@${payload.bizNum.split('-')[0]}.com</td><td>메인 담당자</td></tr>
+                                    <tr onclick="selectRow(this)"><td class="text-center">2</td><td>회계팀 / 과장</td><td class="font-bold">이회계</td><td>010-9876-5432</td><td>tax@${payload.bizNum.split('-')[0]}.com</td><td>세금계산서 및 수금</td></tr>
+                                    <tr onclick="selectRow(this)"><td class="text-center">3</td><td>물류팀 / 대리</td><td class="font-bold">박물류</td><td>010-5555-4444</td><td>logis@${payload.bizNum.split('-')[0]}.com</td><td>입/출고 창고 담당</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- 탭 3: 최근 거래내역 (숨김 처리) -->
+                        <div id="content-history-${id}" class="inner-panel hidden flex-1 flex-col gap-2 overflow-auto">
+                            <div class="flex justify-between items-center bg-slate-50 p-2 border border-slate-200 rounded-sm">
+                                <span class="font-bold text-slate-700 ml-1"><i class="fa-solid fa-file-invoice-dollar text-indigo-500 mr-1"></i> 최근 3개월 거래내역 (매출/수금 원장)</span>
+                                <button class="bg-white border border-slate-300 px-3 py-1 rounded text-xs hover:bg-slate-100 shadow-sm"><i class="fa-solid fa-file-excel text-green-600 mr-1"></i> 원장 다운로드</button>
+                            </div>
+                            <table class="win-grid w-full">
+                                <thead><tr><th class="w-32 text-center">거래일자</th><th class="w-20 text-center">구분</th><th>거래내용(적요)</th><th class="w-32 text-right">발생금액(매출)</th><th class="w-32 text-right">수금금액</th><th class="w-32 text-right">미수잔액</th></tr></thead>
+                                <tbody>
+                                    <tr onclick="selectRow(this)"><td class="text-center">2026-05-02</td><td class="text-center"><span class="text-blue-600 font-bold">수금</span></td><td>4월분 외상대금 입금 (국민은행)</td><td class="text-right text-slate-400">-</td><td class="text-right text-blue-600 font-semibold">5,000,000</td><td class="text-right font-bold text-red-500">12,450,000</td></tr>
+                                    <tr onclick="selectRow(this)"><td class="text-center">2026-04-28</td><td class="text-center"><span class="text-red-500 font-bold">매출</span></td><td>산업용 모터 외 2건 출고</td><td class="text-right text-red-500 font-semibold">3,200,000</td><td class="text-right text-slate-400">-</td><td class="text-right font-bold text-red-500">17,450,000</td></tr>
+                                    <tr onclick="selectRow(this)"><td class="text-center">2026-04-15</td><td class="text-center"><span class="text-red-500 font-bold">매출</span></td><td>PLC 컨트롤러 보드 납품</td><td class="text-right text-red-500 font-semibold">1,500,000</td><td class="text-right text-slate-400">-</td><td class="text-right font-bold text-red-500">14,250,000</td></tr>
+                                    <tr onclick="selectRow(this)"><td class="text-center">2026-03-31</td><td class="text-center"><span class="text-slate-500 font-bold">이월</span></td><td>전기 이월 미수금</td><td class="text-right text-slate-400">-</td><td class="text-right text-slate-400">-</td><td class="text-right font-bold text-red-500">12,750,000</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                `;
+            }
+            // 1. 단일 그리드 (Search & List)
+            else if (viewType === 'view-grid') {
+                let trs = '';
+                if (data && data.rows) {
+                    data.rows.forEach(r => {
+                        trs += `<tr onclick="selectRow(this)" ondblclick="handleRowDblClick('${id}', this)"><td class="text-center">${r.join('</td><td>')}</td></tr>`;
+                    });
+                }
+
+                let ths = '';
+                if (data && data.headers) {
+                    data.headers.forEach(h => { ths += `<th class="${h.w}">${h.t}</th>`; });
+                }
+
+                html = `
+                <div class="bg-${data.color}-50 border-b border-${data.color}-200 p-2 text-sm font-bold text-${data.color}-800 flex items-center gap-2 shrink-0">
+                    <i class="fa-solid ${data.icon}"></i> <span class="view-title">${title}</span>
+                </div>
+                <!-- 검색 툴바 -->
+                <div class="bg-slate-50 p-2 border-b border-slate-200 shrink-0 flex items-center gap-4 text-xs font-semibold text-slate-600">
+                    ${(data.search || []).map(s => `<div class="flex items-center gap-2"><label>${s}:</label><input type="text" class="border border-slate-300 rounded px-2 py-1 w-32 focus:border-blue-400"></div>`).join('')}
+                    <button class="bg-slate-600 hover:bg-slate-700 text-white px-3 py-1 rounded text-xs ml-auto shadow-sm"><i class="fa-solid fa-magnifying-glass mr-1"></i>조회</button>
+                </div>
+                <!-- 액션 툴바 -->
+                <div class="bg-white p-1.5 border-b border-slate-200 shrink-0 flex gap-1">
+                    <button class="px-3 py-1 bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 rounded text-xs shadow-sm"><i class="fa-solid fa-plus text-emerald-500 mr-1"></i>신규등록</button>
+                    <button class="px-3 py-1 bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 rounded text-xs shadow-sm"><i class="fa-solid fa-file-excel text-green-600 mr-1"></i>엑셀변환</button>
+                </div>
+                <!-- 그리드 영역 -->
+                <div class="flex-1 overflow-auto bg-slate-100 p-1">
+                    <table class="win-grid">
+                        <thead><tr>${ths}</tr></thead>
+                        <tbody>${trs}</tbody>
+                    </table>
+                </div>
+                `;
+            }
+            // 2. 마스터-디테일 화면
+            else if (viewType === 'view-master-detail') {
+                html = `
+                <div class="bg-${data.color}-50 border-b border-${data.color}-200 p-2 text-sm font-bold text-${data.color}-800 flex items-center gap-2 shrink-0">
+                    <i class="fa-solid ${data.icon}"></i> <span class="view-title">${title}</span>
+                </div>
+                <div class="bg-slate-50 p-2 border-b border-slate-200 shrink-0 flex justify-between items-center text-xs">
+                    <div class="flex gap-4"><div class="flex items-center gap-2 font-semibold text-slate-600"><label>조회기간:</label><input type="date" class="border border-slate-300 rounded px-2 py-1 focus:border-blue-400"> ~ <input type="date" class="border border-slate-300 rounded px-2 py-1 focus:border-blue-400"></div></div>
+                    <button class="bg-slate-600 hover:bg-slate-700 text-white px-3 py-1 rounded shadow-sm"><i class="fa-solid fa-magnifying-glass mr-1"></i>조회</button>
+                </div>
+                <div class="h-1/2 flex flex-col min-h-[150px]">
+                    <div class="bg-slate-700 text-white px-2 py-1 text-xs font-semibold shrink-0 flex justify-between"><span>[Master] ${data.mType} 내역</span><span class="text-sky-300 font-normal">총 2건</span></div>
+                    <div class="flex-1 bg-white p-4 flex items-center justify-center text-slate-400 text-xs border-b border-slate-300">
+                        <div class="text-center"><i class="fa-regular fa-folder-open text-3xl mb-2 text-slate-300 block"></i>상단 전표(Master) 그리드가 표시되는 영역입니다.</div>
+                    </div>
+                </div>
+                <div class="h-1.5 bg-slate-300 hover:bg-slate-400 cursor-row-resize shrink-0"></div>
+                <div class="flex-1 flex flex-col min-h-[150px]">
+                    <div class="bg-slate-600 text-white px-2 py-1 text-xs font-semibold shrink-0 flex justify-between"><span>[Detail] ${data.dType} 상세</span><span class="text-sky-300 font-normal">선택된 전표의 세부항목</span></div>
+                    <div class="flex-1 bg-white p-4 flex items-center justify-center text-slate-400 text-xs">
+                        <div class="text-center"><i class="fa-solid fa-list-ul text-3xl mb-2 text-slate-300 block"></i>하단 세부항목(Detail) 그리드가 표시되는 영역입니다.</div>
+                    </div>
+                </div>
+                `;
+            }
+            // 3. 설정 뷰
+            else if (viewType === 'view-settings') {
+                let formContent = '';
+                if (data.fType === 'password') {
+                    formContent = `
+                        <div class="flex items-center gap-4"><label class="w-32 font-semibold text-slate-600 text-right">현재 암호</label><input type="password" class="border border-slate-300 rounded px-2 py-1.5 w-64 focus:border-blue-400"></div>
+                        <div class="flex items-center gap-4"><label class="w-32 font-semibold text-slate-600 text-right">새 암호</label><input type="password" class="border border-slate-300 rounded px-2 py-1.5 w-64 focus:border-blue-400"></div>
+                        <div class="flex items-center gap-4"><label class="w-32 font-semibold text-slate-600 text-right">새 암호 확인</label><input type="password" class="border border-slate-300 rounded px-2 py-1.5 w-64 focus:border-blue-400"></div>
+                    `;
+                } else if (data.fType === 'user') {
+                    formContent = `
+                        <div class="flex items-center gap-4"><label class="w-32 font-semibold text-slate-600 text-right">기본 언어</label><select class="border border-slate-300 rounded px-2 py-1.5 w-64 focus:border-blue-400"><option>한국어 (Korean)</option><option>English</option></select></div>
+                        <div class="flex items-center gap-4"><label class="w-32 font-semibold text-slate-600 text-right">테마 모드</label><div class="flex gap-4 w-64"><label><input type="radio" name="theme_${id}" checked> 라이트</label><label><input type="radio" name="theme_${id}"> 다크</label></div></div>
+                        <div class="flex items-center gap-4"><label class="w-32 font-semibold text-slate-600 text-right">자동 로그아웃</label><select class="border border-slate-300 rounded px-2 py-1.5 w-64 focus:border-blue-400"><option>30분 후</option><option>사용 안함</option></select></div>
+                    `;
+                } else {
+                    formContent = `<div class="text-center text-slate-500 py-10"><i class="fa-solid fa-screwdriver-wrench text-4xl mb-3 text-slate-300 block"></i>상세 설정 및 권한 제어 UI (Mockup)</div>`;
+                }
+
+                html = `
+                <div class="bg-${data.color}-50 border-b border-${data.color}-200 p-2 text-sm font-bold text-${data.color}-800 flex items-center gap-2 shrink-0">
+                    <i class="fa-solid ${data.icon}"></i> <span class="view-title">${title}</span>
+                </div>
+                <div class="p-4 flex-1 overflow-auto bg-slate-50 flex justify-center">
+                    <div class="w-full max-w-2xl bg-white p-6 border border-slate-200 rounded shadow-sm h-fit mt-4">
+                        <h3 class="font-bold text-slate-700 mb-6 border-b pb-2 text-base"><i class="fa-solid fa-sliders mr-2"></i>${title} 상세정보</h3>
+                        <div class="space-y-5 text-sm">
+                            ${formContent}
+                            <div class="flex items-center gap-4 pt-6 border-t border-slate-100 mt-6"><label class="w-32"></label><button class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded font-semibold shadow-sm transition-colors" onclick="alertMsg('설정이 저장되었습니다.')"><i class="fa-solid fa-check mr-1"></i> 변경사항 저장</button></div>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }
+
+            // Create wrapper div
+            const viewDiv = document.createElement('div');
+            viewDiv.id = `doc-${id}`;
+            viewDiv.className = `doc-view absolute inset-1 bg-white shadow-sm border border-slate-300 flex flex-col hidden`;
+            viewDiv.innerHTML = html;
+            workspace.appendChild(viewDiv);
+        }
+
+        function alertMsg(msg) {
+            document.getElementById('msg-content').innerText = msg;
+            document.getElementById('msg-box').classList.remove('hidden');
+        }
+        function closeMsg() {
+            document.getElementById('msg-box').classList.add('hidden');
+        }
+    </script>
+</body>
+
+</html>
