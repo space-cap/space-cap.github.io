@@ -28,36 +28,47 @@
    - 프로시저(Procedure)와 함수(Function)의 차이
    - 매개변수 넘기기 (값 전달 vs `var` 참조 전달)
 
-5. [**5장. 객체 지향 프로그래밍 기초**](05_object_oriented_programming.md)
-   - 클래스와 객체의 개념
-   - 메모리 관리 (Create, Free, try...finally)
+---
+
+### 🧱 객체 지향 프로그래밍 (OOP)
+
+5-1. [**5-1장. OOP 개념 소개**](05_1_oop_concepts.md)
+   - 왜 OOP가 필요한가? (절차적 vs 객체지향 비교)
+   - 클래스 vs 객체 / OOP 4대 특징 개요
+   - 파스칼에서 클래스 선언하고 사용하기
+
+5-2. [**5-2장. 클래스 설계 심화**](05_2_class_design.md)
+   - 생성자(Constructor)와 소멸자(Destructor)
+   - `Self` 키워드 / 클래스 변수와 클래스 메서드
+   - 올바른 메모리 관리 패턴 (Create-try-finally-Free)
+
+5-3. [**5-3장. 캡슐화와 접근 제어**](05_3_encapsulation.md)
+   - `public` / `private` / `protected` 접근 제어자
+   - `property`(프로퍼티): getter & setter
+   - 실전 예제: 안전한 은행 계좌 클래스
 
 ---
 
 ### 🌿 중급 편
 
 6. [**6장. 배열과 컬렉션**](06_arrays_and_collections.md)
-   - 정적/동적 배열
-   - 2차원 배열
+   - 정적/동적 배열, 2차원 배열
    - TStringList 활용
 
 7. [**7장. 문자열 처리**](07_string_handling.md)
    - 문자열 함수 총정리 (Copy, Pos, Trim, UpperCase 등)
-   - 숫자 ↔ 문자열 변환 (IntToStr, StrToInt 등)
-   - 실습: 이메일 유효성 검사
+   - 숫자 ↔ 문자열 변환
 
 8. [**8장. 예외 처리**](08_exception_handling.md)
    - try ... except (에러 잡기)
    - try ... finally (반드시 실행되는 코드)
-   - 자주 만나는 에러 종류
 
 9. [**9장. 유닛(Unit)과 프로그램 구조**](09_units_and_structure.md)
-   - 유닛이란? (코드 파일 나누기)
-   - `uses`로 유닛 가져오기
+   - 유닛이란? / `uses`로 가져오기
    - 나만의 유닛 만들기 (interface / implementation)
 
 10. [**10장. 상속과 다형성 (OOP 심화)**](10_inheritance_and_polymorphism.md)
-    - 부모 클래스에서 자식 클래스로 상속
+    - 부모 → 자식 클래스 상속
     - 메서드 오버라이딩 (virtual / override)
     - 다형성: 하나의 코드로 여러 타입 처리
 
@@ -68,18 +79,15 @@
 11. [**11장. 파일 입출력**](11_file_io.md)
     - 텍스트 파일 읽기/쓰기
     - TStringList로 간편하게 파일 다루기
-    - 유용한 파일 관련 함수들
 
 12. [**12장. GUI 프로그래밍 기초**](12_gui_programming.md)
     - Lazarus 폼 디자이너 사용법
-    - 버튼, 입력창, 레이블 등 주요 컴포넌트
-    - 이벤트 처리 (OnClick 등)
+    - 버튼, 입력창, 이벤트 처리
     - 실습: 간단한 계산기 만들기
 
 13. [**13장. 디버깅 방법**](13_debugging.md)
     - 에러의 세 가지 종류 (컴파일/런타임/논리)
     - IDE 디버거 활용법 (중단점, F8 단계 실행)
-    - 에러를 줄이는 좋은 습관
 
 14. [**14장. 실전 미니 프로젝트: 학생 성적 관리 프로그램**](14_mini_project.md)
     - 클래스 설계부터 전체 프로그램 완성까지
