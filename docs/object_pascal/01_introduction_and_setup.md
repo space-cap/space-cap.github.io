@@ -34,7 +34,7 @@
 ### 🥇 초보자 최우선 추천: Lazarus IDE (무료!)
 
 **Lazarus**는 델파이와 거의 동일한 문법을 지원하는 **100% 무료 오픈소스 IDE**입니다.  
-내부 컴파일러로 **Free Pascal Compiler (FPC)**를 사용합니다.
+내부 컴파일러로 **Free Pascal Compiler (FPC)** 를 사용합니다.
 
 - ✅ 완전 무료
 - ✅ 윈도우, 맥, 리눅스 모두 지원
@@ -43,8 +43,8 @@
 
 ### 🥈 전문가용: Delphi Community Edition (무료!)
 
-**엠바카데로(Embarcadero)**사의 **Delphi**는 세계에서 가장 유명한 파스칼 IDE입니다.  
-개인/학생/스타트업에게는 **Community Edition(커뮤니티 에디션)**이 무료로 제공됩니다.
+**엠바카데로(Embarcadero)** 사의 **Delphi**는 세계에서 가장 유명한 파스칼 IDE입니다.  
+개인/학생/스타트업에게는 **Community Edition(커뮤니티 에디션)** 이 무료로 제공됩니다.
 
 - ✅ 개인 및 소규모 팀 무료
 - ✅ 안드로이드, iOS, 윈도우, 맥 앱 개발 가능
