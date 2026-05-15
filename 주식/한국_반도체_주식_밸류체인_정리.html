@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>한국 반도체 주식 핵심 정리</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap');
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background-color: #f8fafc;
+    }
+
+    .card {
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .badge-design {
+      background-color: #eff6ff;
+      color: #1e40af;
+      border: 1px solid #bfdbfe;
+    }
+
+    .badge-hbm {
+      background-color: #fef2f2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+
+    .badge-idm {
+      background-color: #f0fdf4;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+    }
+  </style>
+</head>
+
+<body class="p-4 md:p-8">
+
+  <div class="max-w-6xl mx-auto">
+    <!-- Header -->
+    <header class="text-center mb-12">
+      <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+        <i class="fa-solid fa-microchip text-blue-600 mr-2"></i> 한국 반도체 섹터별 밸류체인 리포트
+      </h1>
+      <p class="text-gray-600 italic">2026 AI 반도체 슈퍼사이클 및 디자인하우스 핵심 기업 정리</p>
+    </header>
+
+    <!-- Main Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- 1. 대장주 (IDM) -->
+      <section class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 card">
+        <div class="flex items-center mb-4">
+          <span class="p-3 bg-green-100 text-green-600 rounded-lg mr-3"><i class="fa-solid fa-building"></i></span>
+          <h2 class="text-xl font-bold text-gray-800">종합 반도체 (IDM)</h2>
+        </div>
+        <ul class="space-y-4">
+          <li class="pb-3 border-b border-gray-50">
+            <div class="font-bold text-lg">삼성전자</div>
+            <p class="text-sm text-gray-600">메모리 세계 1위, 파운드리 2위. AI 공급망 진입 및 선단공정 수율이 핵심.</p>
+          </li>
+          <li>
+            <div class="font-bold text-lg">SK하이닉스</div>
+            <p class="text-sm text-gray-600">HBM 시장 압도적 1위. 엔비디아 주력 공급사로서 실적 성장 가속화.</p>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 2. 디자인하우스 (DSP/VCA) -->
+      <section class="bg-white p-6 rounded-2xl shadow-sm border border-blue-200 card ring-2 ring-blue-50">
+        <div class="flex items-center mb-4">
+          <span class="p-3 bg-blue-100 text-blue-600 rounded-lg mr-3"><i class="fa-solid fa-pen-ruler"></i></span>
+          <h2 class="text-xl font-bold text-gray-800">디자인하우스 <span class="text-sm font-normal text-blue-500">(핵심)</span>
+          </h2>
+        </div>
+        <ul class="space-y-4">
+          <li class="pb-3 border-b border-gray-50">
+            <div class="flex justify-between items-start">
+              <span class="font-bold text-lg text-blue-700">가온칩스</span>
+              <span class="text-[10px] px-2 py-1 rounded badge-design">삼성 DSP</span>
+            </div>
+            <p class="text-sm text-gray-600">AI/차량용 특화. 삼성 파운드리 핵심 파트너이자 ARM 협력사.</p>
+          </li>
+          <li class="pb-3 border-b border-gray-50">
+            <div class="flex justify-between items-start">
+              <span class="font-bold text-lg text-blue-700">에이디테크놀로지</span>
+              <span class="text-[10px] px-2 py-1 rounded badge-design">삼성 DSP</span>
+            </div>
+            <p class="text-sm text-gray-600">국내 최대 설계 인력 보유. HPC/서버향 대형 프로젝트 양산 진입.</p>
+          </li>
+          <li>
+            <div class="flex justify-between items-start">
+              <span class="font-bold text-lg text-orange-700">에이직랜드</span>
+              <span class="text-[10px] px-2 py-1 rounded bg-orange-50 text-orange-700 border border-orange-100">TSMC
+                VCA</span>
+            </div>
+            <p class="text-sm text-gray-600">국내 유일 TSMC 공식 파트너. AI 및 엣지 컴퓨팅 수주 증가.</p>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 3. HBM & 후공정 -->
+      <section class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 card">
+        <div class="flex items-center mb-4">
+          <span class="p-3 bg-red-100 text-red-600 rounded-lg mr-3"><i class="fa-solid fa-layer-group"></i></span>
+          <h2 class="text-xl font-bold text-gray-800">HBM 및 첨단 패키징</h2>
+        </div>
+        <ul class="space-y-4">
+          <li class="pb-3 border-b border-gray-50">
+            <div class="font-bold text-lg">한미반도체</div>
+            <p class="text-sm text-gray-600">HBM 제조 필수 장비인 'TC 본더' 글로벌 점유율 1위.</p>
+          </li>
+          <li class="pb-3 border-b border-gray-50">
+            <div class="font-bold text-lg">이수페타시스</div>
+            <p class="text-sm text-gray-600">AI 가속기용 고다층 인쇄회로기판(MLB) 공급.</p>
+          </li>
+          <li>
+            <div class="font-bold text-lg">리노공업</div>
+            <p class="text-sm text-gray-600">반도체 검사용 소켓 세계 1위. 독보적인 기술력과 이익률.</p>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 4. 설계 IP -->
+      <section class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 card">
+        <div class="flex items-center mb-4">
+          <span class="p-3 bg-purple-100 text-purple-600 rounded-lg mr-3"><i class="fa-solid fa-code"></i></span>
+          <h2 class="text-xl font-bold text-gray-800">설계 IP 전문</h2>
+        </div>
+        <ul class="space-y-4">
+          <li class="pb-3 border-b border-gray-50">
+            <div class="font-bold text-lg text-purple-700">오픈엣지테크놀로지</div>
+            <p class="text-sm text-gray-600">AI 반도체 NPU 및 메모리 인터페이스 IP 설계 역량 보유.</p>
+          </li>
+          <li>
+            <div class="font-bold text-lg text-purple-700">칩스앤미디어</div>
+            <p class="text-sm text-gray-600">글로벌 비디오 코덱 IP 리더. 자율주행 칩 분야 핵심 협력사.</p>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 5. 소재/부품/장비 -->
+      <section class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 card lg:col-span-2">
+        <div class="flex items-center mb-6">
+          <span class="p-3 bg-yellow-100 text-yellow-600 rounded-lg mr-3"><i class="fa-solid fa-gears"></i></span>
+          <h2 class="text-xl font-bold text-gray-800">주요 소부장 (소재·부품·장비)</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div>
+            <h3 class="font-bold text-gray-700 border-l-4 border-yellow-400 pl-2 mb-2">장비/공정</h3>
+            <p class="text-sm text-gray-600"><strong>주성엔지니어링:</strong> 차세대 ALD 증착 장비</p>
+            <p class="text-sm text-gray-600"><strong>원익IPS:</strong> 전공정 증착/식각 장비 국산화</p>
+            <p class="text-sm text-gray-600"><strong>에스앤에스텍:</strong> EUV 블랭크마스크 국산화</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-gray-700 border-l-4 border-yellow-400 pl-2 mb-2">소재/부품</h3>
+            <p class="text-sm text-gray-600"><strong>솔브레인:</strong> 에칭/세정용 특수 화학 소재</p>
+            <p class="text-sm text-gray-600"><strong>동진쎄미켐:</strong> 고성능 포토레지스트(PR) 공급</p>
+            <p class="text-sm text-gray-600"><strong>티씨케이:</strong> 고내구성 SiC 링(포커스 링) 1위</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Footer / Insights -->
+    <footer class="mt-12 bg-gray-800 text-white p-8 rounded-3xl shadow-xl">
+      <h2 class="text-2xl font-bold mb-6 text-blue-400"><i class="fa-solid fa-lightbulb mr-2"></i> 2026 투자 인사이트</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="space-y-2">
+          <div class="text-blue-300 font-bold">1. 양산 매출 확인</div>
+          <p class="text-sm text-gray-300">디자인하우스는 단순 설계 용역을 넘어 대량 양산(Royalties) 단계로 진입한 기업의 주가가 더 탄탄합니다.</p>
+        </div>
+        <div class="space-y-2">
+          <div class="text-blue-300 font-bold">2. HBM4 규격 전환</div>
+          <p class="text-sm text-gray-300">HBM3E에서 HBM4로 넘어가는 공정 변화에서 새로운 장비 및 검사 수요가 폭발할 가능성이 높습니다.</p>
+        </div>
+        <div class="space-y-2">
+          <div class="text-blue-300 font-bold">3. 선단공정(3nm 이하)</div>
+          <p class="text-sm text-gray-300">삼성전자 파운드리의 3nm 이하 수율 안정화 및 고객사 확보 여부가 전체 서플라이체인의 주가를 결정합니다.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+</body>
+
+</html>
