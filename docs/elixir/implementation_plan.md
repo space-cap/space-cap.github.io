@@ -14,28 +14,32 @@ Elixir를 처음 접하는 사용자가 기초부터 실무 수준의 동시성 
 ### 1단계: 입문 및 환경 구축
 - **01_introduction.md**: Elixir의 탄생 배경(Jose Valim, Erlang/BEAM), 철학, 특징(불변성, 동시성, 확장성).
 - **02_installation.md**: Windows, macOS, Linux 환경별 설치 방법 및 `iex` 사용법.
-- **03_basic_syntax.md**: 변수, 수치형, 아톰, 불리언, 문자열 등 기초 타입과 연산자.
+- **03_basic_types.md**: 변수, 수치형, 아톰, 불리언 등 기초 타입과 기본 연산자.
 
 ### 2단계: 데이터 다루기
-- **04_collections.md**: List, Tuple, Map, Keyword List의 차이점과 활용법.
-- **05_pattern_matching.md**: Elixir의 핵심인 패턴 매칭(`=`)과 매칭의 힘.
-- **06_control_flow.md**: `case`, `cond`, `if`, `unless`를 활용한 조건문 처리.
+- **04_strings_and_binaries.md**: 문자열 조작(`String` 모듈), 보간법, 바이너리와 문자 리스트(Charlist)의 차이.
+- **05_collections.md**: List, Tuple, Map, Keyword List의 차이점과 활용법.
+- **06_pattern_matching.md**: Elixir의 핵심인 패턴 매칭(`=`)과 매칭의 힘.
+- **07_control_flow.md**: `case`, `cond`, `if`, `unless`를 활용한 조건문 처리.
+- **08_error_handling.md**: `raise`, `try/rescue/after`, 그리고 Elixir만의 예외 처리 철학.
 
 ### 3단계: 구조화 및 함수형 프로그래밍
-- **07_modules_and_functions.md**: 모듈 정의, 이름 있는 함수와 익명 함수, 파이프 연산자(`|>`).
-- **08_file_and_io.md**: 파일 읽기/쓰기, `IO` 모듈을 통한 입출력, 경로 처리 및 스트림(Stream) 기초.
-- **09_recursion_and_enumerable.md**: 반복문 대신 사용하는 재귀 함수와 `Enum` 모듈 활용.
+- **09_modules_and_functions.md**: 모듈 정의, 이름 있는 함수와 익명 함수, 파이프 연산자(`|>`).
+- **10_structs.md**: 데이터 구조화 및 사용자 정의 타입(`defstruct`).
+- **11_protocols_and_behaviours.md**: 다형성(Polymorphism) 구현과 모듈 규약 설정.
+- **12_file_and_io.md**: 파일 읽기/쓰기, `IO` 모듈을 통한 입출력, 경로 처리 및 스트림(Stream) 기초.
+- **13_recursion_and_enumerable.md**: 반복문 대신 사용하는 재귀 함수와 `Enum` 모듈 활용.
 
 ### 4단계: 동시성과 OTP (Elixir의 진수)
-- **10_processes.md**: 경량 프로세스(`spawn`, `send`, `receive`)와 프로세스 모델 이해.
-- **11_otp_genserver.md**: 상태를 관리하고 서버-클라이언트 모델을 구현하는 `GenServer`.
-- **12_otp_supervisor.md**: 자가 치유(Self-healing) 시스템을 위한 `Supervisor`와 감시 전략.
-- **13_networking_and_distribution.md**: 노드(Node) 간 연결, 분산 메시징, TCP/UDP 기초 등 네트워크 활용법.
+- **14_processes.md**: 경량 프로세스(`spawn`, `send`, `receive`)와 프로세스 모델 이해.
+- **15_otp_genserver.md**: 상태를 관리하고 서버-클라이언트 모델을 구현하는 `GenServer`.
+- **16_otp_supervisor.md**: 자가 치유(Self-healing) 시스템을 위한 `Supervisor`와 감시 전략.
+- **17_networking_and_distribution.md**: 노드(Node) 간 연결, 분산 메시징, TCP/UDP 기초 등 네트워크 활용법.
 
 ### 5단계: 도구 및 심화
-- **14_mix_and_project.md**: 프로젝트 관리 도구인 `Mix`와 종속성 관리.
-- **15_testing_exunit.md**: `ExUnit`을 활용한 테스트 코드 작성법.
-- **16_metaprogramming_intro.md**: 매크로, `quote`, `unquote`를 활용한 메타프로그래밍 기초.
+- **18_mix_and_project.md**: 프로젝트 관리 도구인 `Mix`와 종속성 관리.
+- **19_testing_exunit.md**: `ExUnit`을 활용한 테스트 코드 작성법.
+- **20_metaprogramming_intro.md**: 매크로, `quote`, `unquote`를 활용한 메타프로그래밍 기초.
 
 ## 구현 일정 및 절차
 
