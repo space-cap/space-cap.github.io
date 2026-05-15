@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IDM 대장주 분석 | 한국 반도체 투자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#060d1b;--bg2:#0d1a2e;--bg3:#111e35;--border:#1e3a5f;--gold:#f59e0b;--blue:#3b82f6;--green:#22c55e;--red:#ef4444;--purple:#a855f7;--text:#e2e8f0;--dim:#94a3b8;--dimmer:#4b6080}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-serif;min-height:100vh}
+nav{background:rgba(6,13,27,0.95);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(12px)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;gap:1rem;height:56px;flex-wrap:wrap}
+.nav-logo{font-weight:700;font-size:1rem;color:var(--gold);text-decoration:none;display:flex;align-items:center;gap:.4rem;white-space:nowrap}
+.nav-links{display:flex;gap:.2rem;flex-wrap:wrap}
+.nav-links a{color:var(--dim);text-decoration:none;padding:.35rem .7rem;border-radius:6px;font-size:.8rem;transition:all .2s;white-space:nowrap;border:1px solid transparent}
+.nav-links a:hover,.nav-links a.active{background:var(--bg3);color:var(--gold);border-color:var(--border)}
+.page-hero{background:linear-gradient(135deg,#060d1b,#0a1628,#0f2040);padding:3rem 1.5rem 2rem;border-bottom:1px solid var(--border)}
+.page-hero-inner{max-width:1280px;margin:0 auto}
+.breadcrumb{font-size:.75rem;color:var(--dimmer);margin-bottom:.8rem}
+.breadcrumb a{color:var(--dim);text-decoration:none}
+.page-hero h1{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;margin-bottom:.5rem}
+.page-hero h1 .accent{color:var(--green)}
+.page-hero p{color:var(--dim);font-size:.9rem;max-width:600px}
+.content{max-width:1280px;margin:0 auto;padding:2rem 1.5rem}
+.company-card{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:2rem;margin-bottom:1.5rem;position:relative;overflow:hidden}
+.company-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:4px;background:var(--green)}
+.company-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.company-name-block .name{font-size:1.5rem;font-weight:900}
+.company-name-block .code{font-size:.78rem;color:var(--dim);margin-top:.2rem;font-family:monospace}
+.company-name-block .sector-tag{display:inline-block;margin-top:.4rem;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);color:var(--green);padding:.2rem .6rem;border-radius:6px;font-size:.72rem;font-weight:600}
+.rating-block{text-align:right;flex-shrink:0}
+.rating{font-size:.75rem;font-weight:700;padding:.4rem .9rem;border-radius:999px;display:inline-block;margin-bottom:.4rem}
+.rating.strong-buy{background:rgba(34,197,94,.15);color:var(--green);border:1px solid rgba(34,197,94,.4)}
+.rating.buy{background:rgba(59,130,246,.15);color:var(--blue);border:1px solid rgba(59,130,246,.4)}
+.rating.hold{background:rgba(245,158,11,.15);color:var(--gold);border:1px solid rgba(245,158,11,.4)}
+.rating.caution{background:rgba(239,68,68,.15);color:var(--red);border:1px solid rgba(239,68,68,.4)}
+.market-cap{font-size:.75rem;color:var(--dim)}
+.stats-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.8rem;margin-bottom:1.5rem}
+.stat-box{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:.8rem;text-align:center}
+.stat-box .val{font-size:1.1rem;font-weight:700;color:var(--gold)}
+.stat-box .lbl{font-size:.65rem;color:var(--dim);margin-top:.2rem}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:1.5rem}
+@media(max-width:640px){.two-col{grid-template-columns:1fr}}
+.info-block{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:1rem}
+.info-block h3{font-size:.8rem;font-weight:700;color:var(--gold);margin-bottom:.8rem;display:flex;align-items:center;gap:.4rem}
+.info-block ul{list-style:none}
+.info-block ul li{font-size:.8rem;color:var(--dim);padding:.25rem 0;border-bottom:1px solid var(--border);line-height:1.5}
+.info-block ul li:last-child{border:none}
+.info-block ul li::before{content:'▸ ';color:var(--gold)}
+.verdict{background:rgba(34,197,94,.05);border:1px solid rgba(34,197,94,.2);border-radius:10px;padding:1rem;margin-top:1rem}
+.verdict-label{font-size:.72rem;font-weight:700;color:var(--green);margin-bottom:.3rem}
+.verdict p{font-size:.82rem;color:var(--text);line-height:1.6}
+.risk-tag{display:inline-block;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:var(--red);padding:.15rem .5rem;border-radius:4px;font-size:.65rem;margin:.2rem .1rem}
+.customer-tag{display:inline-block;background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.3);color:var(--blue);padding:.15rem .5rem;border-radius:4px;font-size:.65rem;margin:.2rem .1rem}
+.section-divider{margin:2.5rem 0 1.5rem;font-size:1rem;font-weight:700;color:var(--text);display:flex;align-items:center;gap:.6rem;border-bottom:1px solid var(--border);padding-bottom:.8rem}
+.section-divider i{color:var(--gold)}
+footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center;font-size:.72rem;color:var(--dimmer)}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="한국_반도체_주식_밸류체인_정리.html" class="nav-logo"><i class="fa-solid fa-microchip"></i> KR 반도체 투자</a>
+    <div class="nav-links">
+      <a href="한국_반도체_주식_밸류체인_정리.html">🏠 홈</a>
+      <a href="반도체_IDM.html" class="active">IDM 대장주</a>
+      <a href="반도체_디자인하우스.html">디자인하우스</a>
+      <a href="반도체_HBM.html">HBM/패키징</a>
+      <a href="반도체_IP_팹리스.html">IP/팹리스</a>
+      <a href="반도체_소부장.html">소부장</a>
+      <a href="반도체_리스크분석.html">⚠️ 리스크</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="한국_반도체_주식_밸류체인_정리.html">홈</a> › IDM 대장주</div>
+    <h1><span class="accent">종합 반도체 (IDM)</span> 대장주 분석</h1>
+    <p>메모리 설계부터 생산까지 자체적으로 수행하는 IDM(Integrated Device Manufacturer). 삼성전자와 SK하이닉스는 글로벌 AI 반도체 공급망의 핵심입니다.</p>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- 삼성전자 -->
+  <div class="company-card">
+    <div class="company-header">
+      <div class="company-name-block">
+        <div class="name">삼성전자</div>
+        <div class="code">KOSPI · 005930</div>
+        <span class="sector-tag">IDM · 메모리 · 파운드리</span>
+      </div>
+      <div class="rating-block">
+        <div class="rating buy">매수 (BUY)</div>
+        <div class="market-cap">시총 약 300~350조 원</div>
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-box"><div class="val">#1</div><div class="lbl">D램 세계 점유율</div></div>
+      <div class="stat-box"><div class="val">#2</div><div class="lbl">파운드리 세계 점유율</div></div>
+      <div class="stat-box"><div class="val">3nm</div><div class="lbl">GAA 선단공정</div></div>
+      <div class="stat-box"><div class="val">HBM3E</div><div class="lbl">엔비디아 공급 개시</div></div>
+      <div class="stat-box"><div class="val">NAND</div><div class="lbl">세계 1위 낸드</div></div>
+    </div>
+
+    <div class="two-col">
+      <div class="info-block">
+        <h3><i class="fa-solid fa-bullseye"></i> 핵심 투자 포인트</h3>
+        <ul>
+          <li>HBM3E 엔비디아 공급 본격화 → HBM 매출 고성장 구간 진입</li>
+          <li>GAA 3nm 공정 수율 안정화 시 파운드리 고객 확보 가속</li>
+          <li>파운드리 2위지만 추격 시나리오: 애플·퀄컴 수주 복귀 가능성</li>
+          <li>밸류에이션 저평가 구간 — PBR 1배 수준의 역사적 저점</li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <h3><i class="fa-solid fa-triangle-exclamation"></i> 주요 리스크</h3>
+        <ul>
+          <li>HBM 수율 및 엔비디아 공급 인증 지연 가능성</li>
+          <li>TSMC 대비 선단공정 기술 격차 존재</li>
+          <li>파운드리 적자 지속 시 투자 부담 증가</li>
+          <li>미·중 반도체 규제로 중국 수출 제한 리스크</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="info-block" style="margin-bottom:1rem">
+      <h3><i class="fa-solid fa-handshake"></i> 주요 고객사</h3>
+      <span class="customer-tag">엔비디아 (HBM)</span>
+      <span class="customer-tag">애플 (구 파운드리)</span>
+      <span class="customer-tag">퀄컴</span>
+      <span class="customer-tag">구글</span>
+      <span class="customer-tag">아마존 AWS</span>
+      <span class="customer-tag">AMD</span>
+    </div>
+
+    <div class="verdict">
+      <div class="verdict-label">💬 투자 종합 의견</div>
+      <p>HBM3E 엔비디아 공급 확대 + GAA 파운드리 수율 개선이 동시에 진행되면 2026년 하반기부터 본격적인 주가 재평가가 가능합니다. 현재는 "저평가 구간에서의 분할 매수" 전략이 유효합니다. 단, 파운드리 적자가 길어지면 추가 주가 하방 압력이 존재하므로, 분기 실적에서 HBM 매출 비중 증가를 확인하며 접근하세요.</p>
+    </div>
+  </div>
+
+  <!-- SK하이닉스 -->
+  <div class="company-card" style="--accent:var(--red)">
+    <div class="company-header">
+      <div class="company-name-block">
+        <div class="name">SK하이닉스</div>
+        <div class="code">KOSPI · 000660</div>
+        <span class="sector-tag" style="background:rgba(239,68,68,.1);border-color:rgba(239,68,68,.3);color:var(--red)">IDM · HBM 특화</span>
+      </div>
+      <div class="rating-block">
+        <div class="rating strong-buy">적극 매수 (STRONG BUY)</div>
+        <div class="market-cap">시총 약 120~150조 원</div>
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-box"><div class="val">#1</div><div class="lbl">HBM 세계 점유율 (~70%)</div></div>
+      <div class="stat-box"><div class="val">HBM4</div><div class="lbl">2025년 양산 목표</div></div>
+      <div class="stat-box"><div class="val">엔비디아</div><div class="lbl">독점에 가까운 공급</div></div>
+      <div class="stat-box"><div class="val">12단</div><div class="lbl">HBM3E 적층 수</div></div>
+      <div class="stat-box"><div class="val">TS</div><div class="lbl">TSV 기술 세계 최고</div></div>
+    </div>
+
+    <div class="two-col">
+      <div class="info-block">
+        <h3><i class="fa-solid fa-bullseye"></i> 핵심 투자 포인트</h3>
+        <ul>
+          <li>HBM 시장 70% 점유율 — 엔비디아 H100/H200/B100 독점 공급</li>
+          <li>HBM4(16-Hi) 양산 성공 시 가격 프리미엄 + 점유율 유지</li>
+          <li>AI 서버 투자 증가→ HBM 수요 연평균 50% 이상 성장 전망</li>
+          <li>일반 D램 가격 반등 시 이익률 추가 확대</li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <h3><i class="fa-solid fa-triangle-exclamation"></i> 주요 리스크</h3>
+        <ul>
+          <li>삼성 HBM 수율 개선 시 시장 점유율 경쟁 심화</li>
+          <li>마이크론의 HBM 추격 (현재 20% 내외 점유율 확대 중)</li>
+          <li>AI 투자 둔화 시 HBM 수요 급감 가능성</li>
+          <li>반도체 전반 경기 사이클 리스크</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="info-block" style="margin-bottom:1rem">
+      <h3><i class="fa-solid fa-handshake"></i> 주요 고객사</h3>
+      <span class="customer-tag">엔비디아 (주력)</span>
+      <span class="customer-tag">AMD</span>
+      <span class="customer-tag">구글 TPU</span>
+      <span class="customer-tag">마이크로소프트</span>
+      <span class="customer-tag">메타 AI</span>
+    </div>
+
+    <div class="verdict" style="background:rgba(34,197,94,.07);border-color:rgba(34,197,94,.3)">
+      <div class="verdict-label">💬 투자 종합 의견</div>
+      <p>한국 반도체 섹터에서 가장 투자 확신도가 높은 종목입니다. AI 인프라 투자 증가는 HBM 수요와 직결되며, SK하이닉스는 이 흐름의 최직접 수혜자입니다. HBM4 양산 성공 여부가 2026년 하반기 주가의 분수령이 될 것입니다. 다만 이미 높은 기대가 반영된 만큼, 분기 실적 발표 전후 변동성을 이용한 분할 매수 전략을 권장합니다.</p>
+    </div>
+  </div>
+
+  <!-- 비교표 -->
+  <div class="section-divider"><i class="fa-solid fa-table"></i> IDM 핵심 비교</div>
+  <div style="overflow-x:auto">
+    <table style="width:100%;border-collapse:collapse;font-size:.82rem">
+      <thead>
+        <tr style="background:var(--bg3)">
+          <th style="padding:.8rem;text-align:left;border-bottom:1px solid var(--border);color:var(--dim)">항목</th>
+          <th style="padding:.8rem;text-align:center;border-bottom:1px solid var(--border)">삼성전자</th>
+          <th style="padding:.8rem;text-align:center;border-bottom:1px solid var(--border)">SK하이닉스</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding:.7rem .8rem;border-bottom:1px solid var(--border);color:var(--dim)">주력 제품</td>
+          <td style="padding:.7rem .8rem;border-bottom:1px solid var(--border);text-align:center">D램·낸드·파운드리·HBM</td>
+          <td style="padding:.7rem .8rem;border-bottom:1px solid var(--border);text-align:center">D램·HBM 특화</td>
+        </tr>
+        <tr>
+          <td style="padding:.7rem .8rem;border-bottom:1px solid var(--border);color:var(--dim)">HBM 경쟁력</td>
+          <td style="padding:.7rem .8rem;border-bottom:1px solid var(--border);text-align:center">추격 중 (수율 개선 관건)</td>
+          <td style="padding:.7rem .8rem;border-bottom:1px solid var(--border);text-align:center;color:var(--green);font-weight:700">압도적 1위 (~70%)</td>
+        </tr>
+        <tr>
+          <td style="padding:.7rem .8rem;border-bottom:1px solid var(--border);color:var(--dim)">파운드리</td>
+          <td style="padding:.7rem .8rem;border-bottom:1px solid var(--border);text-align:center;color:var(--green)">세계 2위 (GAA 3nm)</td>
+          <td style="padding:.7rem .8rem;border-bottom:1px solid var(--border);text-align:center;color:var(--dim)">없음</td>
+        </tr>
+        <tr>
+          <td style="padding:.7rem .8rem;border-bottom:1px solid var(--border);color:var(--dim)">투자의견</td>
+          <td style="padding:.7rem .8rem;border-bottom:1px solid var(--border);text-align:center"><span class="rating buy" style="font-size:.7rem">매수</span></td>
+          <td style="padding:.7rem .8rem;border-bottom:1px solid var(--border);text-align:center"><span class="rating strong-buy" style="font-size:.7rem">적극 매수</span></td>
+        </tr>
+        <tr>
+          <td style="padding:.7rem .8rem;color:var(--dim)">핵심 리스크</td>
+          <td style="padding:.7rem .8rem;text-align:center">파운드리 수율·HBM 인증 지연</td>
+          <td style="padding:.7rem .8rem;text-align:center">경쟁사 HBM 추격</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<footer>
+  <p>⚠️ 본 자료는 투자 참고 목적으로만 제공됩니다. 투자 손익의 책임은 투자자 본인에게 있습니다.</p>
+  <p style="margin-top:.4rem"><a href="한국_반도체_주식_밸류체인_정리.html" style="color:var(--gold)">← 메인으로 돌아가기</a></p>
+</footer>
+</body>
+</html>

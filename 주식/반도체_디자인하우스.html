@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>디자인하우스 분석 | 한국 반도체 투자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#060d1b;--bg2:#0d1a2e;--bg3:#111e35;--border:#1e3a5f;--gold:#f59e0b;--blue:#3b82f6;--green:#22c55e;--red:#ef4444;--purple:#a855f7;--text:#e2e8f0;--dim:#94a3b8;--dimmer:#4b6080}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-serif;min-height:100vh}
+nav{background:rgba(6,13,27,0.95);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(12px)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;gap:1rem;height:56px;flex-wrap:wrap}
+.nav-logo{font-weight:700;font-size:1rem;color:var(--gold);text-decoration:none;display:flex;align-items:center;gap:.4rem;white-space:nowrap}
+.nav-links{display:flex;gap:.2rem;flex-wrap:wrap}
+.nav-links a{color:var(--dim);text-decoration:none;padding:.35rem .7rem;border-radius:6px;font-size:.8rem;transition:all .2s;white-space:nowrap;border:1px solid transparent}
+.nav-links a:hover,.nav-links a.active{background:var(--bg3);color:var(--gold);border-color:var(--border)}
+.page-hero{background:linear-gradient(135deg,#060d1b,#0a1628,#0d1f40);padding:3rem 1.5rem 2rem;border-bottom:1px solid var(--border)}
+.page-hero-inner{max-width:1280px;margin:0 auto}
+.breadcrumb{font-size:.75rem;color:var(--dimmer);margin-bottom:.8rem}
+.breadcrumb a{color:var(--dim);text-decoration:none}
+.page-hero h1{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;margin-bottom:.5rem}
+.page-hero h1 .accent{color:var(--blue)}
+.page-hero p{color:var(--dim);font-size:.9rem;max-width:700px;line-height:1.7}
+.content{max-width:1280px;margin:0 auto;padding:2rem 1.5rem}
+.explainer{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:2rem}
+.explainer h2{font-size:1rem;font-weight:700;color:var(--blue);margin-bottom:1rem}
+.explainer-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
+.ex-item{text-align:center;padding:1rem;background:var(--bg3);border-radius:10px;border:1px solid var(--border)}
+.ex-item .ex-icon{font-size:1.5rem;margin-bottom:.5rem}
+.ex-item .ex-title{font-size:.82rem;font-weight:700;margin-bottom:.3rem}
+.ex-item .ex-desc{font-size:.7rem;color:var(--dim);line-height:1.5}
+.company-card{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:2rem;margin-bottom:1.5rem;position:relative;overflow:hidden}
+.company-card.blue-accent::before{content:'';position:absolute;top:0;left:0;bottom:0;width:4px;background:var(--blue)}
+.company-card.orange-accent::before{content:'';position:absolute;top:0;left:0;bottom:0;width:4px;background:#f97316}
+.company-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.company-name-block .name{font-size:1.5rem;font-weight:900}
+.company-name-block .code{font-size:.78rem;color:var(--dim);margin-top:.2rem;font-family:monospace}
+.sector-tag{display:inline-block;margin-top:.4rem;padding:.2rem .6rem;border-radius:6px;font-size:.72rem;font-weight:600}
+.tag-blue{background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.3);color:var(--blue)}
+.tag-orange{background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.3);color:#f97316}
+.tag-green{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);color:var(--green)}
+.rating-block{text-align:right;flex-shrink:0}
+.rating{font-size:.75rem;font-weight:700;padding:.4rem .9rem;border-radius:999px;display:inline-block;margin-bottom:.4rem}
+.rating.strong-buy{background:rgba(34,197,94,.15);color:var(--green);border:1px solid rgba(34,197,94,.4)}
+.rating.buy{background:rgba(59,130,246,.15);color:var(--blue);border:1px solid rgba(59,130,246,.4)}
+.rating.hold{background:rgba(245,158,11,.15);color:var(--gold);border:1px solid rgba(245,158,11,.4)}
+.market-cap{font-size:.75rem;color:var(--dim)}
+.stats-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:.8rem;margin-bottom:1.5rem}
+.stat-box{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:.8rem;text-align:center}
+.stat-box .val{font-size:1rem;font-weight:700;color:var(--gold)}
+.stat-box .lbl{font-size:.63rem;color:var(--dim);margin-top:.2rem;line-height:1.3}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:1.2rem}
+@media(max-width:640px){.two-col{grid-template-columns:1fr}}
+.info-block{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:1rem}
+.info-block h3{font-size:.8rem;font-weight:700;color:var(--gold);margin-bottom:.8rem;display:flex;align-items:center;gap:.4rem}
+.info-block ul{list-style:none}
+.info-block ul li{font-size:.8rem;color:var(--dim);padding:.25rem 0;border-bottom:1px solid var(--border);line-height:1.6}
+.info-block ul li:last-child{border:none}
+.info-block ul li::before{content:'▸ ';color:var(--gold)}
+.verdict{background:rgba(59,130,246,.05);border:1px solid rgba(59,130,246,.2);border-radius:10px;padding:1rem;margin-top:1rem}
+.verdict-label{font-size:.72rem;font-weight:700;color:var(--blue);margin-bottom:.3rem}
+.verdict p{font-size:.82rem;color:var(--text);line-height:1.6}
+.customer-tag{display:inline-block;background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.3);color:var(--blue);padding:.15rem .5rem;border-radius:4px;font-size:.65rem;margin:.2rem .1rem}
+.section-divider{margin:2.5rem 0 1.5rem;font-size:1rem;font-weight:700;color:var(--text);display:flex;align-items:center;gap:.6rem;border-bottom:1px solid var(--border);padding-bottom:.8rem}
+.section-divider i{color:var(--gold)}
+.compare-table{width:100%;border-collapse:collapse;font-size:.8rem}
+.compare-table th{padding:.8rem;text-align:center;border-bottom:1px solid var(--border);background:var(--bg3);color:var(--dim);font-weight:600}
+.compare-table th:first-child{text-align:left}
+.compare-table td{padding:.7rem .8rem;border-bottom:1px solid var(--border);text-align:center}
+.compare-table td:first-child{text-align:left;color:var(--dim)}
+footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center;font-size:.72rem;color:var(--dimmer)}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="한국_반도체_주식_밸류체인_정리.html" class="nav-logo"><i class="fa-solid fa-microchip"></i> KR 반도체 투자</a>
+    <div class="nav-links">
+      <a href="한국_반도체_주식_밸류체인_정리.html">🏠 홈</a>
+      <a href="반도체_IDM.html">IDM 대장주</a>
+      <a href="반도체_디자인하우스.html" class="active">디자인하우스</a>
+      <a href="반도체_HBM.html">HBM/패키징</a>
+      <a href="반도체_IP_팹리스.html">IP/팹리스</a>
+      <a href="반도체_소부장.html">소부장</a>
+      <a href="반도체_리스크분석.html">⚠️ 리스크</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="한국_반도체_주식_밸류체인_정리.html">홈</a> › 디자인하우스</div>
+    <h1>⭐ <span class="accent">디자인하우스</span> 핵심 종목 분석</h1>
+    <p>팹리스 기업의 칩 설계를 실제 파운드리 제조 공정에 맞게 변환해주는 중간 플레이어. AI 반도체 붐과 함께 수요가 폭발적으로 증가하고 있으며, 삼성·TSMC 공식 파트너 지위가 강력한 진입장벽입니다.</p>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- 디자인하우스란? -->
+  <div class="explainer">
+    <h2><i class="fa-solid fa-circle-question"></i> 디자인하우스(Design House)란 무엇인가?</h2>
+    <div class="explainer-grid">
+      <div class="ex-item">
+        <div class="ex-icon">🖊️</div>
+        <div class="ex-title">팹리스의 설계도 수령</div>
+        <div class="ex-desc">반도체 설계 전문 팹리스로부터 회로 설계 파일(GDS)을 받아 공정 최적화 작업 수행</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-icon">⚙️</div>
+        <div class="ex-title">PDK 기반 최적화</div>
+        <div class="ex-desc">삼성·TSMC 등 파운드리 고유 공정 규칙(PDK)에 맞게 설계를 변환·검증하는 핵심 역할</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-icon">🏭</div>
+        <div class="ex-title">파운드리에 발주</div>
+        <div class="ex-desc">최적화된 설계를 파운드리에 제출해 실제 칩 생산을 진행. 양산 수익(MP Rev.)이 핵심</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-icon">💰</div>
+        <div class="ex-title">수익 구조</div>
+        <div class="ex-desc">설계 용역비(NRE) + 양산 수수료(MP/Royalty). 양산 단계 진입 시 실적 레벨업 발생</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 가온칩스 -->
+  <div class="company-card blue-accent">
+    <div class="company-header">
+      <div class="company-name-block">
+        <div class="name">가온칩스</div>
+        <div class="code">KOSDAQ · 399720</div>
+        <span class="sector-tag tag-blue">삼성 파운드리 DSP · AI/차량용</span>
+      </div>
+      <div class="rating-block">
+        <div class="rating strong-buy">적극 매수 (STRONG BUY)</div>
+        <div class="market-cap">시총 약 1~1.5조 원</div>
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-box"><div class="val">삼성DSP</div><div class="lbl">공식 파트너</div></div>
+      <div class="stat-box"><div class="val">AI칩</div><div class="lbl">주력 서비스</div></div>
+      <div class="stat-box"><div class="val">ARM</div><div class="lbl">공식 협력사</div></div>
+      <div class="stat-box"><div class="val">차량용</div><div class="lbl">신성장 영역</div></div>
+      <div class="stat-box"><div class="val">3nm</div><div class="lbl">선단공정 대응</div></div>
+    </div>
+
+    <div class="two-col">
+      <div class="info-block">
+        <h3><i class="fa-solid fa-bullseye"></i> 핵심 투자 포인트</h3>
+        <ul>
+          <li>AI 가속기, 차량용 AP 설계 수요 폭발로 수주 잔고 최대치</li>
+          <li>ARM 공식 협력사로 ARM 기반 AI칩 설계 시 자동 추천</li>
+          <li>삼성 파운드리 3nm 수율 안정화 시 대형 MP 매출 기대</li>
+          <li>설계 NRE → 양산(MP) 전환 시 이익률 급등 구조</li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <h3><i class="fa-solid fa-triangle-exclamation"></i> 주요 리스크</h3>
+        <ul>
+          <li>삼성 파운드리 수율 문제 지속 시 MP 전환 지연</li>
+          <li>소수 대형 고객 의존 매출 집중 리스크</li>
+          <li>TSMC 선호 고객 증가 시 삼성 DSP 포지션 약화</li>
+          <li>설계 인력 이탈 및 경쟁사 대비 규모 한계</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="info-block" style="margin-bottom:1rem">
+      <h3><i class="fa-solid fa-handshake"></i> 주요 고객 / 협력</h3>
+      <span class="customer-tag">삼성 파운드리</span>
+      <span class="customer-tag">ARM Holdings</span>
+      <span class="customer-tag">국내 AI 스타트업</span>
+      <span class="customer-tag">자동차 반도체 업체</span>
+    </div>
+
+    <div class="verdict">
+      <div class="verdict-label">💬 투자 종합 의견</div>
+      <p>AI·차량용 반도체 설계 수요와 삼성 파운드리 생태계 성장의 직접 수혜주. 삼성 3nm 공정의 양산 안정화가 곧 가온칩스의 MP 매출 폭발로 이어지는 구조입니다. 디자인하우스 섹터 중 AI 특화도가 가장 높아 핵심 포지션으로 추천합니다.</p>
+    </div>
+  </div>
+
+  <!-- 에이디테크놀로지 -->
+  <div class="company-card blue-accent">
+    <div class="company-header">
+      <div class="company-name-block">
+        <div class="name">에이디테크놀로지</div>
+        <div class="code">KOSDAQ · 200990</div>
+        <span class="sector-tag tag-blue">삼성 파운드리 DSP · HPC/서버</span>
+      </div>
+      <div class="rating-block">
+        <div class="rating buy">매수 (BUY)</div>
+        <div class="market-cap">시총 약 0.6~1조 원</div>
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-box"><div class="val">국내 최대</div><div class="lbl">설계 인력 보유</div></div>
+      <div class="stat-box"><div class="val">HPC</div><div class="lbl">서버/AI용 주력</div></div>
+      <div class="stat-box"><div class="val">대형 PJ</div><div class="lbl">양산 진입 중</div></div>
+      <div class="stat-box"><div class="val">삼성DSP</div><div class="lbl">공식 파트너</div></div>
+    </div>
+
+    <div class="two-col">
+      <div class="info-block">
+        <h3><i class="fa-solid fa-bullseye"></i> 핵심 투자 포인트</h3>
+        <ul>
+          <li>국내 최다 반도체 설계 인력 → 대형 프로젝트 동시 수행 능력</li>
+          <li>HPC·AI 서버향 대형 칩 설계 프로젝트 양산 진입 단계</li>
+          <li>MP 전환 프로젝트 수 증가 시 이익률 구조적 개선</li>
+          <li>삼성 DSP 내 점유율 확대 가능성</li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <h3><i class="fa-solid fa-triangle-exclamation"></i> 주요 리스크</h3>
+        <ul>
+          <li>가온칩스 대비 AI 특화도 낮아 차별화 필요</li>
+          <li>대형 프로젝트 지연 시 단기 실적 부진 가능성</li>
+          <li>삼성 파운드리 경쟁력 약화 시 동반 타격</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="verdict">
+      <div class="verdict-label">💬 투자 종합 의견</div>
+      <p>가온칩스와 유사한 포지션이나 HPC/서버향에 집중. 대형 양산 프로젝트의 MP 전환 시점을 매수 트리거로 삼는 전략이 유효합니다. 가온칩스의 보완재 성격으로 분산투자 관점에서 접근 가능합니다.</p>
+    </div>
+  </div>
+
+  <!-- 에이직랜드 -->
+  <div class="company-card orange-accent">
+    <div class="company-header">
+      <div class="company-name-block">
+        <div class="name">에이직랜드</div>
+        <div class="code">KOSDAQ · 404440</div>
+        <span class="sector-tag tag-orange">TSMC VCA · 국내 유일</span>
+      </div>
+      <div class="rating-block">
+        <div class="rating strong-buy">적극 매수 (STRONG BUY)</div>
+        <div class="market-cap">시총 약 0.5~0.8조 원</div>
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-box"><div class="val">국내 유일</div><div class="lbl">TSMC 공식 VCA</div></div>
+      <div class="stat-box"><div class="val">TSMC</div><div class="lbl">5nm 이하 대응</div></div>
+      <div class="stat-box"><div class="val">엣지AI</div><div class="lbl">수주 증가 중</div></div>
+      <div class="stat-box"><div class="val">독점</div><div class="lbl">진입장벽 최고</div></div>
+    </div>
+
+    <div class="two-col">
+      <div class="info-block">
+        <h3><i class="fa-solid fa-bullseye"></i> 핵심 투자 포인트</h3>
+        <ul>
+          <li>국내 유일 TSMC 공인 VCA → 진입장벽 사실상 독점</li>
+          <li>TSMC 파운드리 선호 고객(애플·퀄컴 생태계) 흡수 가능</li>
+          <li>AI 및 엣지 컴퓨팅 수주 지속 증가 추세</li>
+          <li>TSMC 공정 특성상 가온칩스와 고객 겹치지 않음 → 병행 투자 가능</li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <h3><i class="fa-solid fa-triangle-exclamation"></i> 주요 리스크</h3>
+        <ul>
+          <li>소규모 기업 특성상 인력 이탈 리스크</li>
+          <li>TSMC VCA 자격 유지 요건 충족 지속 필요</li>
+          <li>글로벌 경기 둔화 시 팹리스 수주 감소</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="verdict" style="background:rgba(249,115,22,.05);border-color:rgba(249,115,22,.3)">
+      <div class="verdict-label" style="color:#f97316">💬 투자 종합 의견</div>
+      <p>TSMC VCA 독점 지위라는 국내 유일의 차별화된 포지션. 삼성 파운드리 리스크를 헤지하면서 TSMC 생태계에 투자하는 최적 수단입니다. 소형주 특성상 변동성이 크므로 장기 보유 + 분할 매수 전략 권장.</p>
+    </div>
+  </div>
+
+  <!-- 비교표 -->
+  <div class="section-divider"><i class="fa-solid fa-table"></i> 디자인하우스 3사 비교</div>
+  <div style="overflow-x:auto">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th style="text-align:left">항목</th>
+          <th>가온칩스</th>
+          <th>에이디테크놀로지</th>
+          <th>에이직랜드</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>파운드리 파트너</td><td style="color:var(--blue)">삼성 (DSP)</td><td style="color:var(--blue)">삼성 (DSP)</td><td style="color:#f97316">TSMC (VCA)</td></tr>
+        <tr><td>주력 분야</td><td>AI·차량용</td><td>HPC·서버</td><td>AI·엣지컴퓨팅</td></tr>
+        <tr><td>ARM 협력</td><td style="color:var(--green)">✓ 공식</td><td>-</td><td>-</td></tr>
+        <tr><td>국내 유일 자격</td><td>-</td><td>-</td><td style="color:#f97316">✓ TSMC VCA</td></tr>
+        <tr><td>진입장벽</td><td>높음</td><td>중간</td><td style="color:var(--green)">최고 (독점)</td></tr>
+        <tr><td>투자의견</td>
+          <td><span class="rating strong-buy" style="font-size:.68rem">적극 매수</span></td>
+          <td><span class="rating buy" style="font-size:.68rem">매수</span></td>
+          <td><span class="rating strong-buy" style="font-size:.68rem">적극 매수</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<footer>
+  <p>⚠️ 본 자료는 투자 참고 목적으로만 제공됩니다. 투자 손익의 책임은 투자자 본인에게 있습니다.</p>
+  <p style="margin-top:.4rem"><a href="한국_반도체_주식_밸류체인_정리.html" style="color:var(--gold)">← 메인으로 돌아가기</a></p>
+</footer>
+</body>
+</html>

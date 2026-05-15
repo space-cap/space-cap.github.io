@@ -1,204 +1,368 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>한국 반도체 주식 핵심 정리</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap');
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>한국 반도체 투자 가이드 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;600;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#060d1b;--bg2:#0d1a2e;--bg3:#111e35;
+  --border:#1e3a5f;--gold:#f59e0b;--gold2:#fcd34d;
+  --blue:#3b82f6;--green:#22c55e;--red:#ef4444;--purple:#a855f7;
+  --text:#e2e8f0;--dim:#94a3b8;--dimmer:#4b6080;
+}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-serif;min-height:100vh}
 
-        body {
-            font-family: 'Noto Sans KR', sans-serif;
-            background-color: #f8fafc;
-        }
+/* NAV */
+nav{background:rgba(6,13,27,0.95);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(12px)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;gap:1rem;height:56px;flex-wrap:wrap}
+.nav-logo{font-weight:700;font-size:1rem;color:var(--gold);text-decoration:none;display:flex;align-items:center;gap:.4rem;white-space:nowrap}
+.nav-links{display:flex;gap:.2rem;flex-wrap:wrap}
+.nav-links a{color:var(--dim);text-decoration:none;padding:.35rem .7rem;border-radius:6px;font-size:.8rem;transition:all .2s;white-space:nowrap}
+.nav-links a:hover,.nav-links a.active{background:var(--bg3);color:var(--gold);border:1px solid var(--border)}
+.nav-links a{border:1px solid transparent}
 
-        .card {
-            transition: transform 0.2s ease-in-out;
-        }
+/* HERO */
+.hero{background:linear-gradient(135deg,#060d1b 0%,#0a1628 40%,#0d1f3c 100%);padding:4rem 1.5rem 3rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at center,rgba(59,130,246,.06) 0%,transparent 70%)}
+.hero-badge{display:inline-block;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);color:var(--gold);padding:.3rem 1rem;border-radius:999px;font-size:.75rem;font-weight:600;margin-bottom:1.2rem;letter-spacing:.05em}
+.hero h1{font-size:clamp(1.8rem,4vw,3rem);font-weight:900;line-height:1.2;margin-bottom:.8rem}
+.hero h1 span{color:var(--gold)}
+.hero p{color:var(--dim);font-size:.95rem;max-width:600px;margin:0 auto 2rem}
+.hero-stats{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap}
+.hero-stat{text-align:center}
+.hero-stat .val{font-size:1.5rem;font-weight:700;color:var(--gold)}
+.hero-stat .lbl{font-size:.72rem;color:var(--dim);margin-top:.2rem}
 
-        .card:hover {
-            transform: translateY(-5px);
-        }
+/* VALUE CHAIN FLOW */
+.flow-section{max-width:1280px;margin:0 auto;padding:2.5rem 1.5rem}
+.section-title{font-size:1.1rem;font-weight:700;margin-bottom:1.5rem;display:flex;align-items:center;gap:.6rem}
+.section-title i{color:var(--gold)}
+.flow{display:flex;align-items:stretch;gap:0;overflow-x:auto;padding-bottom:.5rem}
+.flow-step{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1rem;min-width:140px;flex:1;text-align:center;position:relative}
+.flow-step .icon{font-size:1.4rem;margin-bottom:.5rem}
+.flow-step .name{font-size:.78rem;font-weight:700;margin-bottom:.3rem;color:var(--text)}
+.flow-step .subs{font-size:.65rem;color:var(--dim);line-height:1.5}
+.flow-arrow{display:flex;align-items:center;color:var(--border);font-size:1.2rem;padding:0 .3rem;flex-shrink:0}
+.flow-step.active{border-color:var(--gold);background:rgba(245,158,11,.05)}
+.flow-step.active .icon{color:var(--gold)}
 
-        .badge-design {
-            background-color: #eff6ff;
-            color: #1e40af;
-            border: 1px solid #bfdbfe;
-        }
+/* SECTOR GRID */
+.sector-grid{max-width:1280px;margin:0 auto;padding:0 1.5rem 2rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem}
+.sector-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:1.4rem;text-decoration:none;color:inherit;display:block;transition:all .25s;position:relative;overflow:hidden}
+.sector-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:16px 16px 0 0}
+.sector-card.c-green::before{background:var(--green)}
+.sector-card.c-blue::before{background:var(--blue)}
+.sector-card.c-red::before{background:var(--red)}
+.sector-card.c-purple::before{background:var(--purple)}
+.sector-card.c-gold::before{background:var(--gold)}
+.sector-card.c-cyan::before{background:#06b6d4}
+.sector-card:hover{transform:translateY(-4px);border-color:rgba(245,158,11,.4);box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.card-header{display:flex;align-items:center;gap:.8rem;margin-bottom:1rem}
+.card-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.c-green .card-icon{background:rgba(34,197,94,.15);color:var(--green)}
+.c-blue .card-icon{background:rgba(59,130,246,.15);color:var(--blue)}
+.c-red .card-icon{background:rgba(239,68,68,.15);color:var(--red)}
+.c-purple .card-icon{background:rgba(168,85,247,.15);color:var(--purple)}
+.c-gold .card-icon{background:rgba(245,158,11,.15);color:var(--gold)}
+.c-cyan .card-icon{background:rgba(6,182,212,.15);color:#06b6d4}
+.card-title{font-size:1rem;font-weight:700}
+.card-subtitle{font-size:.72rem;color:var(--dim);margin-top:.1rem}
+.card-companies{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem}
+.company-tag{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:.2rem .5rem;font-size:.68rem;color:var(--dim)}
+.card-arrow{position:absolute;bottom:1.2rem;right:1.2rem;color:var(--dimmer);transition:all .25s}
+.sector-card:hover .card-arrow{color:var(--gold);transform:translateX(3px)}
+.card-count{font-size:.72rem;color:var(--dim)}
 
-        .badge-hbm {
-            background-color: #fef2f2;
-            color: #991b1b;
-            border: 1px solid #fecaca;
-        }
+/* INSIGHTS */
+.insights-section{max-width:1280px;margin:0 auto;padding:0 1.5rem 2rem}
+.insights-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
+.insight-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.2rem}
+.insight-num{font-size:.72rem;color:var(--gold);font-weight:700;margin-bottom:.4rem}
+.insight-title{font-size:.9rem;font-weight:700;margin-bottom:.5rem}
+.insight-body{font-size:.78rem;color:var(--dim);line-height:1.7}
 
-        .badge-idm {
-            background-color: #f0fdf4;
-            color: #166534;
-            border: 1px solid #bbf7d0;
-        }
-    </style>
+/* RISK OVERVIEW */
+.risk-overview{max-width:1280px;margin:0 auto;padding:0 1.5rem 3rem}
+.risk-bar-container{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:1.5rem}
+.risk-bars{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-top:1rem}
+.risk-item .risk-name{font-size:.78rem;color:var(--dim);margin-bottom:.4rem;display:flex;justify-content:space-between}
+.risk-track{background:var(--bg3);border-radius:999px;height:6px;overflow:hidden}
+.risk-fill{height:100%;border-radius:999px}
+.risk-fill.low{background:var(--green);width:30%}
+.risk-fill.mid{background:var(--gold);width:60%}
+.risk-fill.high{background:var(--red);width:85%}
+.risk-lv{font-size:.65rem;font-weight:700}
+.risk-lv.low{color:var(--green)}
+.risk-lv.mid{color:var(--gold)}
+.risk-lv.high{color:var(--red)}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center;font-size:.72rem;color:var(--dimmer)}
+footer a{color:var(--dim);text-decoration:none}
+
+/* UPDATE BADGE */
+.update-info{text-align:center;padding:.8rem;font-size:.72rem;color:var(--dimmer)}
+.update-info span{color:var(--gold)}
+</style>
 </head>
+<body>
 
-<body class="p-4 md:p-8">
-
-    <div class="max-w-6xl mx-auto">
-        <!-- Header -->
-        <header class="text-center mb-12">
-            <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-                <i class="fa-solid fa-microchip text-blue-600 mr-2"></i> 한국 반도체 섹터별 밸류체인 리포트
-            </h1>
-            <p class="text-gray-600 italic">2026 AI 반도체 슈퍼사이클 및 디자인하우스 핵심 기업 정리</p>
-        </header>
-
-        <!-- Main Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-            <!-- 1. 대장주 (IDM) -->
-            <section class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 card">
-                <div class="flex items-center mb-4">
-                    <span class="p-3 bg-green-100 text-green-600 rounded-lg mr-3"><i
-                            class="fa-solid fa-building"></i></span>
-                    <h2 class="text-xl font-bold text-gray-800">종합 반도체 (IDM)</h2>
-                </div>
-                <ul class="space-y-4">
-                    <li class="pb-3 border-b border-gray-50">
-                        <div class="font-bold text-lg">삼성전자</div>
-                        <p class="text-sm text-gray-600">메모리 세계 1위, 파운드리 2위. AI 공급망 진입 및 선단공정 수율이 핵심.</p>
-                    </li>
-                    <li>
-                        <div class="font-bold text-lg">SK하이닉스</div>
-                        <p class="text-sm text-gray-600">HBM 시장 압도적 1위. 엔비디아 주력 공급사로서 실적 성장 가속화.</p>
-                    </li>
-                </ul>
-            </section>
-
-            <!-- 2. 디자인하우스 (DSP/VCA) -->
-            <section class="bg-white p-6 rounded-2xl shadow-sm border border-blue-200 card ring-2 ring-blue-50">
-                <div class="flex items-center mb-4">
-                    <span class="p-3 bg-blue-100 text-blue-600 rounded-lg mr-3"><i
-                            class="fa-solid fa-pen-ruler"></i></span>
-                    <h2 class="text-xl font-bold text-gray-800">디자인하우스 <span
-                            class="text-sm font-normal text-blue-500">(핵심)</span></h2>
-                </div>
-                <ul class="space-y-4">
-                    <li class="pb-3 border-b border-gray-50">
-                        <div class="flex justify-between items-start">
-                            <span class="font-bold text-lg text-blue-700">가온칩스</span>
-                            <span class="text-[10px] px-2 py-1 rounded badge-design">삼성 DSP</span>
-                        </div>
-                        <p class="text-sm text-gray-600">AI/차량용 특화. 삼성 파운드리 핵심 파트너이자 ARM 협력사.</p>
-                    </li>
-                    <li class="pb-3 border-b border-gray-50">
-                        <div class="flex justify-between items-start">
-                            <span class="font-bold text-lg text-blue-700">에이디테크놀로지</span>
-                            <span class="text-[10px] px-2 py-1 rounded badge-design">삼성 DSP</span>
-                        </div>
-                        <p class="text-sm text-gray-600">국내 최대 설계 인력 보유. HPC/서버향 대형 프로젝트 양산 진입.</p>
-                    </li>
-                    <li>
-                        <div class="flex justify-between items-start">
-                            <span class="font-bold text-lg text-orange-700">에이직랜드</span>
-                            <span
-                                class="text-[10px] px-2 py-1 rounded bg-orange-50 text-orange-700 border border-orange-100">TSMC
-                                VCA</span>
-                        </div>
-                        <p class="text-sm text-gray-600">국내 유일 TSMC 공식 파트너. AI 및 엣지 컴퓨팅 수주 증가.</p>
-                    </li>
-                </ul>
-            </section>
-
-            <!-- 3. HBM & 후공정 -->
-            <section class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 card">
-                <div class="flex items-center mb-4">
-                    <span class="p-3 bg-red-100 text-red-600 rounded-lg mr-3"><i
-                            class="fa-solid fa-layer-group"></i></span>
-                    <h2 class="text-xl font-bold text-gray-800">HBM 및 첨단 패키징</h2>
-                </div>
-                <ul class="space-y-4">
-                    <li class="pb-3 border-b border-gray-50">
-                        <div class="font-bold text-lg">한미반도체</div>
-                        <p class="text-sm text-gray-600">HBM 제조 필수 장비인 'TC 본더' 글로벌 점유율 1위.</p>
-                    </li>
-                    <li class="pb-3 border-b border-gray-50">
-                        <div class="font-bold text-lg">이수페타시스</div>
-                        <p class="text-sm text-gray-600">AI 가속기용 고다층 인쇄회로기판(MLB) 공급.</p>
-                    </li>
-                    <li>
-                        <div class="font-bold text-lg">리노공업</div>
-                        <p class="text-sm text-gray-600">반도체 검사용 소켓 세계 1위. 독보적인 기술력과 이익률.</p>
-                    </li>
-                </ul>
-            </section>
-
-            <!-- 4. 설계 IP -->
-            <section class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 card">
-                <div class="flex items-center mb-4">
-                    <span class="p-3 bg-purple-100 text-purple-600 rounded-lg mr-3"><i
-                            class="fa-solid fa-code"></i></span>
-                    <h2 class="text-xl font-bold text-gray-800">설계 IP 전문</h2>
-                </div>
-                <ul class="space-y-4">
-                    <li class="pb-3 border-b border-gray-50">
-                        <div class="font-bold text-lg text-purple-700">오픈엣지테크놀로지</div>
-                        <p class="text-sm text-gray-600">AI 반도체 NPU 및 메모리 인터페이스 IP 설계 역량 보유.</p>
-                    </li>
-                    <li>
-                        <div class="font-bold text-lg text-purple-700">칩스앤미디어</div>
-                        <p class="text-sm text-gray-600">글로벌 비디오 코덱 IP 리더. 자율주행 칩 분야 핵심 협력사.</p>
-                    </li>
-                </ul>
-            </section>
-
-            <!-- 5. 소재/부품/장비 -->
-            <section class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 card lg:col-span-2">
-                <div class="flex items-center mb-6">
-                    <span class="p-3 bg-yellow-100 text-yellow-600 rounded-lg mr-3"><i
-                            class="fa-solid fa-gears"></i></span>
-                    <h2 class="text-xl font-bold text-gray-800">주요 소부장 (소재·부품·장비)</h2>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div>
-                        <h3 class="font-bold text-gray-700 border-l-4 border-yellow-400 pl-2 mb-2">장비/공정</h3>
-                        <p class="text-sm text-gray-600"><strong>주성엔지니어링:</strong> 차세대 ALD 증착 장비</p>
-                        <p class="text-sm text-gray-600"><strong>원익IPS:</strong> 전공정 증착/식각 장비 국산화</p>
-                        <p class="text-sm text-gray-600"><strong>에스앤에스텍:</strong> EUV 블랭크마스크 국산화</p>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-gray-700 border-l-4 border-yellow-400 pl-2 mb-2">소재/부품</h3>
-                        <p class="text-sm text-gray-600"><strong>솔브레인:</strong> 에칭/세정용 특수 화학 소재</p>
-                        <p class="text-sm text-gray-600"><strong>동진쎄미켐:</strong> 고성능 포토레지스트(PR) 공급</p>
-                        <p class="text-sm text-gray-600"><strong>티씨케이:</strong> 고내구성 SiC 링(포커스 링) 1위</p>
-                    </div>
-                </div>
-            </section>
-
-        </div>
-
-        <!-- Footer / Insights -->
-        <footer class="mt-12 bg-gray-800 text-white p-8 rounded-3xl shadow-xl">
-            <h2 class="text-2xl font-bold mb-6 text-blue-400"><i class="fa-solid fa-lightbulb mr-2"></i> 2026 투자 인사이트
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="space-y-2">
-                    <div class="text-blue-300 font-bold">1. 양산 매출 확인</div>
-                    <p class="text-sm text-gray-300">디자인하우스는 단순 설계 용역을 넘어 대량 양산(Royalties) 단계로 진입한 기업의 주가가 더 탄탄합니다.</p>
-                </div>
-                <div class="space-y-2">
-                    <div class="text-blue-300 font-bold">2. HBM4 규격 전환</div>
-                    <p class="text-sm text-gray-300">HBM3E에서 HBM4로 넘어가는 공정 변화에서 새로운 장비 및 검사 수요가 폭발할 가능성이 높습니다.</p>
-                </div>
-                <div class="space-y-2">
-                    <div class="text-blue-300 font-bold">3. 선단공정(3nm 이하)</div>
-                    <p class="text-sm text-gray-300">삼성전자 파운드리의 3nm 이하 수율 안정화 및 고객사 확보 여부가 전체 서플라이체인의 주가를 결정합니다.</p>
-                </div>
-            </div>
-        </footer>
+<nav>
+  <div class="nav-inner">
+    <a href="한국_반도체_주식_밸류체인_정리.html" class="nav-logo"><i class="fa-solid fa-microchip"></i> KR 반도체 투자</a>
+    <div class="nav-links">
+      <a href="한국_반도체_주식_밸류체인_정리.html" class="active">🏠 홈</a>
+      <a href="반도체_IDM.html">IDM 대장주</a>
+      <a href="반도체_디자인하우스.html">디자인하우스</a>
+      <a href="반도체_HBM.html">HBM/패키징</a>
+      <a href="반도체_IP_팹리스.html">IP/팹리스</a>
+      <a href="반도체_소부장.html">소부장</a>
+      <a href="반도체_리스크분석.html">⚠️ 리스크</a>
     </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">2026 AI 반도체 슈퍼사이클</div>
+  <h1>한국 <span>반도체</span> 주식<br>밸류체인 투자 가이드</h1>
+  <p>설계부터 소부장까지, 국내 반도체 전 밸류체인을 한눈에 파악하고 투자 기회를 발굴하세요.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="val">6개</div><div class="lbl">카테고리</div></div>
+    <div class="hero-stat"><div class="val">25+</div><div class="lbl">핵심 종목</div></div>
+    <div class="hero-stat"><div class="val">2026</div><div class="lbl">업데이트</div></div>
+    <div class="hero-stat"><div class="val">AI·HBM</div><div class="lbl">핵심 테마</div></div>
+  </div>
+</section>
+
+<div class="update-info">마지막 업데이트: <span>2026년 5월 15일</span> &nbsp;|&nbsp; ⚠️ 본 자료는 투자 참고용이며, 투자 손익의 책임은 본인에게 있습니다.</div>
+
+<!-- VALUE CHAIN FLOW -->
+<div class="flow-section">
+  <div class="section-title"><i class="fa-solid fa-arrow-right-arrow-left"></i> 반도체 밸류체인 흐름도</div>
+  <div class="flow">
+    <div class="flow-step active">
+      <div class="icon">💡</div>
+      <div class="name">설계 IP</div>
+      <div class="subs">오픈엣지<br>칩스앤미디어</div>
+    </div>
+    <div class="flow-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+    <div class="flow-step">
+      <div class="icon">🖥️</div>
+      <div class="name">팹리스</div>
+      <div class="subs">LX세미콘<br>어보브반도체</div>
+    </div>
+    <div class="flow-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+    <div class="flow-step">
+      <div class="icon">🏗️</div>
+      <div class="name">디자인하우스</div>
+      <div class="subs">가온칩스<br>에이직랜드</div>
+    </div>
+    <div class="flow-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+    <div class="flow-step active">
+      <div class="icon">🔬</div>
+      <div class="name">IDM/파운드리</div>
+      <div class="subs">삼성전자<br>SK하이닉스</div>
+    </div>
+    <div class="flow-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+    <div class="flow-step">
+      <div class="icon">📦</div>
+      <div class="name">HBM/패키징</div>
+      <div class="subs">한미반도체<br>이수페타시스</div>
+    </div>
+    <div class="flow-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+    <div class="flow-step">
+      <div class="icon">🔩</div>
+      <div class="name">소재·부품·장비</div>
+      <div class="subs">솔브레인<br>주성엔지니어링</div>
+    </div>
+    <div class="flow-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+    <div class="flow-step">
+      <div class="icon">🤖</div>
+      <div class="name">최종 고객</div>
+      <div class="subs">엔비디아<br>AMD·인텔</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTOR CARDS -->
+<div class="flow-section" style="padding-top:0">
+  <div class="section-title"><i class="fa-solid fa-grid-2"></i> 섹터별 상세 분석</div>
+</div>
+<div class="sector-grid">
+
+  <a href="반도체_IDM.html" class="sector-card c-green">
+    <div class="card-icon"><i class="fa-solid fa-building"></i></div>
+    <div>
+      <div class="card-title">종합 반도체 (IDM)</div>
+      <div class="card-subtitle">메모리 세계 1·2위 기업</div>
+    </div>
+    <div class="card-companies">
+      <span class="company-tag">삼성전자</span>
+      <span class="company-tag">SK하이닉스</span>
+    </div>
+    <div class="card-count">HBM4 전환 + AI 서버 수요 폭발</div>
+    <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+  </a>
+
+  <a href="반도체_디자인하우스.html" class="sector-card c-blue">
+    <div class="card-icon"><i class="fa-solid fa-pen-ruler"></i></div>
+    <div>
+      <div class="card-title">디자인하우스</div>
+      <div class="card-subtitle">AI칩 설계 턴키 중간자 ⭐핵심</div>
+    </div>
+    <div class="card-companies">
+      <span class="company-tag">가온칩스</span>
+      <span class="company-tag">에이디테크놀로지</span>
+      <span class="company-tag">에이직랜드</span>
+    </div>
+    <div class="card-count">삼성/TSMC 공식 파트너사</div>
+    <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+  </a>
+
+  <a href="반도체_HBM.html" class="sector-card c-red">
+    <div class="card-icon"><i class="fa-solid fa-layer-group"></i></div>
+    <div>
+      <div class="card-title">HBM &amp; 첨단 패키징</div>
+      <div class="card-subtitle">AI 가속기 핵심 후공정</div>
+    </div>
+    <div class="card-companies">
+      <span class="company-tag">한미반도체</span>
+      <span class="company-tag">이수페타시스</span>
+      <span class="company-tag">리노공업</span>
+    </div>
+    <div class="card-count">TC본더·MLB·테스트소켓</div>
+    <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+  </a>
+
+  <a href="반도체_IP_팹리스.html" class="sector-card c-purple">
+    <div class="card-icon"><i class="fa-solid fa-code"></i></div>
+    <div>
+      <div class="card-title">설계 IP &amp; 팹리스</div>
+      <div class="card-subtitle">무형자산형 고마진 비즈니스</div>
+    </div>
+    <div class="card-companies">
+      <span class="company-tag">오픈엣지테크놀로지</span>
+      <span class="company-tag">칩스앤미디어</span>
+      <span class="company-tag">LX세미콘</span>
+    </div>
+    <div class="card-count">AI NPU IP·DDI·MCU 전문</div>
+    <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+  </a>
+
+  <a href="반도체_소부장.html" class="sector-card c-gold">
+    <div class="card-icon"><i class="fa-solid fa-gears"></i></div>
+    <div>
+      <div class="card-title">소재 · 부품 · 장비</div>
+      <div class="card-subtitle">국산화 수혜 + 안정적 공급망</div>
+    </div>
+    <div class="card-companies">
+      <span class="company-tag">솔브레인</span>
+      <span class="company-tag">주성엔지니어링</span>
+      <span class="company-tag">티씨케이</span>
+      <span class="company-tag">동진쎄미켐</span>
+    </div>
+    <div class="card-count">EUV·ALD·에칭·PR 소재 국산화</div>
+    <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+  </a>
+
+  <a href="반도체_리스크분석.html" class="sector-card c-cyan">
+    <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+    <div>
+      <div class="card-title">⚠️ 리스크 분석</div>
+      <div class="card-subtitle">투자 전 반드시 확인</div>
+    </div>
+    <div class="card-companies">
+      <span class="company-tag">미·중 무역분쟁</span>
+      <span class="company-tag">수율 리스크</span>
+      <span class="company-tag">공급과잉</span>
+    </div>
+    <div class="card-count">매크로 + 섹터별 위험요인 정리</div>
+    <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+  </a>
+
+</div>
+
+<!-- INSIGHTS -->
+<div class="insights-section">
+  <div class="section-title"><i class="fa-solid fa-lightbulb"></i> 2026 핵심 투자 인사이트</div>
+  <div class="insights-grid">
+    <div class="insight-card">
+      <div class="insight-num">INSIGHT 01</div>
+      <div class="insight-title">HBM4 전환이 새 수혜주를 만든다</div>
+      <div class="insight-body">HBM3E → HBM4 전환 시 적층 수 증가·새 공정 도입으로 한미반도체 TC본더, 테스트 소켓, 기판 수요가 동반 급증합니다.</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-num">INSIGHT 02</div>
+      <div class="insight-title">디자인하우스 양산 매출이 핵심</div>
+      <div class="insight-body">설계 용역(NRE) 단계에서 대량 양산(로열티·MP) 단계로 진입한 기업의 주가 레벨이 달라집니다. 양산 비중을 반드시 체크하세요.</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-num">INSIGHT 03</div>
+      <div class="insight-title">삼성 파운드리 수율이 서플라이체인 결정</div>
+      <div class="insight-body">3nm 이하 공정 수율 안정화 여부가 가온칩스·에이디테크놀로지 등 삼성 DSP 생태계 주가를 직접 결정합니다.</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-num">INSIGHT 04</div>
+      <div class="insight-title">국산화·탈중국이 소부장 장기 모멘텀</div>
+      <div class="insight-body">일본 소재 규제 이후 EUV 블랭크마스크(에스앤에스텍), 포토레지스트(동진쎄미켐), SiC링(티씨케이) 국산화 수혜가 지속됩니다.</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-num">INSIGHT 05</div>
+      <div class="insight-title">AI 엣지칩 확산으로 팹리스 재부상</div>
+      <div class="insight-body">온디바이스 AI 확산으로 DDI, MCU, NPU 탑재 팹리스가 재조명받고 있습니다. LX세미콘, 어보브반도체 주목.</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-num">INSIGHT 06</div>
+      <div class="insight-title">에이직랜드: 국내 유일 TSMC 공식 파트너</div>
+      <div class="insight-body">TSMC VCA(Value Chain Aggregator) 자격은 국내에서 에이직랜드만 보유. AI·엣지 수주 증가 시 독점적 수혜를 받습니다.</div>
+    </div>
+  </div>
+</div>
+
+<!-- RISK OVERVIEW -->
+<div class="risk-overview">
+  <div class="section-title"><i class="fa-solid fa-triangle-exclamation"></i> 주요 리스크 한눈에 보기</div>
+  <div class="risk-bar-container">
+    <div class="risk-bars">
+      <div class="risk-item">
+        <div class="risk-name"><span>미·중 무역분쟁</span><span class="risk-lv high">높음</span></div>
+        <div class="risk-track"><div class="risk-fill high"></div></div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-name"><span>삼성 파운드리 수율</span><span class="risk-lv high">높음</span></div>
+        <div class="risk-track"><div class="risk-fill high"></div></div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-name"><span>메모리 공급과잉</span><span class="risk-lv mid">중간</span></div>
+        <div class="risk-track"><div class="risk-fill mid"></div></div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-name"><span>환율(원/달러) 변동</span><span class="risk-lv mid">중간</span></div>
+        <div class="risk-track"><div class="risk-fill mid"></div></div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-name"><span>경쟁사(ASML 등)</span><span class="risk-lv mid">중간</span></div>
+        <div class="risk-track"><div class="risk-fill mid"></div></div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-name"><span>글로벌 IT 경기 둔화</span><span class="risk-lv low">낮음</span></div>
+        <div class="risk-track"><div class="risk-fill low"></div></div>
+      </div>
+    </div>
+    <div style="margin-top:1rem;font-size:.75rem;color:var(--dim)">
+      ➜ <a href="반도체_리스크분석.html" style="color:var(--gold);text-decoration:none">전체 리스크 상세 분석 보기 →</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>⚠️ 본 자료는 투자 참고 목적으로만 제공되며, 특정 종목에 대한 매수·매도 추천이 아닙니다. 투자 손익의 책임은 투자자 본인에게 있습니다.</p>
+  <p style="margin-top:.5rem">데이터 기준: 2026년 5월 | space-cap.github.io</p>
+</footer>
 
 </body>
-
 </html>
