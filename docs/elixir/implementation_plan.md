@@ -38,8 +38,13 @@ Elixir를 처음 접하는 사용자가 기초부터 실무 수준의 동시성 
 
 ### 5단계: 도구 및 심화
 - **18_mix_and_project.md**: 프로젝트 관리 도구인 `Mix`와 종속성 관리.
-- **19_testing_exunit.md**: `ExUnit`을 활용한 테스트 코드 작성법.
-- **20_metaprogramming_intro.md**: 매크로, `quote`, `unquote`를 활용한 메타프로그래밍 기초.
+- **19_debugging.md**: `IO.inspect`, `dbg`, `IEx.pry` 및 GUI 도구인 `Observer`를 활용한 디버깅.
+- **20_testing_exunit.md**: `ExUnit`을 활용한 테스트 코드 작성법.
+- **21_metaprogramming_intro.md**: 매크로, `quote`, `unquote`를 활용한 메타프로그래밍 기초.
+
+### 6단계: 실전 프로젝트
+- **22_mini_project_chatbot.md**: AI 챗봇을 만들며 함수형 사고방식 적용 (수신, 처리, 응답 로직 설계).
+- **23_mini_project_dashboard.md**: 분산 시스템 모니터링 대시보드 만들기 (프로세스, GenServer, PubSub 활용).
 
 ## 구현 일정 및 절차
 
