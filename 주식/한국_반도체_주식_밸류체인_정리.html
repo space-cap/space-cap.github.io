@@ -6,107 +6,61 @@
 <title>한국 반도체 투자 가이드 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;600;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#060d1b;--bg2:#0d1a2e;--bg3:#111e35;
-  --border:#1e3a5f;--gold:#f59e0b;--gold2:#fcd34d;
-  --blue:#3b82f6;--green:#22c55e;--red:#ef4444;--purple:#a855f7;
-  --text:#e2e8f0;--dim:#94a3b8;--dimmer:#4b6080;
-}
-body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-serif;min-height:100vh}
-
-/* NAV */
-nav{background:rgba(6,13,27,0.95);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(12px)}
-.nav-inner{max-width:1280px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;gap:1rem;height:56px;flex-wrap:wrap}
-.nav-logo{font-weight:700;font-size:1rem;color:var(--gold);text-decoration:none;display:flex;align-items:center;gap:.4rem;white-space:nowrap}
-.nav-links{display:flex;gap:.2rem;flex-wrap:wrap}
-.nav-links a{color:var(--dim);text-decoration:none;padding:.35rem .7rem;border-radius:6px;font-size:.8rem;transition:all .2s;white-space:nowrap}
-.nav-links a:hover,.nav-links a.active{background:var(--bg3);color:var(--gold);border:1px solid var(--border)}
-.nav-links a{border:1px solid transparent}
-
-/* HERO */
-.hero{background:linear-gradient(135deg,#060d1b 0%,#0a1628 40%,#0d1f3c 100%);padding:4rem 1.5rem 3rem;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at center,rgba(59,130,246,.06) 0%,transparent 70%)}
-.hero-badge{display:inline-block;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);color:var(--gold);padding:.3rem 1rem;border-radius:999px;font-size:.75rem;font-weight:600;margin-bottom:1.2rem;letter-spacing:.05em}
-.hero h1{font-size:clamp(1.8rem,4vw,3rem);font-weight:900;line-height:1.2;margin-bottom:.8rem}
-.hero h1 span{color:var(--gold)}
-.hero p{color:var(--dim);font-size:.95rem;max-width:600px;margin:0 auto 2rem}
-.hero-stats{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap}
-.hero-stat{text-align:center}
-.hero-stat .val{font-size:1.5rem;font-weight:700;color:var(--gold)}
-.hero-stat .lbl{font-size:.72rem;color:var(--dim);margin-top:.2rem}
-
-/* VALUE CHAIN FLOW */
-.flow-section{max-width:1280px;margin:0 auto;padding:2.5rem 1.5rem}
-.section-title{font-size:1.1rem;font-weight:700;margin-bottom:1.5rem;display:flex;align-items:center;gap:.6rem}
-.section-title i{color:var(--gold)}
-.flow{display:flex;align-items:stretch;gap:0;overflow-x:auto;padding-bottom:.5rem}
-.flow-step{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1rem;min-width:140px;flex:1;text-align:center;position:relative}
-.flow-step .icon{font-size:1.4rem;margin-bottom:.5rem}
-.flow-step .name{font-size:.78rem;font-weight:700;margin-bottom:.3rem;color:var(--text)}
-.flow-step .subs{font-size:.65rem;color:var(--dim);line-height:1.5}
-.flow-arrow{display:flex;align-items:center;color:var(--border);font-size:1.2rem;padding:0 .3rem;flex-shrink:0}
-.flow-step.active{border-color:var(--gold);background:rgba(245,158,11,.05)}
-.flow-step.active .icon{color:var(--gold)}
-
-/* SECTOR GRID */
-.sector-grid{max-width:1280px;margin:0 auto;padding:0 1.5rem 2rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem}
-.sector-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:1.4rem;text-decoration:none;color:inherit;display:block;transition:all .25s;position:relative;overflow:hidden}
-.sector-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:16px 16px 0 0}
-.sector-card.c-green::before{background:var(--green)}
-.sector-card.c-blue::before{background:var(--blue)}
-.sector-card.c-red::before{background:var(--red)}
-.sector-card.c-purple::before{background:var(--purple)}
-.sector-card.c-gold::before{background:var(--gold)}
-.sector-card.c-cyan::before{background:#06b6d4}
-.sector-card:hover{transform:translateY(-4px);border-color:rgba(245,158,11,.4);box-shadow:0 12px 40px rgba(0,0,0,.4)}
-.card-header{display:flex;align-items:center;gap:.8rem;margin-bottom:1rem}
-.card-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
-.c-green .card-icon{background:rgba(34,197,94,.15);color:var(--green)}
-.c-blue .card-icon{background:rgba(59,130,246,.15);color:var(--blue)}
-.c-red .card-icon{background:rgba(239,68,68,.15);color:var(--red)}
-.c-purple .card-icon{background:rgba(168,85,247,.15);color:var(--purple)}
-.c-gold .card-icon{background:rgba(245,158,11,.15);color:var(--gold)}
-.c-cyan .card-icon{background:rgba(6,182,212,.15);color:#06b6d4}
-.card-title{font-size:1rem;font-weight:700}
-.card-subtitle{font-size:.72rem;color:var(--dim);margin-top:.1rem}
-.card-companies{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem}
-.company-tag{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:.2rem .5rem;font-size:.68rem;color:var(--dim)}
-.card-arrow{position:absolute;bottom:1.2rem;right:1.2rem;color:var(--dimmer);transition:all .25s}
-.sector-card:hover .card-arrow{color:var(--gold);transform:translateX(3px)}
-.card-count{font-size:.72rem;color:var(--dim)}
-
-/* INSIGHTS */
-.insights-section{max-width:1280px;margin:0 auto;padding:0 1.5rem 2rem}
-.insights-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
-.insight-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.2rem}
-.insight-num{font-size:.72rem;color:var(--gold);font-weight:700;margin-bottom:.4rem}
-.insight-title{font-size:.9rem;font-weight:700;margin-bottom:.5rem}
-.insight-body{font-size:.78rem;color:var(--dim);line-height:1.7}
-
-/* RISK OVERVIEW */
-.risk-overview{max-width:1280px;margin:0 auto;padding:0 1.5rem 3rem}
-.risk-bar-container{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:1.5rem}
-.risk-bars{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-top:1rem}
-.risk-item .risk-name{font-size:.78rem;color:var(--dim);margin-bottom:.4rem;display:flex;justify-content:space-between}
-.risk-track{background:var(--bg3);border-radius:999px;height:6px;overflow:hidden}
-.risk-fill{height:100%;border-radius:999px}
-.risk-fill.low{background:var(--green);width:30%}
-.risk-fill.mid{background:var(--gold);width:60%}
-.risk-fill.high{background:var(--red);width:85%}
-.risk-lv{font-size:.65rem;font-weight:700}
-.risk-lv.low{color:var(--green)}
-.risk-lv.mid{color:var(--gold)}
-.risk-lv.high{color:var(--red)}
-
-/* FOOTER */
-footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center;font-size:.72rem;color:var(--dimmer)}
-footer a{color:var(--dim);text-decoration:none}
-
-/* UPDATE BADGE */
-.update-info{text-align:center;padding:.8rem;font-size:.72rem;color:var(--dimmer)}
-.update-info span{color:var(--gold)}
+  /* 메인 페이지 전용 추가 스타일 */
+  .flow-section{max-width:1280px;margin:0 auto;padding:2.5rem 1.5rem}
+  .section-title{font-size:1.1rem;font-weight:700;margin-bottom:1.5rem;display:flex;align-items:center;gap:.6rem}
+  .section-title i{color:var(--gold)}
+  .flow{display:flex;align-items:stretch;gap:0;overflow-x:auto;padding-bottom:.5rem}
+  .flow-step{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1rem;min-width:140px;flex:1;text-align:center;position:relative}
+  .flow-step .icon{font-size:1.4rem;margin-bottom:.5rem}
+  .flow-step .name{font-size:.78rem;font-weight:700;margin-bottom:.3rem;color:var(--text)}
+  .flow-step .subs{font-size:.65rem;color:var(--dim);line-height:1.5}
+  .flow-arrow{display:flex;align-items:center;color:var(--border);font-size:1.2rem;padding:0 .3rem;flex-shrink:0}
+  .flow-step.active{border-color:var(--gold);background:rgba(245,158,11,.05)}
+  .flow-step.active .icon{color:var(--gold)}
+  .sector-grid{max-width:1280px;margin:0 auto;padding:0 1.5rem 2rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem}
+  .sector-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:1.4rem;text-decoration:none;color:inherit;display:block;transition:all .25s;position:relative;overflow:hidden}
+  .sector-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:16px 16px 0 0}
+  .sector-card.c-green::before{background:var(--green)}
+  .sector-card.c-blue::before{background:var(--blue)}
+  .sector-card.c-red::before{background:var(--red)}
+  .sector-card.c-purple::before{background:var(--purple)}
+  .sector-card.c-gold::before{background:var(--gold)}
+  .sector-card.c-cyan::before{background:var(--cyan)}
+  .sector-card:hover{transform:translateY(-4px);border-color:rgba(245,158,11,.4);box-shadow:var(--card-shadow)}
+  .card-header{display:flex;align-items:center;gap:.8rem;margin-bottom:1rem}
+  .card-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+  .c-green .card-icon{background:rgba(34,197,94,.15);color:var(--green)}
+  .c-blue .card-icon{background:rgba(59,130,246,.15);color:var(--blue)}
+  .c-red .card-icon{background:rgba(239,68,68,.15);color:var(--red)}
+  .c-purple .card-icon{background:rgba(168,85,247,.15);color:var(--purple)}
+  .c-gold .card-icon{background:rgba(245,158,11,.15);color:var(--gold)}
+  .c-cyan .card-icon{background:rgba(6,182,212,.15);color:var(--cyan)}
+  .card-title{font-size:1rem;font-weight:700}
+  .card-subtitle{font-size:.72rem;color:var(--dim);margin-top:.1rem}
+  .card-companies{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem}
+  .company-tag{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:.2rem .5rem;font-size:.68rem;color:var(--dim)}
+  .card-arrow{position:absolute;bottom:1.2rem;right:1.2rem;color:var(--dimmer);transition:all .25s}
+  .sector-card:hover .card-arrow{color:var(--gold);transform:translateX(3px)}
+  .insights-section{max-width:1280px;margin:0 auto;padding:0 1.5rem 2rem}
+  .insights-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
+  .insight-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.2rem}
+  .insight-num{font-size:.72rem;color:var(--gold);font-weight:700;margin-bottom:.4rem}
+  .insight-title{font-size:.9rem;font-weight:700;margin-bottom:.5rem}
+  .insight-body{font-size:.78rem;color:var(--dim);line-height:1.7}
+  .risk-overview{max-width:1280px;margin:0 auto;padding:0 1.5rem 3rem}
+  .risk-bar-container{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:1.5rem}
+  .risk-bars{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-top:1rem}
+  .risk-item .risk-name{font-size:.78rem;color:var(--dim);margin-bottom:.4rem;display:flex;justify-content:space-between}
+  .risk-track{background:var(--bg3);border-radius:999px;height:6px;overflow:hidden}
+  .risk-fill{height:100%;border-radius:999px}
+  .risk-fill.low{background:var(--green);width:30%}
+  .risk-fill.mid{background:var(--gold);width:60%}
+  .risk-fill.high{background:var(--red);width:85%}
+  .risk-lv{font-size:.65rem;font-weight:700}
 </style>
 </head>
 <body>
@@ -122,6 +76,9 @@ footer a{color:var(--dim);text-decoration:none}
       <a href="반도체_IP_팹리스.html">IP/팹리스</a>
       <a href="반도체_소부장.html">소부장</a>
       <a href="반도체_리스크분석.html">⚠️ 리스크</a>
+      <button id="theme-toggle" class="theme-toggle-btn" title="테마 변경">
+        <i class="fa-solid fa-moon"></i>
+      </button>
     </div>
   </div>
 </nav>
@@ -138,9 +95,8 @@ footer a{color:var(--dim);text-decoration:none}
   </div>
 </section>
 
-<div class="update-info">마지막 업데이트: <span>2026년 5월 15일</span> &nbsp;|&nbsp; ⚠️ 본 자료는 투자 참고용이며, 투자 손익의 책임은 본인에게 있습니다.</div>
+<div style="text-align:center;padding:.8rem;font-size:.72rem;color:var(--dimmer)">마지막 업데이트: <span style="color:var(--gold)">2026년 5월 15일</span> &nbsp;|&nbsp; ⚠️ 본 자료는 투자 참고용이며, 투자 손익의 책임은 본인에게 있습니다.</div>
 
-<!-- VALUE CHAIN FLOW -->
 <div class="flow-section">
   <div class="section-title"><i class="fa-solid fa-arrow-right-arrow-left"></i> 반도체 밸류체인 흐름도</div>
   <div class="flow">
@@ -181,19 +137,14 @@ footer a{color:var(--dim);text-decoration:none}
     </div>
     <div class="flow-arrow"><i class="fa-solid fa-chevron-right"></i></div>
     <div class="flow-step">
-      <div class="icon">🤖</div>
+      <div class="icon"></div>
       <div class="name">최종 고객</div>
       <div class="subs">엔비디아<br>AMD·인텔</div>
     </div>
   </div>
 </div>
 
-<!-- SECTOR CARDS -->
-<div class="flow-section" style="padding-top:0">
-  <div class="section-title"><i class="fa-solid fa-grid-2"></i> 섹터별 상세 분석</div>
-</div>
 <div class="sector-grid">
-
   <a href="반도체_IDM.html" class="sector-card c-green">
     <div class="card-icon"><i class="fa-solid fa-building"></i></div>
     <div>
@@ -204,7 +155,6 @@ footer a{color:var(--dim);text-decoration:none}
       <span class="company-tag">삼성전자</span>
       <span class="company-tag">SK하이닉스</span>
     </div>
-    <div class="card-count">HBM4 전환 + AI 서버 수요 폭발</div>
     <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
   </a>
 
@@ -219,7 +169,6 @@ footer a{color:var(--dim);text-decoration:none}
       <span class="company-tag">에이디테크놀로지</span>
       <span class="company-tag">에이직랜드</span>
     </div>
-    <div class="card-count">삼성/TSMC 공식 파트너사</div>
     <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
   </a>
 
@@ -234,7 +183,6 @@ footer a{color:var(--dim);text-decoration:none}
       <span class="company-tag">이수페타시스</span>
       <span class="company-tag">리노공업</span>
     </div>
-    <div class="card-count">TC본더·MLB·테스트소켓</div>
     <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
   </a>
 
@@ -249,7 +197,6 @@ footer a{color:var(--dim);text-decoration:none}
       <span class="company-tag">칩스앤미디어</span>
       <span class="company-tag">LX세미콘</span>
     </div>
-    <div class="card-count">AI NPU IP·DDI·MCU 전문</div>
     <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
   </a>
 
@@ -265,7 +212,6 @@ footer a{color:var(--dim);text-decoration:none}
       <span class="company-tag">티씨케이</span>
       <span class="company-tag">동진쎄미켐</span>
     </div>
-    <div class="card-count">EUV·ALD·에칭·PR 소재 국산화</div>
     <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
   </a>
 
@@ -280,13 +226,10 @@ footer a{color:var(--dim);text-decoration:none}
       <span class="company-tag">수율 리스크</span>
       <span class="company-tag">공급과잉</span>
     </div>
-    <div class="card-count">매크로 + 섹터별 위험요인 정리</div>
     <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
   </a>
-
 </div>
 
-<!-- INSIGHTS -->
 <div class="insights-section">
   <div class="section-title"><i class="fa-solid fa-lightbulb"></i> 2026 핵심 투자 인사이트</div>
   <div class="insights-grid">
@@ -305,52 +248,24 @@ footer a{color:var(--dim);text-decoration:none}
       <div class="insight-title">삼성 파운드리 수율이 서플라이체인 결정</div>
       <div class="insight-body">3nm 이하 공정 수율 안정화 여부가 가온칩스·에이디테크놀로지 등 삼성 DSP 생태계 주가를 직접 결정합니다.</div>
     </div>
-    <div class="insight-card">
-      <div class="insight-num">INSIGHT 04</div>
-      <div class="insight-title">국산화·탈중국이 소부장 장기 모멘텀</div>
-      <div class="insight-body">일본 소재 규제 이후 EUV 블랭크마스크(에스앤에스텍), 포토레지스트(동진쎄미켐), SiC링(티씨케이) 국산화 수혜가 지속됩니다.</div>
-    </div>
-    <div class="insight-card">
-      <div class="insight-num">INSIGHT 05</div>
-      <div class="insight-title">AI 엣지칩 확산으로 팹리스 재부상</div>
-      <div class="insight-body">온디바이스 AI 확산으로 DDI, MCU, NPU 탑재 팹리스가 재조명받고 있습니다. LX세미콘, 어보브반도체 주목.</div>
-    </div>
-    <div class="insight-card">
-      <div class="insight-num">INSIGHT 06</div>
-      <div class="insight-title">에이직랜드: 국내 유일 TSMC 공식 파트너</div>
-      <div class="insight-body">TSMC VCA(Value Chain Aggregator) 자격은 국내에서 에이직랜드만 보유. AI·엣지 수주 증가 시 독점적 수혜를 받습니다.</div>
-    </div>
   </div>
 </div>
 
-<!-- RISK OVERVIEW -->
 <div class="risk-overview">
   <div class="section-title"><i class="fa-solid fa-triangle-exclamation"></i> 주요 리스크 한눈에 보기</div>
   <div class="risk-bar-container">
     <div class="risk-bars">
       <div class="risk-item">
-        <div class="risk-name"><span>미·중 무역분쟁</span><span class="risk-lv high">높음</span></div>
+        <div class="risk-name"><span>미·중 무역분쟁</span><span class="risk-lv" style="color:var(--red)">높음</span></div>
         <div class="risk-track"><div class="risk-fill high"></div></div>
       </div>
       <div class="risk-item">
-        <div class="risk-name"><span>삼성 파운드리 수율</span><span class="risk-lv high">높음</span></div>
+        <div class="risk-name"><span>삼성 파운드리 수율</span><span class="risk-lv" style="color:var(--red)">높음</span></div>
         <div class="risk-track"><div class="risk-fill high"></div></div>
       </div>
       <div class="risk-item">
-        <div class="risk-name"><span>메모리 공급과잉</span><span class="risk-lv mid">중간</span></div>
+        <div class="risk-name"><span>메모리 공급과잉</span><span class="risk-lv" style="color:var(--gold)">중간</span></div>
         <div class="risk-track"><div class="risk-fill mid"></div></div>
-      </div>
-      <div class="risk-item">
-        <div class="risk-name"><span>환율(원/달러) 변동</span><span class="risk-lv mid">중간</span></div>
-        <div class="risk-track"><div class="risk-fill mid"></div></div>
-      </div>
-      <div class="risk-item">
-        <div class="risk-name"><span>경쟁사(ASML 등)</span><span class="risk-lv mid">중간</span></div>
-        <div class="risk-track"><div class="risk-fill mid"></div></div>
-      </div>
-      <div class="risk-item">
-        <div class="risk-name"><span>글로벌 IT 경기 둔화</span><span class="risk-lv low">낮음</span></div>
-        <div class="risk-track"><div class="risk-fill low"></div></div>
       </div>
     </div>
     <div style="margin-top:1rem;font-size:.75rem;color:var(--dim)">
