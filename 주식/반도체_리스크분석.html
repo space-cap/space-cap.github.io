@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>반도체 투자 리스크 분석 | 한국 반도체 투자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#060d1b;--bg2:#0d1a2e;--bg3:#111e35;--border:#1e3a5f;--gold:#f59e0b;--blue:#3b82f6;--green:#22c55e;--red:#ef4444;--purple:#a855f7;--cyan:#06b6d4;--text:#e2e8f0;--dim:#94a3b8;--dimmer:#4b6080}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-serif;min-height:100vh}
+nav{background:rgba(6,13,27,0.95);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(12px)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;gap:1rem;height:56px;flex-wrap:wrap}
+.nav-logo{font-weight:700;font-size:1rem;color:var(--gold);text-decoration:none;display:flex;align-items:center;gap:.4rem;white-space:nowrap}
+.nav-links{display:flex;gap:.2rem;flex-wrap:wrap}
+.nav-links a{color:var(--dim);text-decoration:none;padding:.35rem .7rem;border-radius:6px;font-size:.8rem;transition:all .2s;white-space:nowrap;border:1px solid transparent}
+.nav-links a:hover,.nav-links a.active{background:var(--bg3);color:var(--gold);border-color:var(--border)}
+.page-hero{background:linear-gradient(135deg,#060d1b,#001a1a,#002a2a);padding:3rem 1.5rem 2rem;border-bottom:1px solid var(--border)}
+.page-hero-inner{max-width:1280px;margin:0 auto}
+.breadcrumb{font-size:.75rem;color:var(--dimmer);margin-bottom:.8rem}
+.breadcrumb a{color:var(--dim);text-decoration:none}
+.page-hero h1{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;margin-bottom:.5rem}
+.page-hero h1 .accent{color:var(--cyan)}
+.page-hero p{color:var(--dim);font-size:.9rem;max-width:700px;line-height:1.7}
+.content{max-width:1280px;margin:0 auto;padding:2rem 1.5rem}
+.risk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;margin-bottom:2rem}
+.risk-card{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:1.5rem;position:relative;overflow:hidden}
+.risk-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--cyan)}
+.risk-header{display:flex;align-items:center;gap:.8rem;margin-bottom:1.2rem}
+.risk-icon{width:40px;height:40px;border-radius:10px;background:rgba(6,182,212,.1);color:var(--cyan);display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.risk-title{font-size:1.1rem;font-weight:700}
+.risk-level{font-size:.7rem;padding:.2rem .6rem;border-radius:4px;font-weight:700}
+.lv-high{background:rgba(239,68,68,.1);color:var(--red);border:1px solid rgba(239,68,68,.3)}
+.lv-mid{background:rgba(245,158,11,.1);color:var(--gold);border:1px solid rgba(245,158,11,.3)}
+.lv-low{background:rgba(34,197,94,.1);color:var(--green);border:1px solid rgba(34,197,94,.3)}
+.risk-body{font-size:.85rem;color:var(--dim);line-height:1.7}
+.risk-body ul{margin-top:1rem;list-style:none}
+.risk-body ul li{padding-left:1.2rem;position:relative;margin-bottom:.5rem}
+.risk-body ul li::before{content:'⚠️';position:absolute;left:0;font-size:.8rem}
+.checklist-section{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:2rem;margin-top:2rem}
+.checklist-title{font-size:1.3rem;font-weight:900;margin-bottom:1.5rem;display:flex;align-items:center;gap:.8rem}
+.checklist-title i{color:var(--gold)}
+.check-item{display:flex;align-items:flex-start;gap:.8rem;margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
+.check-item:last-child{border-bottom:none}
+.check-box{margin-top:.3rem;color:var(--green)}
+.check-text .t1{font-size:.95rem;font-weight:700;margin-bottom:.3rem}
+.check-text .t2{font-size:.82rem;color:var(--dim);line-height:1.5}
+footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center;font-size:.72rem;color:var(--dimmer)}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="한국_반도체_주식_밸류체인_정리.html" class="nav-logo"><i class=\"fa-solid fa-microchip\"></i> KR 반도체 투자</a>
+    <div class="nav-links">
+      <a href="한국_반도체_주식_밸류체인_정리.html">🏠 홈</a>
+      <a href="반도체_IDM.html">IDM 대장주</a>
+      <a href="반도체_디자인하우스.html">디자인하우스</a>
+      <a href="반도체_HBM.html">HBM/패키징</a>
+      <a href="반도체_IP_팹리스.html">IP/팹리스</a>
+      <a href="반도체_소부장.html">소부장</a>
+      <a href="반도체_리스크분석.html" class="active">⚠️ 리스크</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="한국_반도체_주식_밸류체인_정리.html">홈</a> › 리스크 분석</div>
+    <h1>⚠️ <span class="accent">투자 리스크</span> 정밀 분석</h1>
+    <p>반도체 투자는 높은 수익률만큼 변동성도 큽니다. 매크로 환경부터 개별 기업의 수율 문제까지, 성공적인 투자를 위해 반드시 체크해야 할 위험 요인들을 정리했습니다.</p>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="risk-grid">
+    <!-- 리스크 1 -->
+    <div class="risk-card">
+      <div class="risk-header">
+        <div class="risk-icon"><i class="fa-solid fa-earth-americas"></i></div>
+        <div class="risk-title">지정학적 리스크 (미·중 분쟁)</div>
+        <span class="risk-level lv-high">심각</span>
+      </div>
+      <div class="risk-body">
+        미국의 대중국 반도체 수출 규제가 강화됨에 따라 국내 기업들의 중국 내 공장 운영 및 장비 반입에 제약이 생길 수 있습니다.
+        <ul>
+          <li>중국 내 레거시 공정 비중 축소 압박</li>
+          <li>미국 보조금 수령 조건(가드레일 조항)에 따른 중국 투자 제한</li>
+          <li>중국 현지 고객사의 '반도체 굴기'에 따른 점유율 하락 위험</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 리스크 2 -->
+    <div class="risk-card">
+      <div class="risk-header">
+        <div class="risk-icon"><i class="fa-solid fa-vial-circle-check"></i></div>
+        <div class="risk-title">선단공정 수율 안정화 지연</div>
+        <span class="risk-level lv-high">심각</span>
+      </div>
+      <div class="risk-body">
+        3nm 이하 선단공정(GAA 등)의 수율이 예상보다 늦게 안정화될 경우, 대형 고객사(애플, 퀄컴 등)의 이탈과 파운드리 적자 지속 가능성이 있습니다.
+        <ul>
+          <li>삼성 파운드리 3nm/2nm 수율 안정화 속도</li>
+          <li>TSMC와의 기술 격차 및 점유율 격차 고착화 우려</li>
+          <li>HBM4 등 차세대 메모리 공정 도입 시의 초기 불량률 리스크</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 리스크 3 -->
+    <div class="risk-card">
+      <div class="risk-header">
+        <div class="risk-icon"><i class="fa-solid fa-chart-line-down"></i></div>
+        <div class="risk-title">업황 피크아웃(Peak-out) 우려</div>
+        <span class="risk-level lv-mid">중간</span>
+      </div>
+      <div class="risk-body">
+        AI 인프라 투자가 일시적인 과잉 투자(Bubble)로 판명될 경우, 급격한 수요 감소와 재고 증가로 이어질 수 있습니다.
+        <ul>
+          <li>글로벌 빅테크들의 AI 투자 자본지출(CAPEX) 축소 여부</li>
+          <li>범용 메모리(DDR5 등)의 공급 과잉 전환 가능성</li>
+          <li>반도체 가격(ASP) 하락에 따른 이익률 급감</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 리스크 4 -->
+    <div class="risk-card">
+      <div class="risk-header">
+        <div class="risk-icon"><i class="fa-solid fa-coins\"></i></div>
+        <div class=\"risk-title\">금리 및 환율 변동</div>
+        <span class=\"risk-level lv-mid\">중간</span>
+      </div>
+      <div class=\"risk-body\">
+        반도체는 달러 결제 비중이 높고 대규모 시설 투자가 필요하여 매크로 금융 환경에 매우 민감합니다.
+        <ul>
+          <li>고금리 지속 시 설비 투자 비용 부담 가중</li>
+          <li>원/달러 환율 급락 시 수출 기업들의 원화 환산 이익 감소</li>
+          <li>글로벌 경기 침체에 따른 IT 소비 심리 위축</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 투자자 체크리스트 -->
+  <div class=\"checklist-section\">
+    <div class=\"checklist-title\"><i class=\"fa-solid fa-clipboard-check\"></i> 반도체 투자 전 필수 체크리스트</div>
+    
+    <div class=\"check-item\">
+      <div class=\"check-box\"><i class=\"fa-solid fa-square-check\"></i></div>
+      <div class=\"check-text\">
+        <div class=\"t1\">해당 기업이 AI 서플라이체인에 직접 연결되어 있는가?</div>
+        <div class=\"t2\">단순한 '테마주'가 아닌 실제 HBM, 디자인하우스, 선단공정 수혜가 숫자로 찍히고 있는지 확인해야 합니다.</div>
+      </div>
+    </div>
+
+    <div class=\"check-item\">
+      <div class=\"check-box\"><i class=\"fa-solid fa-square-check\"></i></div>
+      <div class=\"check-text\">
+        <div class=\"t1\">삼성전자/SK하이닉스의 실적 컨퍼런스 콜 내용을 이해했는가?</div>
+        <div class=\"t2\">대장주들의 코멘트는 곧 하위 소부장 기업들의 미래 실적 예고편과 같습니다.</div>
+      </div>
+    </div>
+
+    <div class=\"check-item\">
+      <div class=\"check-box\"><i class=\"fa-solid fa-square-check\"></i></div>
+      <div class=\"check-text\">
+        <div class=\"t1\">필라델피아 반도체 지수(SOX)와 엔비디아 주가 추이를 체크했는가?</div>
+        <div class=\"t2\">국내 반도체 주식은 미국 반도체 시장의 흐름과 동조화되는 경향이 매우 강합니다.</div>
+      </div>
+    </div>
+
+    <div class=\"check-item\">
+      <div class=\"check-box\"><i class=\"fa-solid fa-square-check\"></i></div>
+      <div class=\"check-text\">
+        <div class=\"t1\">개별 종목의 밸류에이션(PER/PBR)이 역사적 고점인가?</div>
+        <div class=\"t2\">좋은 기업이라도 너무 비싼 가격에 사면 수익을 내기 어렵습니다. 사이클 산업임을 명심하세요.</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  <p>⚠️ 본 자료는 투자 참고 목적으로만 제공되며, 특정 종목에 대한 매수·매도 추천이 아닙니다. 투자 손익의 책임은 투자자 본인에게 있습니다.</p>
+  <p style=\"margin-top:.5rem\">데이터 기준: 2026년 5월 | space-cap.github.io</p>
+  <p style=\"margin-top:.4rem\"><a href=\"한국_반도체_주식_밸류체인_정리.html\" style=\"color:var(--gold)\">← 메인으로 돌아가기</a></p>
+</footer>
+</body>
+</html>
