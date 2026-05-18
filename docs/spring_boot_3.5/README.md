@@ -43,6 +43,12 @@ Spring Boot 3.5.x를 초보자도 차근차근 배울 수 있도록 정리하는
 - [36. JWT 인증](./36_JWT_인증.md)
 - [37. 권한과 메서드 보안](./37_권한과_메서드_보안.md)
 - [38. 보안 테스트](./38_보안_테스트.md)
+- [39. Actuator 기초](./39_Actuator_기초.md)
+- [40. 모니터링과 메트릭](./40_모니터링과_메트릭.md)
+- [41. 분산 추적과 Observability](./41_분산_추적과_Observability.md)
+- [42. 운영용 설정 관리](./42_운영용_설정_관리.md)
+- [43. Graceful Shutdown](./43_Graceful_Shutdown.md)
+- [44. 운영에서 자주 나는 문제](./44_운영에서_자주_나는_문제.md)
 
 ## 작성 방향
 
@@ -62,9 +68,9 @@ Spring Boot 3.5.x를 초보자도 차근차근 배울 수 있도록 정리하는
 
 ## 다음 작성 예정 문서
 
-- 39. Actuator 기초
-- 40. 모니터링과 메트릭
-- 41. 분산 추적과 Observability
-- 42. 운영용 설정 관리
-- 43. Graceful Shutdown
-- 44. 운영에서 자주 나는 문제
+- 45. 실행 가능한 JAR 만들기
+- 46. Docker 이미지 만들기
+- 47. Cloud Native Buildpacks
+- 48. Docker Compose로 로컬 환경 구성
+- 49. 클라우드 배포 개요
+- 50. GraalVM Native Image 입문
