@@ -25,6 +25,13 @@ Spring Boot 3.5.x를 초보자도 차근차근 배울 수 있도록 정리하는
 - [18. 검증 Validation](./18_검증_Validation.md)
 - [19. 예외 처리](./19_예외_처리.md)
 - [20. 필터, 인터셉터, 서블릿 기초](./20_필터_인터셉터_서블릿_기초.md)
+- [21. H2로 DB 입문하기](./21_H2로_DB_입문하기.md)
+- [22. JDBC와 JdbcClient](./22_JDBC와_JdbcClient.md)
+- [23. JPA와 Entity 기초](./23_JPA와_Entity_기초.md)
+- [24. Spring Data JPA](./24_Spring_Data_JPA.md)
+- [25. 트랜잭션](./25_트랜잭션.md)
+- [26. DB 마이그레이션 Flyway와 Liquibase](./26_DB_마이그레이션_Flyway_Liquibase.md)
+- [27. PostgreSQL로 전환하기](./27_PostgreSQL로_전환하기.md)
 
 ## 작성 방향
 
@@ -44,10 +51,9 @@ Spring Boot 3.5.x를 초보자도 차근차근 배울 수 있도록 정리하는
 
 ## 다음 작성 예정 문서
 
-- 21. H2로 DB 입문하기
-- 22. JDBC와 JdbcClient
-- 23. JPA와 Entity 기초
-- 24. Spring Data JPA
-- 25. 트랜잭션
-- 26. DB 마이그레이션 Flyway/Liquibase
-- 27. PostgreSQL로 전환하기
+- 28. 테스트 기초 JUnit AssertJ
+- 29. Spring Boot Test
+- 30. WebMvcTest와 슬라이스 테스트
+- 31. DataJpaTest
+- 32. Testcontainers
+- 33. 테스트하기 좋은 구조
