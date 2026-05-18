@@ -32,6 +32,12 @@ Spring Boot 3.5.x를 초보자도 차근차근 배울 수 있도록 정리하는
 - [25. 트랜잭션](./25_트랜잭션.md)
 - [26. DB 마이그레이션 Flyway와 Liquibase](./26_DB_마이그레이션_Flyway_Liquibase.md)
 - [27. PostgreSQL로 전환하기](./27_PostgreSQL로_전환하기.md)
+- [28. 테스트 기초 JUnit AssertJ](./28_테스트_기초_JUnit_AssertJ.md)
+- [29. Spring Boot Test](./29_Spring_Boot_Test.md)
+- [30. WebMvcTest와 슬라이스 테스트](./30_WebMvcTest와_슬라이스_테스트.md)
+- [31. DataJpaTest](./31_DataJpaTest.md)
+- [32. Testcontainers](./32_Testcontainers.md)
+- [33. 테스트하기 좋은 구조](./33_테스트하기_좋은_구조.md)
 
 ## 작성 방향
 
@@ -51,9 +57,8 @@ Spring Boot 3.5.x를 초보자도 차근차근 배울 수 있도록 정리하는
 
 ## 다음 작성 예정 문서
 
-- 28. 테스트 기초 JUnit AssertJ
-- 29. Spring Boot Test
-- 30. WebMvcTest와 슬라이스 테스트
-- 31. DataJpaTest
-- 32. Testcontainers
-- 33. 테스트하기 좋은 구조
+- 34. Spring Security 기초
+- 35. 세션 기반 로그인
+- 36. JWT 인증
+- 37. 권한과 메서드 보안
+- 38. 보안 테스트
