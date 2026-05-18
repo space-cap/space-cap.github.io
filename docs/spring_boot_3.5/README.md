@@ -49,6 +49,12 @@ Spring Boot 3.5.x를 초보자도 차근차근 배울 수 있도록 정리하는
 - [42. 운영용 설정 관리](./42_운영용_설정_관리.md)
 - [43. Graceful Shutdown](./43_Graceful_Shutdown.md)
 - [44. 운영에서 자주 나는 문제](./44_운영에서_자주_나는_문제.md)
+- [45. 실행 가능한 JAR 만들기](./45_실행_가능한_JAR_만들기.md)
+- [46. Docker 이미지 만들기](./46_Docker_이미지_만들기.md)
+- [47. Cloud Native Buildpacks](./47_Cloud_Native_Buildpacks.md)
+- [48. Docker Compose로 로컬 환경 구성](./48_Docker_Compose로_로컬_환경_구성.md)
+- [49. 클라우드 배포 개요](./49_클라우드_배포_개요.md)
+- [50. GraalVM Native Image 입문](./50_GraalVM_Native_Image_입문.md)
 
 ## 작성 방향
 
@@ -68,9 +74,11 @@ Spring Boot 3.5.x를 초보자도 차근차근 배울 수 있도록 정리하는
 
 ## 다음 작성 예정 문서
 
-- 45. 실행 가능한 JAR 만들기
-- 46. Docker 이미지 만들기
-- 47. Cloud Native Buildpacks
-- 48. Docker Compose로 로컬 환경 구성
-- 49. 클라우드 배포 개요
-- 50. GraalVM Native Image 입문
+- 51. 캐싱
+- 52. 스케줄링과 비동기
+- 53. 이메일 전송
+- 54. REST Client
+- 55. 메시징 Kafka/RabbitMQ
+- 56. Batch 입문
+- 57. WebFlux 입문
+- 58. 커스텀 Auto Configuration
