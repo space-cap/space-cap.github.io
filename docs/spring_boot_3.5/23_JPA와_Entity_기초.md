@@ -279,3 +279,10 @@ DTO는 record가 좋지만 JPA Entity는 일반 클래스로 만든다.
 
 다음 장에서는 Spring Data JPA를 사용해 Repository 인터페이스만으로 기본 CRUD를 처리하는 방법을 배운다.
 
+---
+
+## 문서 이동
+
+- [이전: 22. JDBC와 JdbcClient](./22_JDBC와_JdbcClient.md)
+- [목차: Spring Boot 3.5.x 학습 문서](./README.md)
+- [다음: 24. Spring Data JPA](./24_Spring_Data_JPA.md)

@@ -124,3 +124,10 @@ Spring Boot 2.x 글에는 `javax.*` 패키지가 자주 나온다. Spring Boot 3
 
 다음 장에서는 Spring Boot 3.5.x에서 특히 알아야 할 기준 환경과 변화 지점을 정리한다.
 
+---
+
+## 문서 이동
+
+- [이전: 01. Spring Boot 3.5.x 학습 로드맵](./01_Spring_Boot_3_5_학습_로드맵.md)
+- [목차: Spring Boot 3.5.x 학습 문서](./README.md)
+- [다음: 03. Spring Boot 3.5.x에서 달라진 점](./03_Spring_Boot_3_5에서_달라진_점.md)

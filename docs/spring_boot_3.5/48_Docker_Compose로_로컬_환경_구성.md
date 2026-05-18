@@ -234,3 +234,10 @@ app 컨테이너 안의 `localhost`는 app 컨테이너 자신이다. DB 컨테�
 
 다음 장에서는 클라우드 배포 선택지를 큰 그림으로 정리한다.
 
+---
+
+## 문서 이동
+
+- [이전: 47. Cloud Native Buildpacks](./47_Cloud_Native_Buildpacks.md)
+- [목차: Spring Boot 3.5.x 학습 문서](./README.md)
+- [다음: 49. 클라우드 배포 개요](./49_클라우드_배포_개요.md)

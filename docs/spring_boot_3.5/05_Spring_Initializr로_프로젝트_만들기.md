@@ -156,3 +156,10 @@ Spring Boot 3.5.x는 Java 17 이상이 필요하다. 이 문서에서는 Java 21
 
 다음 장에서는 직접 Controller를 작성해서 첫 번째 HTTP 응답을 만든다.
 
+---
+
+## 문서 이동
+
+- [이전: 04. 개발 환경 설치](./04_개발_환경_설치.md)
+- [목차: Spring Boot 3.5.x 학습 문서](./README.md)
+- [다음: 06. 첫 번째 Spring Boot 애플리케이션](./06_첫_번째_Spring_Boot_애플리케이션.md)

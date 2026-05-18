@@ -280,3 +280,11 @@ Batch가 큰 쿼리를 실행하면 API도 느려질 수 있다.
 ## 다음 장으로
 
 다음 장에서는 Spring MVC와 다른 reactive 웹 기술인 WebFlux를 입문 수준에서 살펴본다.
+
+---
+
+## 문서 이동
+
+- [이전: 55. 메시징 Kafka/RabbitMQ](./55_메시징_Kafka_RabbitMQ.md)
+- [목차: Spring Boot 3.5.x 학습 문서](./README.md)
+- [다음: 57. WebFlux 입문](./57_WebFlux_입문.md)

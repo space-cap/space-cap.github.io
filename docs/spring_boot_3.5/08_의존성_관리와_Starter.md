@@ -146,3 +146,10 @@ Security Starter를 추가하면 기본 보안 설정이 활성화되어 모든 
 
 다음 장에서는 Spring Boot의 가장 중요한 기능인 자동 설정을 배운다.
 
+---
+
+## 문서 이동
+
+- [이전: 07. 프로젝트 구조 읽는 법](./07_프로젝트_구조_읽는_법.md)
+- [목차: Spring Boot 3.5.x 학습 문서](./README.md)
+- [다음: 09. 자동 설정 Auto Configuration](./09_자동_설정_Auto_Configuration.md)

@@ -333,3 +333,11 @@ consumer는 같은 메시지를 두 번 받을 수 있다고 생각하고 설계
 ## 다음 장으로
 
 다음 장에서는 대량 데이터를 안정적으로 처리하는 Spring Batch 입문을 배운다.
+
+---
+
+## 문서 이동
+
+- [이전: 54. REST Client](./54_REST_Client.md)
+- [목차: Spring Boot 3.5.x 학습 문서](./README.md)
+- [다음: 56. Batch 입문](./56_Batch_입문.md)

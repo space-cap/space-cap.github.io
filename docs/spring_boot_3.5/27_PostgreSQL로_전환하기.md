@@ -263,3 +263,10 @@ jdbc:postgresql://localhost:5433/todo
 
 다음 파트에서는 테스트를 배운다. DB와 API가 생겼으니 이제 안전하게 변경하기 위한 테스트 코드가 필요하다.
 
+---
+
+## 문서 이동
+
+- [이전: 26. DB 마이그레이션 Flyway/Liquibase](./26_DB_마이그레이션_Flyway_Liquibase.md)
+- [목차: Spring Boot 3.5.x 학습 문서](./README.md)
+- [다음: 28. 테스트 기초 JUnit AssertJ](./28_테스트_기초_JUnit_AssertJ.md)

@@ -224,3 +224,11 @@ Spring Boot 3.0에서는 요청 헤더 크기 설정의 일관성을 위해 `ser
 ## 다음 장으로
 
 다음 장에서는 Spring Boot 3.4에서 3.5로 올릴 때 확인해야 할 변경 사항을 정리한다.
+
+---
+
+## 문서 이동
+
+- [이전: 58. 커스텀 Auto Configuration](./58_커스텀_Auto_Configuration.md)
+- [목차: Spring Boot 3.5.x 학습 문서](./README.md)
+- [다음: 60. Spring Boot 3.4에서 3.5로 업그레이드](./60_Spring_Boot_3_4에서_3_5로_업그레이드.md)

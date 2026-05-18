@@ -122,3 +122,10 @@ JPA는 중요하지만 처음부터 깊게 들어가면 Spring Boot의 큰 흐�
 
 다음 장에서는 Spring과 Spring Boot가 왜 탄생했는지 살펴본다. 도구의 탄생 배경을 알면, 지금 사용하는 기능들이 왜 이런 모양인지 훨씬 잘 보인다.
 
+---
+
+## 문서 이동
+
+- [이전: 00. 학습 문서 작성 계획](./00_학습_문서_작성_계획.md)
+- [목차: Spring Boot 3.5.x 학습 문서](./README.md)
+- [다음: 02. Spring과 Spring Boot의 탄생](./02_Spring과_Spring_Boot의_탄생.md)

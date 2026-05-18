@@ -200,3 +200,10 @@ API 확인은 가능하면 curl이나 HTTP Client를 사용한다.
 
 다음 장에서는 프로젝트 폴더 구조를 읽는 법을 배운다. Spring Boot 프로젝트는 파일 위치가 곧 의미다.
 
+---
+
+## 문서 이동
+
+- [이전: 05. Spring Initializr로 프로젝트 만들기](./05_Spring_Initializr로_프로젝트_만들기.md)
+- [목차: Spring Boot 3.5.x 학습 문서](./README.md)
+- [다음: 07. 프로젝트 구조 읽는 법](./07_프로젝트_구조_읽는_법.md)

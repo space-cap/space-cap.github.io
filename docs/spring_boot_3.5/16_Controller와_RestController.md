@@ -281,3 +281,10 @@ POST 요청의 JSON 본문을 객체로 받으려면 `@RequestBody`가 필요하
 
 다음 장에서는 요청 DTO와 응답 DTO를 나누는 법을 배운다.
 
+---
+
+## 문서 이동
+
+- [이전: 15. HTTP와 REST API 기초](./15_HTTP와_REST_API_기초.md)
+- [목차: Spring Boot 3.5.x 학습 문서](./README.md)
+- [다음: 17. 요청과 응답 DTO](./17_요청과_응답_DTO.md)

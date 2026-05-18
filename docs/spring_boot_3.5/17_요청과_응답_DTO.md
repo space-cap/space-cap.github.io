@@ -302,3 +302,10 @@ record는 `request.getTitle()`이 아니라 `request.title()`이다.
 
 다음 장에서는 요청 DTO에 검증 규칙을 붙여 잘못된 요청을 거절하는 방법을 배운다.
 
+---
+
+## 문서 이동
+
+- [이전: 16. Controller와 RestController](./16_Controller와_RestController.md)
+- [목차: Spring Boot 3.5.x 학습 문서](./README.md)
+- [다음: 18. 검증 Validation](./18_검증_Validation.md)

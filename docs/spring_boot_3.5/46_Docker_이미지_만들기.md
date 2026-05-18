@@ -180,3 +180,10 @@ Dockerfile의 `ENV DB_PASSWORD=...` 같은 방식은 피한다. secret은 실행
 
 다음 장에서는 Dockerfile 없이도 이미지를 만들 수 있는 Cloud Native Buildpacks를 배운다.
 
+---
+
+## 문서 이동
+
+- [이전: 45. 실행 가능한 JAR 만들기](./45_실행_가능한_JAR_만들기.md)
+- [목차: Spring Boot 3.5.x 학습 문서](./README.md)
+- [다음: 47. Cloud Native Buildpacks](./47_Cloud_Native_Buildpacks.md)

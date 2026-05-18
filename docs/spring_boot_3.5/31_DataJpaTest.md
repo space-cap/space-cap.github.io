@@ -265,3 +265,10 @@ Repository만 테스트한다면 `@DataJpaTest`가 더 가볍고 의도가 분�
 
 다음 장에서는 Testcontainers로 실제 PostgreSQL 컨테이너를 띄워 테스트하는 방법을 배운다.
 
+---
+
+## 문서 이동
+
+- [이전: 30. WebMvcTest와 슬라이스 테스트](./30_WebMvcTest와_슬라이스_테스트.md)
+- [목차: Spring Boot 3.5.x 학습 문서](./README.md)
+- [다음: 32. Testcontainers](./32_Testcontainers.md)

@@ -250,3 +250,10 @@ Controller 테스트는 HTTP 경계에 집중한다.
 
 다음 장에서는 JPA Repository를 가볍게 테스트하는 `@DataJpaTest`를 배운다.
 
+---
+
+## 문서 이동
+
+- [이전: 29. Spring Boot Test](./29_Spring_Boot_Test.md)
+- [목차: Spring Boot 3.5.x 학습 문서](./README.md)
+- [다음: 31. DataJpaTest](./31_DataJpaTest.md)

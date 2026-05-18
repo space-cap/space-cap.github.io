@@ -322,3 +322,10 @@ DB는 `created_at`, Java는 `createdAt`처럼 이름 규칙이 다를 수 있다
 
 다음 장에서는 JPA와 Entity를 배운다. SQL 중심 사고에서 객체 중심 사고로 한 단계 이동한다.
 
+---
+
+## 문서 이동
+
+- [이전: 21. H2로 DB 입문하기](./21_H2로_DB_입문하기.md)
+- [목차: Spring Boot 3.5.x 학습 문서](./README.md)
+- [다음: 23. JPA와 Entity 기초](./23_JPA와_Entity_기초.md)

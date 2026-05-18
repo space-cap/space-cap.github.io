@@ -305,3 +305,10 @@ IDE에서도 테스트 클래스나 메서드 옆의 실행 버튼으로 실행�
 
 다음 장에서는 `@SpringBootTest`로 Spring Boot 애플리케이션 전체를 테스트하는 방법을 배운다.
 
+---
+
+## 문서 이동
+
+- [이전: 27. PostgreSQL로 전환하기](./27_PostgreSQL로_전환하기.md)
+- [목차: Spring Boot 3.5.x 학습 문서](./README.md)
+- [다음: 29. Spring Boot Test](./29_Spring_Boot_Test.md)

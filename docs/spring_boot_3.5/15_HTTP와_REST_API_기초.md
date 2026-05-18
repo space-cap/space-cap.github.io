@@ -297,3 +297,10 @@ curl.exe -X POST http://localhost:8080/todos -H "Content-Type: application/json"
 
 다음 장에서는 `Controller`와 `RestController`를 본격적으로 다룬다. HTTP 기본기를 Spring MVC 코드와 연결해 보자.
 
+---
+
+## 문서 이동
+
+- [이전: 14. 로깅 기초](./14_로깅_기초.md)
+- [목차: Spring Boot 3.5.x 학습 문서](./README.md)
+- [다음: 16. Controller와 RestController](./16_Controller와_RestController.md)

@@ -273,3 +273,11 @@ JPA는 blocking이다. 일반 CRUD 서비스라면 MVC + JPA가 더 단순하다
 ## 다음 장으로
 
 다음 장에서는 Spring Boot의 자동 설정을 직접 만들어 보는 커스텀 Auto Configuration을 배운다.
+
+---
+
+## 문서 이동
+
+- [이전: 56. Batch 입문](./56_Batch_입문.md)
+- [목차: Spring Boot 3.5.x 학습 문서](./README.md)
+- [다음: 58. 커스텀 Auto Configuration](./58_커스텀_Auto_Configuration.md)

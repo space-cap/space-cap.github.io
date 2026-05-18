@@ -302,3 +302,11 @@ reactive 흐름에서 `block()`을 남발하면 WebClient를 쓰는 장점이 �
 ## 다음 장으로
 
 다음 장에서는 HTTP 요청/응답을 넘어 메시지 기반으로 시스템을 연결하는 Kafka와 RabbitMQ 입문을 배운다.
+
+---
+
+## 문서 이동
+
+- [이전: 53. 이메일 전송](./53_이메일_전송.md)
+- [목차: Spring Boot 3.5.x 학습 문서](./README.md)
+- [다음: 55. 메시징 Kafka/RabbitMQ](./55_메시징_Kafka_RabbitMQ.md)

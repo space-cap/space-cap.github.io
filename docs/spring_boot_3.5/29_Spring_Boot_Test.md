@@ -233,3 +233,10 @@ class TodoNotificationTest {
 
 다음 장에서는 Controller만 가볍게 테스트하는 `@WebMvcTest`와 슬라이스 테스트를 배운다.
 
+---
+
+## 문서 이동
+
+- [이전: 28. 테스트 기초 JUnit AssertJ](./28_테스트_기초_JUnit_AssertJ.md)
+- [목차: Spring Boot 3.5.x 학습 문서](./README.md)
+- [다음: 30. WebMvcTest와 슬라이스 테스트](./30_WebMvcTest와_슬라이스_테스트.md)

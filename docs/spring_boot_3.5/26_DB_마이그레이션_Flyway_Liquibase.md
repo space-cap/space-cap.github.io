@@ -243,3 +243,10 @@ Flyway 파일은 `V1__create_table.sql`처럼 버전과 설명 사이에 밑줄 
 
 다음 장에서는 H2에서 벗어나 PostgreSQL로 전환하는 방법을 배운다.
 
+---
+
+## 문서 이동
+
+- [이전: 25. 트랜잭션](./25_트랜잭션.md)
+- [목차: Spring Boot 3.5.x 학습 문서](./README.md)
+- [다음: 27. PostgreSQL로 전환하기](./27_PostgreSQL로_전환하기.md)
