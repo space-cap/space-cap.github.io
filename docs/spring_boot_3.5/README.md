@@ -20,6 +20,11 @@ Spring Boot 3.5.x를 초보자도 차근차근 배울 수 있도록 정리하는
 - [13. Profile로 환경 나누기](./13_Profile로_환경_나누기.md)
 - [14. 로깅 기초](./14_로깅_기초.md)
 - [15. HTTP와 REST API 기초](./15_HTTP와_REST_API_기초.md)
+- [16. Controller와 RestController](./16_Controller와_RestController.md)
+- [17. 요청과 응답 DTO](./17_요청과_응답_DTO.md)
+- [18. 검증 Validation](./18_검증_Validation.md)
+- [19. 예외 처리](./19_예외_처리.md)
+- [20. 필터, 인터셉터, 서블릿 기초](./20_필터_인터셉터_서블릿_기초.md)
 
 ## 작성 방향
 
@@ -39,8 +44,10 @@ Spring Boot 3.5.x를 초보자도 차근차근 배울 수 있도록 정리하는
 
 ## 다음 작성 예정 문서
 
-- 16. Controller와 RestController
-- 17. 요청과 응답 DTO
-- 18. 검증 Validation
-- 19. 예외 처리
-- 20. 필터, 인터셉터, 서블릿 기초
+- 21. H2로 DB 입문하기
+- 22. JDBC와 JdbcClient
+- 23. JPA와 Entity 기초
+- 24. Spring Data JPA
+- 25. 트랜잭션
+- 26. DB 마이그레이션 Flyway/Liquibase
+- 27. PostgreSQL로 전환하기
