@@ -38,6 +38,11 @@ Spring Boot 3.5.x를 초보자도 차근차근 배울 수 있도록 정리하는
 - [31. DataJpaTest](./31_DataJpaTest.md)
 - [32. Testcontainers](./32_Testcontainers.md)
 - [33. 테스트하기 좋은 구조](./33_테스트하기_좋은_구조.md)
+- [34. Spring Security 기초](./34_Spring_Security_기초.md)
+- [35. 세션 기반 로그인](./35_세션_기반_로그인.md)
+- [36. JWT 인증](./36_JWT_인증.md)
+- [37. 권한과 메서드 보안](./37_권한과_메서드_보안.md)
+- [38. 보안 테스트](./38_보안_테스트.md)
 
 ## 작성 방향
 
@@ -57,8 +62,9 @@ Spring Boot 3.5.x를 초보자도 차근차근 배울 수 있도록 정리하는
 
 ## 다음 작성 예정 문서
 
-- 34. Spring Security 기초
-- 35. 세션 기반 로그인
-- 36. JWT 인증
-- 37. 권한과 메서드 보안
-- 38. 보안 테스트
+- 39. Actuator 기초
+- 40. 모니터링과 메트릭
+- 41. 분산 추적과 Observability
+- 42. 운영용 설정 관리
+- 43. Graceful Shutdown
+- 44. 운영에서 자주 나는 문제
