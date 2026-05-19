@@ -39,7 +39,12 @@ Vue.js를 처음 배우는 사람도 따라올 수 있도록, 책의 목차처�
 - [32. 플러그인 기초](./32_플러그인_기초.md)
 - [33. Options API와 Composition API](./33_Options_API와_Composition_API.md)
 - [34. Vue의 렌더링 원리 입문](./34_Vue의_렌더링_원리_입문.md)
+- [35. Transition](./35_Transition.md)
+- [36. TransitionGroup](./36_TransitionGroup.md)
+- [37. KeepAlive](./37_KeepAlive.md)
+- [38. Teleport](./38_Teleport.md)
+- [39. Suspense](./39_Suspense.md)
 
 ## 현재 작성 범위
 
-현재는 Vue 입문자가 개발 환경을 준비하고, 첫 Todo 앱을 만든 뒤, Vue 기본 문법, 컴포넌트 심화, 재사용성과 렌더링 원리 입문까지 학습하는 단계까지 작성되어 있습니다. 이후 문서는 내장 컴포넌트, 라우터, 상태 관리, 테스트, 배포 순서로 확장합니다.
+현재는 Vue 입문자가 개발 환경을 준비하고, 첫 Todo 앱을 만든 뒤, Vue 기본 문법, 컴포넌트 심화, 재사용성, 렌더링 원리, 내장 컴포넌트까지 학습하는 단계까지 작성되어 있습니다. 이후 문서는 라우터, 상태 관리, 테스트, 배포 순서로 확장합니다.
