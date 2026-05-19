@@ -60,7 +60,14 @@ Vue.js를 처음 배우는 사람도 따라올 수 있도록, 책의 목차처�
 - [53. 보안 기초](./53_보안_기초.md)
 - [54. 빌드와 배포](./54_빌드와_배포.md)
 - [55. 디버깅과 Vue DevTools](./55_디버깅과_Vue_DevTools.md)
+- [56. TypeScript 시작하기](./56_TypeScript_시작하기.md)
+- [57. Props와 Emit에 타입 입히기](./57_Props와_Emit에_타입_입히기.md)
+- [58. Composable에 타입 적용하기](./58_Composable에_타입_적용하기.md)
+- [59. Render Function과 JSX 입문](./59_Render_Function과_JSX_입문.md)
+- [60. Web Components와 Vue](./60_Web_Components와_Vue.md)
+- [61. SSR과 Nuxt 입문](./61_SSR과_Nuxt_입문.md)
+- [62. Vue 2에서 Vue 3로 마이그레이션](./62_Vue_2에서_Vue_3로_마이그레이션.md)
 
 ## 현재 작성 범위
 
-현재는 Vue 입문자가 개발 환경을 준비하고, 첫 Todo 앱을 만든 뒤, Vue 기본 문법, 컴포넌트 심화, 재사용성, 렌더링 원리, 내장 컴포넌트, 실무 앱 확장, 품질/배포/운영 흐름까지 학습하는 단계까지 작성되어 있습니다. 이후 문서는 TypeScript, 심화 주제, 실습 프로젝트 순서로 확장합니다.
+현재는 Vue 입문자가 개발 환경을 준비하고, 첫 Todo 앱을 만든 뒤, Vue 기본 문법, 컴포넌트 심화, 재사용성, 렌더링 원리, 내장 컴포넌트, 실무 앱 확장, 품질/배포/운영, TypeScript와 심화 주제까지 학습하는 단계까지 작성되어 있습니다. 이후 문서는 실습 프로젝트 순서로 확장합니다.
