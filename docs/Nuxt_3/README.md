@@ -34,9 +34,15 @@ Nuxt 3를 처음 배우는 사람도 따라올 수 있도록, 책의 목차처�
 - [27. Runtime Config](./27_Runtime_Config.md)
 - [28. App Config](./28_App_Config.md)
 - [29. Nuxt DevTools](./29_Nuxt_DevTools.md)
+- [30. $fetch와 useFetch](./30_fetch와_useFetch.md)
+- [31. useAsyncData](./31_useAsyncData.md)
+- [32. useLazyFetch와 로딩 처리](./32_useLazyFetch와_로딩_처리.md)
+- [33. 서버와 클라이언트 데이터 요청 차이](./33_서버와_클라이언트_데이터_요청_차이.md)
+- [34. 에러 처리와 빈 상태 UI](./34_에러_처리와_빈_상태_UI.md)
+- [35. 페이지네이션과 검색](./35_페이지네이션과_검색.md)
 
 ## 현재 작성 범위
 
-현재는 Nuxt 3의 개념, 탄생 배경, Vue와의 차이, 웹 렌더링 방식, 학습 전 기초 지식, 개발 환경 준비, 프로젝트 생성, 첫 페이지 작성, 폴더 구조, 기본 설정, 개발 서버와 빌드 명령어, 페이지와 라우팅, 화면 구조 만들기, Nuxt 핵심 문법까지 작성되어 있습니다.
+현재는 Nuxt 3의 개념, 탄생 배경, Vue와의 차이, 웹 렌더링 방식, 학습 전 기초 지식, 개발 환경 준비, 프로젝트 생성, 첫 페이지 작성, 폴더 구조, 기본 설정, 개발 서버와 빌드 명령어, 페이지와 라우팅, 화면 구조 만들기, Nuxt 핵심 문법, 데이터 가져오기까지 작성되어 있습니다.
 
-다음 작성 범위는 `$fetch`, `useFetch`, `useAsyncData` 같은 데이터 가져오기입니다.
+다음 작성 범위는 Nitro, Server Routes, API 설계 같은 서버 기능입니다.
